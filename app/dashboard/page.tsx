@@ -13,7 +13,7 @@ export default function DashboardPage() {
 
     supabase.auth.getUser().then(({ data }) => {
       if (!data.user) {
-        router.replace('/login')
+        router.replace('/')
         return
       }
 
