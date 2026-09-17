@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/utils/supabase/client'
 
@@ -11,6 +12,7 @@ export default function RegisterPage() {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,16 +37,39 @@ export default function RegisterPage() {
       return
     }
 
-    // Guardar el username también en una tabla 'perfiles' (opcional pero recomendado)
-    if (data.user) {
-      await supabase.from('perfiles').insert({
-        id: data.user.id,
-        username: username,
-        email: email,
-      })
+    if (!data.user) {
+      setLoading(false)
+      setError('No se pudo crear la cuenta, intenta de nuevo')
+      return
+    }
+
+    // Guardar el username también en la tabla 'perfiles'.
+    // Usamos upsert para que no truene si el perfil ya existe
+    // (por ejemplo si lo crea también un trigger en la base de datos).
+    const { error: profileError } = await supabase.from('perfiles').upsert({
+      id: data.user.id,
+      username: username,
+      email: email,
+    })
+
+    if (profileError) {
+      // No bloqueamos el registro por esto: el usuario de auth ya se creó.
+      // Si tienes un trigger en la base de datos, esto es solo respaldo.
+      console.error('Error guardando perfil:', profileError.message)
     }
 
     setLoading(false)
+
+    // Si hay sesión activa, la confirmación de correo está desactivada
+    // (o no es requerida) y el usuario ya quedó logueado: lo mandamos
+    // directo a la página de inicio.
+    if (data.session) {
+      router.push('/dashboard')
+      router.refresh()
+      return
+    }
+
+    // Si no hay sesión, Supabase requiere que confirme su correo primero.
     setSuccess(true)
   }
 
