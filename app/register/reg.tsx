@@ -80,7 +80,7 @@ export default function RegisterPage() {
           <div className="auth-panel auth-panel-success">
             <h1 id="register-success-title">¡Revisa tu correo!</h1>
             <p>Te enviamos un enlace para confirmar tu cuenta antes de iniciar sesión.</p>
-            <Link className="auth-button-link" href="/login">Volver al login</Link>
+            <Link className="auth-button-link" href="/">Volver al login</Link>
           </div>
         </section>
       </main>
@@ -134,7 +134,7 @@ export default function RegisterPage() {
           </form>
 
           <p className="auth-switch">
-            ¿Ya tienes cuenta? <Link href="/login">Inicia sesión aquí</Link>
+            ¿Ya tienes cuenta? <Link href="/">Inicia sesión aquí</Link>
           </p>
         </div>
       </section>
