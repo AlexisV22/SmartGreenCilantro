@@ -24,3 +24,122 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+  font-family: 'Jost', Arial, sans-serif;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+}
+
+.auth-card {
+  width: min(350px, 100%);
+  min-height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgb(1, 152, 54);
+  box-shadow: 5px 20px 50px #000;
+}
+
+.auth-panel {
+  min-height: 460px;
+  box-sizing: border-box;
+  padding: 34px 24px 28px;
+  border-radius: 60% / 10%;
+  background: #eee;
+}
+
+.auth-panel h1 {
+  margin: 18px 0 38px;
+  color: #573b8a;
+  font-size: 2.3em;
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form label {
+  width: 60%;
+  margin: 8px auto 0;
+  color: #573b8a;
+  font-weight: bold;
+}
+
+.auth-form input {
+  width: 60%;
+  height: 10px;
+  margin: 8px auto 12px;
+  padding: 12px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #e0dede;
+}
+
+.auth-form button {
+  width: 60%;
+  height: 40px;
+  margin: 22px auto 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  background: #573b8a;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.2s ease-in;
+  cursor: pointer;
+}
+
+.auth-form button:hover:not(:disabled) {
+  background: #6d44b8;
+}
+
+.auth-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.auth-error {
+  width: 60%;
+  margin: 4px auto;
+  color: #b42318;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.auth-switch {
+  width: 80%;
+  margin: 22px auto 0;
+  color: #333;
+  text-align: center;
+}
+
+.auth-switch a {
+  color: #573b8a;
+  font-weight: bold;
+}
+
+@media (max-width: 420px) {
+  .auth-page {
+    padding: 16px;
+  }
+
+  .auth-panel h1 {
+    font-size: 2em;
+  }
+
+  .auth-form label,
+  .auth-form input,
+  .auth-form button,
+  .auth-error {
+    width: 82%;
+  }
+}

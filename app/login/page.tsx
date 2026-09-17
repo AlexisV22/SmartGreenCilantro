@@ -36,41 +36,45 @@ export default function Home() {
   }
 
   return (
-    <div style={{ maxWidth: 320, margin: '80px auto' }}>
-      <h1>Iniciar sesión</h1>
+    <main className="auth-page">
+      <section className="auth-card" aria-labelledby="login-title">
+        <div className="auth-panel auth-panel-login">
+          <h1 id="login-title">Iniciar sesión</h1>
 
-      <form onSubmit={handleLogin}>
-        <label>
-          Correo
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
+          <form className="auth-form" onSubmit={handleLogin}>
+            <label htmlFor="email">Correo</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
-        <label>
-          Contraseña
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
-        </label>
+            <label htmlFor="password">Contraseña</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+            />
 
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p className="auth-error" role="alert">{error}</p>}
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Ingresando...' : 'Ingresar'}
-        </button>
-      </form>
+            <button type="submit" disabled={loading}>
+              {loading ? 'Ingresando...' : 'Ingresar'}
+            </button>
+          </form>
 
-      <p>
-        ¿No tienes cuenta? <Link href="/register">Regístrate aquí</Link>
-      </p>
-    </div>
+          <p className="auth-switch">
+            ¿No tienes cuenta? <Link href="/register">Regístrate aquí</Link>
+          </p>
+        </div>
+      </section>
+    </main>
   )
 }
