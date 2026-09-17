@@ -55,7 +55,7 @@ body {
 
 .auth-panel h1 {
   margin: 18px 0 38px;
-  color: #573b8a;
+  color: #3b8a68;
   font-size: 2.3em;
   text-align: center;
 }
@@ -63,12 +63,13 @@ body {
 .auth-form {
   display: flex;
   flex-direction: column;
+  color: #333;
 }
 
 .auth-form label {
   width: 60%;
   margin: 8px auto 0;
-  color: #573b8a;
+  color: #3b8a68;
   font-weight: bold;
 }
 
@@ -91,7 +92,7 @@ body {
   border-radius: 5px;
   outline: none;
   color: #fff;
-  background: #573b8a;
+  background: #3b8a68;
   font-size: 1em;
   font-weight: bold;
   transition: background 0.2s ease-in;
@@ -123,7 +124,7 @@ body {
 }
 
 .auth-switch a {
-  color: #573b8a;
+  color: #3b8a68;
   font-weight: bold;
 }
 
