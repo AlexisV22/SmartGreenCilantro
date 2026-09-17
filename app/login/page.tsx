@@ -17,34 +17,37 @@ export default function Home() {
     setError(null)
     setLoading(true)
 
-    const supabase = createClient()
+    try {
+      const supabase = createClient()
 
-    const { data: profile, error: profileError } = await supabase
-      .from('perfiles')
-      .select('email')
-      .eq('username', username.trim())
-      .maybeSingle()
+      const { data: email, error: rpcError } = await supabase.rpc(
+        'get_email_by_username',
+        { lookup_username: username.trim() }
+      )
 
-    if (profileError || !profile?.email) {
+      if (rpcError || !email) {
+        setError('Usuario o contraseña incorrectos')
+        return
+      }
+
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+
+      if (error) {
+        setError('Usuario o contraseña incorrectos')
+        return
+      }
+
+      router.push('/dashboard')
+      router.refresh()
+    } catch (err) {
+      console.error('Error inesperado al iniciar sesión:', err)
+      setError('Ocurrió un error inesperado, revisa la consola del navegador')
+    } finally {
       setLoading(false)
-      setError('Usuario o contraseña incorrectos')
-      return
     }
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email: profile.email,
-      password,
-    })
-
-    setLoading(false)
-
-    if (error) {
-      setError('Usuario o contraseña incorrectos')
-      return
-    }
-
-    router.push('/dashboard')
-    router.refresh()
   }
 
   return (
