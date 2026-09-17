@@ -50,61 +50,69 @@ export default function RegisterPage() {
 
   if (success) {
     return (
-      <div style={{ maxWidth: 320, margin: '80px auto' }}>
-        <h1>¡Revisa tu correo!</h1>
-        <p>Te enviamos un enlace para confirmar tu cuenta antes de iniciar sesión.</p>
-        <Link href="/login">Volver al login</Link>
-      </div>
+      <main className="auth-page">
+        <section className="auth-card" aria-labelledby="register-success-title">
+          <div className="auth-panel auth-panel-success">
+            <h1 id="register-success-title">¡Revisa tu correo!</h1>
+            <p>Te enviamos un enlace para confirmar tu cuenta antes de iniciar sesión.</p>
+            <Link className="auth-button-link" href="/login">Volver al login</Link>
+          </div>
+        </section>
+      </main>
     )
   }
 
   return (
-    <div style={{ maxWidth: 320, margin: '80px auto' }}>
-      <h1>Crear cuenta</h1>
+    <main className="auth-page">
+      <section className="auth-card" aria-labelledby="register-title">
+        <div className="auth-panel auth-panel-register">
+          <h1 id="register-title">Crear cuenta</h1>
 
-      <form onSubmit={handleRegister}>
-        <label>
-          Usuario
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            minLength={3}
-          />
-        </label>
+          <form className="auth-form" onSubmit={handleRegister}>
+            <label htmlFor="username">Usuario</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              minLength={3}
+            />
 
-        <label>
-          Correo
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
+            <label htmlFor="email">Correo</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
-        <label>
-          Contraseña
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
-        </label>
+            <label htmlFor="password">Contraseña</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+            />
 
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p className="auth-error" role="alert">{error}</p>}
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Creando cuenta...' : 'Registrarme'}
-        </button>
-      </form>
+            <button type="submit" disabled={loading}>
+              {loading ? 'Creando cuenta...' : 'Registrarme'}
+            </button>
+          </form>
 
-      <p>
-        ¿Ya tienes cuenta? <Link href="/login">Inicia sesión aquí</Link>
-      </p>
-    </div>
+          <p className="auth-switch">
+            ¿Ya tienes cuenta? <Link href="/login">Inicia sesión aquí</Link>
+          </p>
+        </div>
+      </section>
+    </main>
   )
 }
