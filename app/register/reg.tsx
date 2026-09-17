@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/utils/supabase/client'
 
@@ -12,7 +11,6 @@ export default function RegisterPage() {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
