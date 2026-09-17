@@ -54,7 +54,7 @@ button{
 	justify-content: center;
 	display: block;
 	color: #fff;
-	background: #573b8a;
+	background: #3b8a68;
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
@@ -72,10 +72,11 @@ button:hover{
 	background: #eee;
 	border-radius: 60% / 10%;
 	transform: translateY(-180px);
+    color: #333;
 	transition: .8s ease-in-out;
 }
 .login label{
-	color: #573b8a;
+	color: #3b8a68;
 	transform: scale(.6);
 }
 
