@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { createClient } from '@/utils/supabase/client'
 
 export default function Home() {
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -19,15 +19,27 @@ export default function Home() {
 
     const supabase = createClient()
 
+    const { data: profile, error: profileError } = await supabase
+      .from('perfiles')
+      .select('email')
+      .eq('username', username.trim())
+      .maybeSingle()
+
+    if (profileError || !profile?.email) {
+      setLoading(false)
+      setError('Usuario o contraseña incorrectos')
+      return
+    }
+
     const { error } = await supabase.auth.signInWithPassword({
-      email,
+      email: profile.email,
       password,
     })
 
     setLoading(false)
 
     if (error) {
-      setError('Correo o contraseña incorrectos')
+      setError('Usuario o contraseña incorrectos')
       return
     }
 
@@ -42,13 +54,13 @@ export default function Home() {
           <h1 id="login-title">Iniciar sesión</h1>
 
           <form className="auth-form" onSubmit={handleLogin}>
-            <label htmlFor="email">Correo</label>
+            <label htmlFor="username">Usuario</label>
             <input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="username"
+              name="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
 
