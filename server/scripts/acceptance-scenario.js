@@ -43,6 +43,8 @@ const irrigation = require('../src/modules/irrigation/service');
 const DEVICE_KEY = process.env.DEVICE_API_KEY || 'sec_iot_dev_node_01_smartgreen_team3';
 const AREA = 'AREA-1';
 const PUMP = 'ACT-PUMP-01';
+const DRYING_STEP_MS = 30000;
+const DRYING_WINDOW_MS = 5 * DRYING_STEP_MS;
 
 let base;
 const results = [];
@@ -114,24 +116,48 @@ async function prepare() {
   await db.query("UPDATE alerts SET status = 'RESOLVED', resolved_at = NOW() WHERE sensor_id IN ('SM-01','SM-02','TMP-01','HUM-01') AND status <> 'RESOLVED'");
   await db.query("UPDATE actuators SET state = 'OFF', last_update = NOW() WHERE id = $1", [PUMP]);
   await db.query("UPDATE areas SET mode = 'MANUAL' WHERE id = $1", [AREA]);
+  // Fault anomalies recorded on the soil probes in the last hour (for example
+  // the out-of-range readings of the Postman collection) make the AI answer
+  // CHECK_SENSOR, which is correct behaviour but not this scenario: the
+  // demonstration starts from healthy sensors.
+  const faults = await db.query(
+    `DELETE FROM anomalies WHERE sensor_id IN ('SM-01', 'SM-02')
+        AND method IN ('OUT_OF_RANGE', 'SUDDEN_JUMP', 'FLATLINE')
+        AND detected_at > NOW() - INTERVAL '1 hour'`,
+  );
+  if (faults.rowCount) {
+    console.log(`(setup) cleared ${faults.rowCount} soil-sensor fault anomaly record(s) left by earlier test runs\n`);
+  }
   // Irrigations older than the cooldown only; a leftover from a previous run
   // inside the cooldown window would (correctly) block step 11.
   await db.query(
     "DELETE FROM actuator_events WHERE actuator_id = $1 AND action = 'ON' AND created_at > NOW() - INTERVAL '45 minutes'", [PUMP],
   );
   recommendationJob.reset();
+
+  // The drying series below covers the last 2.5 minutes. A run started right
+  // after another one would interleave its readings with the previous run's,
+  // so wait until the latest soil reading is older than that window.
+  const last = await db.one("SELECT MAX(recorded_at) AS at FROM measurements WHERE sensor_id = 'SM-01'");
+  const ageMs = last && last.at ? Date.now() - new Date(last.at).getTime() : Infinity;
+  if (ageMs < DRYING_WINDOW_MS + 10000) {
+    const waitMs = DRYING_WINDOW_MS + 10000 - ageMs;
+    console.log(`(setup) the previous run finished ${Math.round(ageMs / 1000)} s ago; waiting ${Math.ceil(waitMs / 1000)} s so the readings do not overlap
+`);
+    await new Promise((r) => setTimeout(r, waitMs));
+  }
 }
 
 async function main() {
   console.log('SmartGreenAI: Cilantro Crop — final acceptance scenario (section 24)\n');
   await prepare();
 
-  // The soil dries gradually over the last minutes (a real sensor never jumps).
+  // The soil dries gradually over the last 2.5 minutes (a real sensor never jumps).
   const now = Date.now();
   const drying = [
     [64.0, 63.1, 26.5, 55], [61.2, 60.4, 27.4, 53], [58.3, 57.6, 28.1, 51],
     [55.4, 54.9, 28.6, 50], [53.1, 52.2, 28.9, 49], [52.0, 51.4, 29.1, 48],
-  ].map(([s1, s2, t, hu], i) => cycle(new Date(now - (5 - i) * 60000), s1, s2, t, hu)).flat();
+  ].map(([s1, s2, t, hu], i) => cycle(new Date(now - (5 - i) * DRYING_STEP_MS), s1, s2, t, hu)).flat();
 
   await step(1, 'A soil-moisture sensor measures a low moisture value', async () => {
     const last = drying.filter((r) => r.sensor_id === 'SM-01').pop();
