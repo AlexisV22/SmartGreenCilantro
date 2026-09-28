@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Administrator Management Prototype</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f7fb;
+        color: #1f2937;
+    }
+    .sidebar {
+        position: fixed;
+        left: 0; top: 0; bottom: 0;
+        width: 240px;
+        background: #0b2f57;
+        color: white;
+        padding: 24px 18px;
+    }
+    .sidebar h2 { margin-top: 0; font-size: 22px; }
+    .sidebar .role {
+        font-size: 13px;
+        color: #c8d7ea;
+        margin-bottom: 28px;
+    }
+    .nav a {
+        display: block;
+        color: #dbe8f5;
+        text-decoration: none;
+        padding: 11px 12px;
+        border-radius: 8px;
+        margin-bottom: 7px;
+    }
+    .nav a:hover, .nav a.active { background: #174a7e; color: white; }
+    .main {
+        margin-left: 240px;
+        min-height: 100vh;
+    }
+    .topbar {
+        background: white;
+        border-bottom: 1px solid #dde5ee;
+        padding: 18px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .topbar h1 { font-size: 21px; margin: 0; }
+    .content { padding: 28px; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .card {
+        background: white;
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 3px 12px rgba(0,0,0,.06);
+        margin-bottom: 20px;
+    }
+    .toolbar {
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+    }
+    .toolbar .left { display: flex; gap: 10px; flex-wrap: wrap; }
+    input, select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #cdd7e1;
+        border-radius: 7px;
+        font-size: 14px;
+        background: white;
+    }
+    .search { width: 260px; }
+    button {
+        border: 0;
+        border-radius: 7px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+    .btn-primary { background: #0f5fa8; color: white; }
+    .btn-secondary { background: #e8eef5; color: #20384f; }
+    .btn-danger { background: #c0392b; color: white; }
+    .btn-success { background: #218838; color: white; }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+    }
+    th, td {
+        padding: 12px 10px;
+        border-bottom: 1px solid #e7edf3;
+        text-align: left;
+        font-size: 14px;
+    }
+    th { background: #eff5fb; color: #22496f; }
+    .badge {
+        display: inline-block;
+        padding: 5px 9px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+    .active-badge { background: #e7f6ec; color: #1f7a36; }
+    .inactive-badge { background: #fdebea; color: #a93226; }
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+    .field label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #334e68;
+    }
+    .full { grid-column: 1 / -1; }
+    .form-actions {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+    .notice {
+        background: #edf6ff;
+        border-left: 4px solid #0f5fa8;
+        padding: 13px 15px;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-bottom: 18px;
+    }
+    .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+    }
+    .modal.show { display: flex; }
+    .modal-box {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        width: 100%;
+        max-width: 460px;
+    }
+    .modal-box h3 { margin-top: 0; }
+    .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 18px;
+    }
+    .actions button { margin-right: 6px; margin-bottom: 4px; }
+    .small { font-size: 12px; color: #6b7280; }
+    @media(max-width: 850px) {
+        .sidebar { position: static; width: 100%; }
+        .main { margin-left: 0; }
+        .form-grid { grid-template-columns: 1fr; }
+        .full { grid-column: auto; }
+    }
+</style>
+</head>
+<body>
+<aside class="sidebar">
+    <h2>SmartGreenAI</h2>
+    <div class="role">Logged in as: Super Administrator</div>
+    <div class="nav">
+        <a href="#" onclick="showPage('list')" class="active">Administrators</a>
+        <a href="#" onclick="showPage('create')">Create Administrator</a>
+        <a href="#" onclick="alert('Prototype only')">Users</a>
+        <a href="#" onclick="alert('Prototype only')">Reports</a>
+        <a href="#" onclick="alert('Prototype only')">Settings</a>
+    </div>
+</aside>
+
+<main class="main">
+    <header class="topbar">
+        <h1>Administrator Management</h1>
+        <div><strong>Super Admin</strong> · Logout</div>
+    </header>
+
+    <section class="content">
+        <div id="list" class="page active">
+            <div class="card">
+                <div class="toolbar">
+                    <div>
+                        <h2 style="margin:0 0 4px">Administrators</h2>
+                        <div class="small">Create, edit, activate or deactivate administrator accounts.</div>
+                    </div>
+                    <button class="btn-primary" onclick="showPage('create')">+ Create Administrator</button>
+                </div>
+
+                <div class="toolbar">
+                    <div class="left">
+                        <input class="search" placeholder="Search by name or email" />
+                        <select style="width:180px">
+                            <option>All statuses</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Last Update</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Laura Méndez</td>
+                            <td>laura.mendez@example.com</td>
+                            <td>Administrator</td>
+                            <td><span class="badge active-badge">Active</span></td>
+                            <td>2026-09-08</td>
+                            <td class="actions">
+                                <button class="btn-secondary" onclick="openEdit('Laura Méndez','laura.mendez@example.com')">Edit</button>
+                                <button class="btn-danger" onclick="openStatus('Laura Méndez','deactivate')">Deactivate</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Vega</td>
+                            <td>carlos.vega@example.com</td>
+                            <td>Administrator</td>
+                            <td><span class="badge inactive-badge">Inactive</span></td>
+                            <td>2026-09-01</td>
+                            <td class="actions">
+                                <button class="btn-secondary" onclick="openEdit('Carlos Vega','carlos.vega@example.com')">Edit</button>
+                                <button class="btn-success" onclick="openStatus('Carlos Vega','activate')">Activate</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="create" class="page">
+            <div class="card">
+                <div class="notice">Only users with the <strong>Super Administrator</strong> role should be allowed to access this page.</div>
+                <h2>Create Administrator</h2>
+                <div class="form-grid">
+                    <div class="field">
+                        <label>Full Name *</label>
+                        <input placeholder="Enter full name" />
+                    </div>
+                    <div class="field">
+                        <label>Email *</label>
+                        <input type="email" placeholder="name@example.com" />
+                    </div>
+                    <div class="field">
+                        <label>Role *</label>
+                        <select>
+                            <option>Administrator</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Status *</label>
+                        <select>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="field full">
+                        <label>Temporary Password *</label>
+                        <input type="password" placeholder="Minimum 8 characters" />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-secondary" onclick="showPage('list')">Cancel</button>
+                    <button class="btn-primary" onclick="savePrototype('Administrator created successfully.')">Save Administrator</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="edit" class="page">
+            <div class="card">
+                <h2>Edit Administrator</h2>
+                <div class="form-grid">
+                    <div class="field">
+                        <label>Full Name *</label>
+                        <input id="editName" />
+                    </div>
+                    <div class="field">
+                        <label>Email *</label>
+                        <input id="editEmail" type="email" />
+                    </div>
+                    <div class="field">
+                        <label>Role *</label>
+                        <select><option>Administrator</option></select>
+                    </div>
+                    <div class="field">
+                        <label>Status *</label>
+                        <select>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-secondary" onclick="showPage('list')">Cancel</button>
+                    <button class="btn-primary" onclick="savePrototype('Administrator updated successfully.')">Update Administrator</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div id="statusModal" class="modal">
+    <div class="modal-box">
+        <h3 id="statusTitle">Confirm action</h3>
+        <p id="statusText"></p>
+        <div class="modal-actions">
+            <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+            <button id="confirmStatus" class="btn-danger" onclick="confirmStatus()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let pendingAction = '';
+    let pendingName = '';
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+        if (id === 'list') document.querySelectorAll('.nav a')[0].classList.add('active');
+        if (id === 'create') document.querySelectorAll('.nav a')[1].classList.add('active');
+    }
+
+    function openEdit(name, email) {
+        document.getElementById('editName').value = name;
+        document.getElementById('editEmail').value = email;
+        showPage('edit');
+    }
+
+    function openStatus(name, action) {
+        pendingName = name;
+        pendingAction = action;
+        document.getElementById('statusTitle').textContent =
+            action === 'deactivate' ? 'Deactivate Administrator' : 'Activate Administrator';
+        document.getElementById('statusText').textContent =
+            `Are you sure you want to ${action} ${name}?`;
+        const btn = document.getElementById('confirmStatus');
+        btn.textContent = action === 'deactivate' ? 'Deactivate' : 'Activate';
+        btn.className = action === 'deactivate' ? 'btn-danger' : 'btn-success';
+        document.getElementById('statusModal').classList.add('show');
+    }
+
+    function closeModal() {
+        document.getElementById('statusModal').classList.remove('show');
+    }
+
+    function confirmStatus() {
+        closeModal();
+        alert(`${pendingName} was ${pendingAction}d successfully. Prototype only.`);
+    }
+
+    function savePrototype(message) {
+        alert(message + ' Prototype only.');
+        showPage('list');
+    }
+</script>
+</body>
+</html>
