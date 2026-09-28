@@ -1,28 +1,69 @@
 {
-  "name": "smartgreen",
-  "version": "0.1.0",
+  "name": "smartgreenai-cilantro",
+  "version": "1.0.0",
   "private": true,
+  "description": "SmartGreenAI: Cilantro Crop — IoT precision-agriculture and AI decision-support platform (Team 3, UPAEP)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:schema": "node server/scripts/run-sql.js database/schema.sql",
+    "db:seed": "node server/scripts/run-sql.js database/seed.sql",
+    "db:reset": "npm run db:schema && npm run db:seed",
+    "seed:history": "node server/scripts/seed-history.js",
+    "dev": "node --watch server/src/server.js",
+    "start": "node server/src/server.js",
+    "simulate": "node iot/simulator/simulator.js",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --runInBand --coverage",
+    "test:e2e": "playwright test",
+    "acceptance": "node server/scripts/acceptance-scenario.js",
+    "postman": "newman run postman/SmartGreenAI.postman_collection.json -e postman/SmartGreenAI.postman_environment.json",
+    "postman:build": "node server/scripts/build-postman.js"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.12.7",
-    "@supabase/supabase-js": "^2.116.0",
-    "next": "16.3.5",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "node-cron": "^3.0.3",
+    "pg": "^8.12.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.5",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@playwright/test": "^1.47.0",
+    "jest": "^29.7.0",
+    "newman": "^6.2.1",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/server/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "server/src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testTimeout": 30000,
+    "globalSetup": "<rootDir>/server/tests/globalSetup.js",
+    "setupFiles": [
+      "<rootDir>/server/tests/setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/e2e/"
+    ]
+  },
+  "optionalDependencies": {
+    "@anthropic-ai/sdk": "^0.71.0"
   }
 }

@@ -1,0 +1,25 @@
+# Local development database for SmartGreenAI: Cilantro Crop.
+# Usage:  npm run db:up  ->  npm run db:schema  ->  npm run db:seed
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: smartgreen-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: smartgreen
+      POSTGRES_PASSWORD: smartgreen
+      POSTGRES_DB: smartgreen
+      TZ: UTC
+      PGTZ: UTC
+    ports:
+      - "5432:5432"
+    volumes:
+      - smartgreen-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartgreen -d smartgreen"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  smartgreen-pgdata:
