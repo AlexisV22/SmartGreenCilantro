@@ -19,7 +19,7 @@ blob-report/
 *.tsbuildinfo
 
 # --- Runtime artifacts ---
-logs/
+/logs/
 *.log
 iot/simulator/out/
 server/scripts/out/
