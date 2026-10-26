@@ -22,8 +22,8 @@
 //   y queda en la bitacora de riego). Cada 30 s se manda un heartbeat con el estado de la llave.
 //
 // Cada 2 s: lee los sensores, decide el riego y actualiza OLED y Monitor Serie.
-// Cada 60 s: obtiene hora UTC (NTP) y envia SM-01, TMP-01 y HUM-01 a POST /api/measurements.
-// La luz se muestra pero NO se envia (es relativa; la API espera lux).
+// Cada 60 s: obtiene hora UTC (NTP) y envia SM-01, TMP-01, HUM-01 y LUX-01 a POST /api/measurements.
+// La LDR no mide lux reales: el % de luz se convierte a lux aproximados con LUZ_LUX_MAX.
 //
 // WiFi, URL y API key van en secrets.h (copia secrets.h.example).
 // Librerias: DHT sensor library (Adafruit) + Adafruit Unified Sensor + ESP32Servo + ArduinoJson (7.x)
@@ -77,6 +77,7 @@ const int SUELO_MOJADO = 1400;   // sensor en agua
 // Calibracion luz: valores provisionales, vuelve a medir en la ESP32
 const int LUZ_OSCURO = 150;      // sensor tapado
 const int LUZ_CLARO  = 3500;     // luz muy fuerte
+const float LUZ_LUX_MAX = 40000.0f;  // lux aproximados que se reportan con la luz al 100 %
 
 DHT dht(PIN_DHT, DHT11);
 
@@ -160,7 +161,7 @@ void agregarLectura(String &body, const char* id, float valor, const char* unida
 }
 
 // Devuelve el texto de estado que se muestra en la OLED.
-const char* enviarANube(float suelo, float temp, float hum, bool dhtOk) {
+const char* enviarANube(float suelo, float temp, float hum, bool dhtOk, int luzPct) {
   conectarWifi();
   if (WiFi.status() != WL_CONNECTED) return "Sin WiFi";
   if (!horaOk() && !sincronizarHora()) return "Sin hora NTP";
@@ -168,6 +169,7 @@ const char* enviarANube(float suelo, float temp, float hum, bool dhtOk) {
   String ts = ahoraISO();
   String body = "[";
   agregarLectura(body, "SM-01", suelo, "%", ts);
+  agregarLectura(body, "LUX-01", luzPct * LUZ_LUX_MAX / 100.0f, "lux", ts);
   if (dhtOk) {
     agregarLectura(body, "TMP-01", temp, "C", ts);
     agregarLectura(body, "HUM-01", hum, "%", ts);
@@ -343,7 +345,7 @@ void loop() {
   if (primero || millis() - ultimoEnvio >= SEND_INTERVAL_MS) {
     primero = false;
     ultimoEnvio = millis();
-    estado = enviarANube(sueloPct, temp, hum, dhtOk);
+    estado = enviarANube(sueloPct, temp, hum, dhtOk, luzPct);
   }
 
   const char* modo = cierreProgramadoMs ? "plataforma" : (pausaLocalHastaMs ? "pausa" : "local");
