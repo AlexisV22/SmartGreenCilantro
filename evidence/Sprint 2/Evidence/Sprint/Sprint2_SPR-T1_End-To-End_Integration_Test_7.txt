@@ -1,0 +1,40 @@
+API step: history of SM-01
+Captured 2026-09-29T04:20:44.130Z against http://localhost:3000
+
+GET /api/sensors/SM-01/measurements?limit=3
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (15 ms)
+{
+  "sensor_id": "SM-01",
+  "type": "soil_moisture",
+  "unit": "%",
+  "area_id": "AREA-1",
+  "count": 3,
+  "data": [
+    {
+      "value": 68.3,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:20:37.959Z",
+      "received_at": "2026-09-29T04:20:37.975Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 67.7,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:20:34.814Z",
+      "received_at": "2026-09-29T04:20:34.833Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 66.17,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:20:12.617Z",
+      "received_at": "2026-09-29T04:20:12.709Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    }
+  ]
+}
