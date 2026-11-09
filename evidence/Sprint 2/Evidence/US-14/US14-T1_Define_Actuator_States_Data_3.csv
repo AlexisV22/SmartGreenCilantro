@@ -1,0 +1,3 @@
+conname,definition
+actuators_type_check,"CHECK ((type = ANY (ARRAY['irrigation_pump'::text, 'ventilation_fan'::text, 'shade'::text, 'lighting'::text])))"
+actuators_state_check,"CHECK ((state = ANY (ARRAY['ON'::text, 'OFF'::text, 'OFFLINE'::text])))"

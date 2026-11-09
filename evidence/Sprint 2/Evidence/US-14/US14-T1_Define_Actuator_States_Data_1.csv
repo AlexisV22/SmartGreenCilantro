@@ -1,0 +1,11 @@
+column_name,data_type,is_nullable,column_default
+id,text,NO,
+device_id,text,NO,
+area_id,text,NO,
+name,text,NO,
+type,text,NO,
+state,text,NO,'OFF'::text
+last_update,timestamp with time zone,YES,
+is_active,boolean,NO,true
+created_at,timestamp with time zone,NO,now()
+updated_at,timestamp with time zone,NO,now()

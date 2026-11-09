@@ -1,0 +1,12 @@
+Status endpoint without a session
+Captured 2026-09-29T04:19:55.218Z against http://localhost:3000
+
+GET /api/actuators/status
+
+→ HTTP 401 Unauthorized (5 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}

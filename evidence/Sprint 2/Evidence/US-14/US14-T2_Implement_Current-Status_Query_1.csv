@@ -1,0 +1,6 @@
+id,type,state,last_update,is_active
+ACT-1790655539,ventilation_fan,OFF,2026-09-29T04:19:12.495Z,true
+ACT-FAN-01,ventilation_fan,OFF,2026-09-29T04:19:12.490Z,true
+ACT-LIGHT-01,lighting,OFF,2026-09-29T04:19:12.479Z,true
+ACT-PUMP-01,irrigation_pump,OFF,2026-09-29T04:19:12.472Z,true
+ACT-SHADE-01,shade,OFF,2026-09-29T04:19:12.485Z,true
