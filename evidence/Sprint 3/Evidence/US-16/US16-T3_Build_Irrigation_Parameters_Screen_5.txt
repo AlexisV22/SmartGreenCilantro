@@ -1,0 +1,66 @@
+Invalid values
+Captured 2026-10-02T23:22:06.705Z against http://localhost:3000
+
+PUT /api/irrigation/config/AREA-1
+Authorization: Bearer eyJhbG…
+
+{
+  "target_moisture": 150
+}
+
+→ HTTP 400 Bad Request (8 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The irrigation parameters are invalid.",
+  "details": [
+    {
+      "field": "target_moisture",
+      "issue": "Must be between 0 and 100 %."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PUT /api/irrigation/config/AREA-1
+Authorization: Bearer eyJhbG…
+
+{
+  "max_duration_min": 0
+}
+
+→ HTTP 400 Bad Request (8 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The irrigation parameters are invalid.",
+  "details": [
+    {
+      "field": "max_duration_min",
+      "issue": "Must be greater than zero."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PUT /api/irrigation/config/AREA-1
+Authorization: Bearer eyJhbG…
+
+{
+  "consecutive_readings": 0
+}
+
+→ HTTP 400 Bad Request (7 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The irrigation parameters are invalid.",
+  "details": [
+    {
+      "field": "consecutive_readings",
+      "issue": "Must be at least 1."
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+created_at,level,message
+2026-09-29T04:47:00.270Z,WARN,"Irrigation blocked in AREA-1: The water tank is at 15 %, below the minimum of 20 % required to irrigate."

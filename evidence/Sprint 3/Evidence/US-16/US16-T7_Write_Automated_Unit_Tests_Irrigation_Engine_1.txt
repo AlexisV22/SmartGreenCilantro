@@ -1,0 +1,32 @@
+PASS server/tests/unit/irrigation-engine.test.js
+  US16-T7 start rule
+    √ 2 consecutive readings below the minimum -> ON with the maximum duration (3 ms)
+    √ only one reading below the minimum is not enough (1 ms)
+    √ a single reading available when 2 are required -> SKIP
+    √ readings exactly at the minimum (60 %) do not trigger
+    √ the number of consecutive readings is configurable
+  US16-T7 stop rules
+    √ pump ON and the target is reached -> OFF (1 ms)
+    √ pump ON beyond the maximum duration -> OFF even below the target
+    √ pump ON, below the target and within the duration -> keeps irrigating (1 ms)
+  US16-T7 safety conditions
+    √ cooldown: the last irrigation was 10 minutes ago (cooldown 30) -> blocked
+    √ cooldown elapsed (31 minutes) -> irrigation allowed
+    √ water tank below the minimum -> BLOCK_LOW_WATER (1 ms)
+    √ applying BLOCK_LOW_WATER raises a HIGH LOW_WATER alert and sends no command (1 ms)
+    √ no tank sensor installed -> the tank rule does not block
+    √ stale sensor: no soil reading for 6 minutes -> blocked
+    √ stale sensor also stops the engine from switching a running pump
+    √ a command already in flight -> no second command (1 ms)
+  US16-T7 mode and application
+    √ MANUAL mode disables the engine
+    √ automatic irrigation disabled in the configuration -> SKIP
+    √ applying ON queues an AUTOMATIC command with the reason and duration (1 ms)
+    √ applying SKIP does nothing
+
+Test Suites: 1 passed, 1 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        0.75 s
+Ran all test suites matching /server\\tests\\unit\\irrigation-engine.test.js/i.
+Test results written to: tools\evidence\out\jest_US16-T7.json

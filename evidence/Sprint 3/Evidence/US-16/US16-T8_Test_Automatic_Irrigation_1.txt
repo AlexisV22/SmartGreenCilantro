@@ -1,0 +1,31 @@
+PASS server/tests/integration/irrigation.test.js
+  US16-T2 start condition
+    √ N consecutive readings below the minimum -> ON with duration from the deficit (126 ms)
+    √ a single low reading is not enough (noise protection) (115 ms)
+    √ never a second command while one is PENDING/SENT (85 ms)
+    √ duration is capped by max_duration_min (75 ms)
+  US16-T3 stop conditions
+    √ pump ON and target moisture reached -> OFF (70 ms)
+    √ pump ON beyond the maximum duration -> OFF (69 ms)
+  US16-T4 safety rules
+    √ cooldown: no irrigation 30 minutes after the previous one (62 ms)
+    √ water tank below the minimum -> blocked + LOW_WATER alert (77 ms)
+    √ soil sensors silent for more than 5 minutes -> blocked (stale data) (77 ms)
+    √ anomalous readings are ignored by the engine (53 ms)
+  US16-T1 mode
+    √ MANUAL mode disables the engine (41 ms)
+    √ irrigation disabled in the configuration -> SKIP (49 ms)
+    √ the scheduled engine applies the decision end to end (72 ms)
+  irrigation configuration (admin)
+    √ GET/PUT /irrigation/config/:areaId validates and stores the parameters (226 ms)
+  FR-18 generic automation rules
+    √ temperature above the maximum turns the fan ON (AUTOMATIC mode only) (60 ms)
+    √ daytime windows use the greenhouse time zone, not UTC (52 ms)
+    √ rules are listed and editable by the administrator (63 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        4.883 s
+Ran all test suites matching /server\\tests\\integration\\irrigation.test.js/i.
+Test results written to: tools\evidence\out\jest_irrigation.json

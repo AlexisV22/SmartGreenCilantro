@@ -1,0 +1,2 @@
+area_id,enabled,target_moisture,max_duration_min,cooldown_min,consecutive_readings,min_tank_level,updated_by,updated_at
+AREA-1,true,66,10,30,2,20,admin@smartgreen.ai,2026-10-02T23:22:05.172Z
