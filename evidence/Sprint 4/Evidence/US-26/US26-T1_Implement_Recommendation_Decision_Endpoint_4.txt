@@ -1,0 +1,22 @@
+Second decision
+Captured 2026-09-29T05:04:27.098Z against http://localhost:3000
+
+POST /api/recommendations/rec-2fcd1c8962b9/decision
+Authorization: Bearer eyJhbG…
+
+{
+  "decision": "REJECTED"
+}
+
+→ HTTP 409 Conflict (24 ms)
+{
+  "status": 409,
+  "code": "ERR_CONFLICT",
+  "message": "This recommendation was already accepted and cannot be decided again.",
+  "details": [
+    {
+      "field": "status",
+      "issue": "Current status: ACCEPTED."
+    }
+  ]
+}

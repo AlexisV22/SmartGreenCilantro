@@ -1,0 +1,2 @@
+id,type,status,decided_by,decided_at,decision_comment
+rec-2fcd1c8962b9,CHECK_SENSOR,ACCEPTED,producer@smartgreen.ai,2026-09-29T05:04:26.604Z,Irrigate before noon
