@@ -1,0 +1,13 @@
+id,case,input,expected,actual,result
+"SV-01","Soil moisture 60–80 % at 9 %","SM-01 = 58.2","LOW","LOW (new alert true)","PASS"
+"SV-02","Soil moisture 60–80 % at 10 %","SM-01 = 58","LOW","LOW (new alert true)","PASS"
+"SV-03","Soil moisture 60–80 % at 11 %","SM-01 = 57.8","MEDIUM","MEDIUM (new alert true)","PASS"
+"SV-04","Soil moisture 60–80 % at 24 %","SM-01 = 55.2","MEDIUM","MEDIUM (new alert true)","PASS"
+"SV-05","Soil moisture 60–80 % at 25 %","SM-01 = 55","MEDIUM","MEDIUM (new alert true)","PASS"
+"SV-06","Soil moisture 60–80 % at 26 %","SM-01 = 54.8","HIGH","HIGH (new alert true)","PASS"
+"SV-07","Temperature 15–25 °C at 9 %","TMP-01 = 25.9","LOW","LOW (new alert true)","PASS"
+"SV-08","Temperature 15–25 °C at 10 %","TMP-01 = 26","LOW","LOW (new alert true)","PASS"
+"SV-09","Temperature 15–25 °C at 11 %","TMP-01 = 26.1","MEDIUM","MEDIUM (new alert true)","PASS"
+"SV-10","Temperature 15–25 °C at 24 %","TMP-01 = 27.4","MEDIUM","MEDIUM (new alert true)","PASS"
+"SV-11","Temperature 15–25 °C at 25 %","TMP-01 = 27.5","MEDIUM","MEDIUM (new alert true)","PASS"
+"SV-12","Temperature 15–25 °C at 26 %","TMP-01 = 27.6","HIGH","HIGH (new alert true)","PASS"

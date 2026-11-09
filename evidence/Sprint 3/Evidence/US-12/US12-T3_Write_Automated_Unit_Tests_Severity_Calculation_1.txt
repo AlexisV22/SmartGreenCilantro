@@ -1,0 +1,33 @@
+PASS server/tests/unit/severity.test.js
+  US-12 deviationPercent
+    √ below the minimum is measured from the minimum (2 ms)
+    √ above the maximum is measured from the maximum
+    √ a degenerate range never divides by zero
+  US12-T3 severity boundaries 9/10/11/24/25/26 %
+    √ 9 % -> LOW (1 ms)
+    √ 10 % -> LOW
+    √ 11 % -> MEDIUM
+    √ 24 % -> MEDIUM
+    √ 25 % -> MEDIUM
+    √ 26 % -> HIGH
+    √ 0.1 % -> LOW
+    √ 150 % -> HIGH
+    √ limits are configurable (system_parameters)
+    √ end to end with the cilantro soil range 60-80 % (1 ms)
+  US12-T3 severity stored on the alert and upgraded while it is open
+    √ a new alert at 58.2 % is created with severity LOW (1 ms)
+    √ a new alert at 58 % is created with severity LOW (1 ms)
+    √ a new alert at 57.8 % is created with severity MEDIUM
+    √ a new alert at 55.2 % is created with severity MEDIUM
+    √ a new alert at 55 % is created with severity MEDIUM
+    √ a new alert at 54.8 % is created with severity HIGH (1 ms)
+    √ LOW -> MEDIUM -> HIGH as the deviation grows, on the same alert (1 ms)
+    √ the severity is never downgraded while the alert stays open
+    √ the limits come from system_parameters (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       22 passed, 22 total
+Snapshots:   0 total
+Time:        0.684 s
+Ran all test suites matching /server\\tests\\unit\\severity.test.js/i.
+Test results written to: tools\evidence\out\jest_US12-T3.json

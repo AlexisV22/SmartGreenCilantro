@@ -1,0 +1,4 @@
+id,sensor_id,type,severity,deviation_pct,status
+alr-5fb6564360de,SM-01,LOW,HIGH,29,RESOLVED
+alr-efc09f0d6a8e,TMP-01,HIGH,MEDIUM,20,RESOLVED
+alr-a009985c22bf,HUM-01,LOW,HIGH,30,RESOLVED

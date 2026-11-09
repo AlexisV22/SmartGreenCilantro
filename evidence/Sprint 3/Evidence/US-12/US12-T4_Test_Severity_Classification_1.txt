@@ -1,0 +1,22 @@
+PASS server/tests/unit/severity.test.js
+  US-12 deviationPercent
+    √ below the minimum is measured from the minimum (2 ms)
+    √ above the maximum is measured from the maximum
+    √ a degenerate range never divides by zero (1 ms)
+  US12-T3 severity boundaries 9/10/11/24/25/26 %
+    √ 9 % -> LOW
+    √ 10 % -> LOW (1 ms)
+    √ 11 % -> MEDIUM
+    √ 24 % -> MEDIUM (1 ms)
+    √ 25 % -> MEDIUM
+    √ 26 % -> HIGH
+    √ 0.1 % -> LOW (1 ms)
+    √ 150 % -> HIGH
+    √ limits are configurable (system_parameters)
+    √ end to end with the cilantro soil range 60-80 % (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        0.384 s, estimated 1 s
+Ran all test suites matching /server\\tests\\unit\\severity.test.js/i.
