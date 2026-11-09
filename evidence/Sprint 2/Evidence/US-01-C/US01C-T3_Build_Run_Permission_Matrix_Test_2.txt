@@ -1,0 +1,130 @@
+PASS server/tests/integration/rbac.test.js
+  get /measurements/latest
+    √ producer -> "ok" (91 ms)
+    √ admin -> "ok" (35 ms)
+    √ superadmin -> "ok" (40 ms)
+  get /sensors
+    √ producer -> "ok" (16 ms)
+    √ admin -> "ok" (16 ms)
+    √ superadmin -> "ok" (19 ms)
+  get /actuators/status
+    √ producer -> "ok" (20 ms)
+    √ admin -> "ok" (18 ms)
+    √ superadmin -> "ok" (19 ms)
+  get /alerts
+    √ producer -> "ok" (31 ms)
+    √ admin -> "ok" (23 ms)
+    √ superadmin -> "ok" (12 ms)
+  get /anomalies
+    √ producer -> "ok" (14 ms)
+    √ admin -> "ok" (11 ms)
+    √ superadmin -> "ok" (11 ms)
+  get /analysis/trends?area_id=AREA-1
+    √ producer -> "ok" (52 ms)
+    √ admin -> "ok" (28 ms)
+    √ superadmin -> "ok" (20 ms)
+  get /recommendations
+    √ producer -> "ok" (19 ms)
+    √ admin -> "ok" (14 ms)
+    √ superadmin -> "ok" (13 ms)
+  get /observations
+    √ producer -> "ok" (13 ms)
+    √ admin -> "ok" (11 ms)
+    √ superadmin -> "ok" (12 ms)
+  get /thresholds
+    √ producer -> "ok" (13 ms)
+    √ admin -> "ok" (12 ms)
+    √ superadmin -> "ok" (13 ms)
+  put /thresholds/th-a1-soil-moisture
+    √ producer -> 403 (15 ms)
+    √ admin -> "ok" (32 ms)
+    √ superadmin -> "ok" (22 ms)
+  get /users
+    √ producer -> 403 (12 ms)
+    √ admin -> "ok" (16 ms)
+    √ superadmin -> "ok" (15 ms)
+  get /admins
+    √ producer -> 403 (13 ms)
+    √ admin -> 403 (14 ms)
+    √ superadmin -> "ok" (14 ms)
+  get /roles
+    √ producer -> 403 (12 ms)
+    √ admin -> "ok" (16 ms)
+    √ superadmin -> "ok" (15 ms)
+  put /roles/role-producer/permissions
+    √ producer -> 403 (12 ms)
+    √ admin -> 403 (16 ms)
+    √ superadmin -> "skip"
+  get /organizations
+    √ producer -> 403 (12 ms)
+    √ admin -> "ok" (12 ms)
+    √ superadmin -> "ok" (10 ms)
+  post /organizations
+    √ producer -> 403 (10 ms)
+    √ admin -> 403 (9 ms)
+    √ superadmin -> "ok" (14 ms)
+  post /greenhouses
+    √ producer -> 403 (11 ms)
+    √ admin -> "ok" (20 ms)
+    √ superadmin -> "skip" (1 ms)
+  post /devices
+    √ producer -> 403 (12 ms)
+    √ admin -> "ok" (16 ms)
+    √ superadmin -> "ok" (17 ms)
+  get /irrigation/config/AREA-1
+    √ producer -> "ok" (14 ms)
+    √ admin -> "ok" (12 ms)
+    √ superadmin -> "ok" (12 ms)
+  put /irrigation/config/AREA-1
+    √ producer -> 403 (11 ms)
+    √ admin -> "ok" (17 ms)
+    √ superadmin -> "ok" (21 ms)
+  get /automation-rules
+    √ producer -> 403 (10 ms)
+    √ admin -> "ok" (11 ms)
+    √ superadmin -> "ok" (11 ms)
+  get /ai/config
+    √ producer -> 403 (9 ms)
+    √ admin -> "ok" (11 ms)
+    √ superadmin -> "ok" (14 ms)
+  put /ai/config
+    √ producer -> 403 (12 ms)
+    √ admin -> "ok" (17 ms)
+    √ superadmin -> "ok" (17 ms)
+  post /recommendations/generate
+    √ producer -> 403 (12 ms)
+    √ admin -> "ok" (25 ms)
+    √ superadmin -> "ok" (23 ms)
+  get /logs/system
+    √ producer -> 403 (9 ms)
+    √ admin -> "ok" (12 ms)
+    √ superadmin -> "ok" (10 ms)
+  get /logs/audit
+    √ producer -> 403 (10 ms)
+    √ admin -> "ok" (24 ms)
+    √ superadmin -> "ok" (13 ms)
+  get /stats
+    √ producer -> 403 (9 ms)
+    √ admin -> "ok" (15 ms)
+    √ superadmin -> "ok" (11 ms)
+  get /settings/global
+    √ producer -> 403 (10 ms)
+    √ admin -> "ok" (12 ms)
+    √ superadmin -> "ok" (14 ms)
+  get /integrations
+    √ producer -> 403 (10 ms)
+    √ admin -> 403 (10 ms)
+    √ superadmin -> "ok" (12 ms)
+  post /integrations
+    √ producer -> 403 (10 ms)
+    √ admin -> 403 (12 ms)
+    √ superadmin -> "ok" (16 ms)
+  organization scope
+    √ an administrator only sees its own organization data (33 ms)
+    √ an administrator cannot create another administrator (14 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       92 passed, 92 total
+Snapshots:   0 total
+Time:        5.102 s
+Ran all test suites matching /server\\tests\\integration\\rbac.test.js/i.

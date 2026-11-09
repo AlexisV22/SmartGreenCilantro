@@ -1,0 +1,4 @@
+email,role,password_hash,hash_length,is_bcrypt
+admin@smartgreen.ai,Administrator,$2a$06$ZcSE5cpeeMplyF.PkGKTb.bGSKjqg8XJ3u4rNlig7LXpoNpH0JIzy,60,true
+producer@smartgreen.ai,Producer,$2a$06$QC0RfH6OtUcggp/wIv0Gje5oZQkucE6y3BlKZOz/SNzg61vnPawtu,60,true
+superadmin@smartgreen.ai,SuperAdministrator,$2a$06$Y6PcLNUxa7aNm5tQ.drXROiytU71z5B6boGkWHlyBsiJhNavzlULG,60,true

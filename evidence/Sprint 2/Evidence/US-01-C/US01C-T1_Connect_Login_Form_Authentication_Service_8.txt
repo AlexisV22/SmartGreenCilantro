@@ -1,0 +1,13 @@
+Expired token → 401
+Captured 2026-09-29T04:16:47.403Z against http://localhost:3000
+
+GET /api/auth/me
+Authorization: Bearer eyJhbG…
+
+→ HTTP 401 Unauthorized (6 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "The session has expired. Please sign in again.",
+  "details": []
+}

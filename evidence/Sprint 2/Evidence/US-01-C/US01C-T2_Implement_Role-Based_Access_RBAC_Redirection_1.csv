@@ -1,0 +1,4 @@
+role,description,test_user,is_active
+Administrator,"Operational configuration: producers, greenhouses, areas, crops, IoT registry, thresholds, irrigation, automation and AI parameters.",admin@smartgreen.ai,true
+Producer,"Agricultural user: monitors the greenhouse, acknowledges alerts, controls irrigation and decides on AI recommendations.",producer@smartgreen.ai,true
+SuperAdministrator,"Platform-level administration: administrators, roles, tenants, global parameters, security and integrations.",superadmin@smartgreen.ai,true

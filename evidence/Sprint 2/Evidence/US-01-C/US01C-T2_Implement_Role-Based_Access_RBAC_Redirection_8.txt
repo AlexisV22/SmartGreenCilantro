@@ -1,0 +1,76 @@
+Calls to endpoints the role is not allowed to use
+Captured 2026-09-29T04:16:53.223Z against http://localhost:3000
+
+GET /api/users
+Authorization: Bearer eyJhbG…
+
+→ HTTP 403 Forbidden (11 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: users.read"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-a1-soil-moisture
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 60,
+  "max_value": 80
+}
+
+→ HTTP 403 Forbidden (11 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: thresholds.write"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/devices
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "Not allowed"
+}
+
+→ HTTP 403 Forbidden (11 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: devices.write"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/admins
+Authorization: Bearer eyJhbG…
+
+→ HTTP 403 Forbidden (8 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "This operation is restricted to: SuperAdministrator.",
+  "details": []
+}

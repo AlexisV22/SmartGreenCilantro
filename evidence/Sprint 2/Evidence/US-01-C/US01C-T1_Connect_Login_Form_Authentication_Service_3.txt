@@ -1,0 +1,24 @@
+POST /api/auth/login with a real user (token masked)
+Captured 2026-09-29T04:16:47.350Z against http://localhost:3000
+
+POST /api/auth/login
+
+{
+  "email": "producer@smartgreen.ai",
+  "password": "********"
+}
+
+→ HTTP 200 OK (27 ms)
+{
+  "access_token": "eyJhbG…",
+  "token_type": "Bearer",
+  "expires_in": 28800,
+  "user": {
+    "id": "usr-producer",
+    "email": "producer@smartgreen.ai",
+    "username": "producer",
+    "full_name": "Cilantro Producer",
+    "role": "Producer",
+    "organization_id": "org-team3"
+  }
+}
