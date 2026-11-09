@@ -1,0 +1,587 @@
+Calls of the endpoint checks
+Captured 2026-09-29T04:18:50.175Z against http://localhost:3000
+
+GET /api/thresholds?area_id=AREA-1
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (17 ms)
+[
+  {
+    "id": "th-a1-air-humidity",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "air_humidity",
+    "sensor_type": "air_humidity",
+    "min_value": 50,
+    "max_value": 70,
+    "unit": "%",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-co2",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "co2",
+    "sensor_type": "co2",
+    "min_value": 400,
+    "max_value": 1000,
+    "unit": "ppm",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-light",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "light",
+    "sensor_type": "light",
+    "min_value": 10000,
+    "max_value": 40000,
+    "unit": "lux",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-ph",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "ph",
+    "sensor_type": "ph",
+    "min_value": 6.2,
+    "max_value": 6.8,
+    "unit": "pH",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-soil-moisture",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:17:20.821Z",
+    "updated_by": "usr-superadmin",
+    "parameter": "soil_moisture",
+    "sensor_type": "soil_moisture",
+    "min_value": 60,
+    "max_value": 80,
+    "unit": "%",
+    "updated_by_email": "superadmin@smartgreen.ai",
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-temperature",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "temperature",
+    "sensor_type": "temperature",
+    "min_value": 15,
+    "max_value": 25,
+    "unit": "C",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-water-level",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "water_level",
+    "sensor_type": "water_level",
+    "min_value": 20,
+    "max_value": 100,
+    "unit": "%",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 1"
+  }
+]
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-a1-temperature
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 15,
+  "max_value": 25
+}
+
+→ HTTP 200 OK (26 ms)
+{
+  "id": "th-a1-temperature",
+  "area_id": "AREA-1",
+  "greenhouse_id": null,
+  "crop_stage": "vegetative",
+  "updated_at": "2026-09-29T04:18:50.090Z",
+  "updated_by": "usr-admin",
+  "parameter": "temperature",
+  "sensor_type": "temperature",
+  "min_value": 15,
+  "max_value": 25,
+  "unit": "C",
+  "updated_by_email": "admin@smartgreen.ai",
+  "area_name": "Cultivation Area 1"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-a1-temperature
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 15,
+  "max_value": 25
+}
+
+→ HTTP 403 Forbidden (11 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: thresholds.write"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/actuators/status
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (12 ms)
+{
+  "timestamp": "2026-09-29T04:18:50.120Z",
+  "actuators": [
+    {
+      "id": "ACT-PUMP-01",
+      "name": "Irrigation pump",
+      "type": "irrigation_pump",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:18:42.468Z",
+      "device_id": "dev-node-01"
+    },
+    {
+      "id": "ACT-LIGHT-01",
+      "name": "Auxiliary lighting",
+      "type": "lighting",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:18:42.473Z",
+      "device_id": "dev-node-01"
+    },
+    {
+      "id": "ACT-SHADE-01",
+      "name": "Shade system",
+      "type": "shade",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:18:42.477Z",
+      "device_id": "dev-node-01"
+    },
+    {
+      "id": "ACT-FAN-01",
+      "name": "Ventilation fan",
+      "type": "ventilation_fan",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:18:42.484Z",
+      "device_id": "dev-node-01"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/actuators/status
+
+→ HTTP 401 Unauthorized (2 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/devices
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (9 ms)
+[
+  {
+    "device_id": "dev-node-mum60kx3",
+    "id": "dev-node-mum60kx3",
+    "name": "Matrix probe node",
+    "mac_address": null,
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": null,
+    "area_id": null,
+    "firmware": null,
+    "is_active": false,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:17:20.873Z",
+    "updated_at": "2026-09-29T04:17:20.873Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  },
+  {
+    "device_id": "dev-node-mum60kxk",
+    "id": "dev-node-mum60kxk",
+    "name": "Matrix probe node",
+    "mac_address": null,
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": null,
+    "area_id": null,
+    "firmware": null,
+    "is_active": false,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:17:20.890Z",
+    "updated_at": "2026-09-29T04:17:20.890Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  },
+  {
+    "device_id": "dev-node-01",
+    "id": "dev-node-01",
+    "name": "Nodo Central Invernadero 1",
+    "mac_address": "A4:CF:12:89:56:B2",
+    "location": "Bloque A - Cilantro",
+    "organization_id": "org-team3",
+    "greenhouse_id": "GH-01",
+    "area_id": "AREA-1",
+    "firmware": "esp32-smartgreen-1.0.0",
+    "is_active": true,
+    "last_seen": "2026-09-29T04:18:44.763Z",
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:18:42.462Z",
+    "sensor_count": 8,
+    "actuator_count": 4,
+    "connectivity": "ONLINE"
+  },
+  {
+    "device_id": "dev-test-06t2",
+    "id": "dev-test-06t2",
+    "name": "Test node US06-T2",
+    "mac_address": "A4:CF:12:06:02:01",
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": "GH-01",
+    "area_id": "AREA-1",
+    "firmware": "test",
+    "is_active": false,
+    "last_seen": "2026-09-29T04:17:45.066Z",
+    "created_at": "2026-09-29T04:17:44.912Z",
+    "updated_at": "2026-09-29T04:17:45.105Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  }
+]
+
+----------------------------------------------------------------------
+
+POST /api/devices
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "Endpoint check node"
+}
+
+→ HTTP 201 Created (11 ms)
+{
+  "device_id": "dev-node-mum62hsq",
+  "id": "dev-node-mum62hsq",
+  "name": "Endpoint check node",
+  "mac_address": null,
+  "location": null,
+  "organization_id": "org-team3",
+  "greenhouse_id": null,
+  "area_id": null,
+  "firmware": null,
+  "is_active": true,
+  "last_seen": null,
+  "created_at": "2026-09-29T04:18:50.139Z",
+  "updated_at": "2026-09-29T04:18:50.139Z",
+  "connectivity": "OFFLINE",
+  "status": "REGISTERED",
+  "api_key": "sec_io…",
+  "api_key_notice": "Store this key now: it is shown only once and cannot be recovered."
+}
+
+----------------------------------------------------------------------
+
+POST /api/devices
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "Denied node"
+}
+
+→ HTTP 403 Forbidden (9 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: devices.write"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/sensors
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (7 ms)
+[
+  {
+    "id": "HUM-01",
+    "device_id": "dev-node-01",
+    "area_id": "AREA-1",
+    "name": "Relative humidity",
+    "type": "air_humidity",
+    "unit": "%",
+    "physical_min": 0,
+    "physical_max": 100,
+    "is_active": true,
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "device_name": "Nodo Central Invernadero 1",
+    "device_active": true,
+    "area_name": "Cultivation Area 1",
+    "organization_id": "org-team3"
+  },
+  {
+    "id": "CO2-01",
+    "device_id": "dev-node-01",
+    "area_id": "AREA-1",
+    "name": "CO2 concentration",
+    "type": "co2",
+    "unit": "ppm",
+    "physical_min": 0,
+    "physical_max": 5000,
+    "is_active": true,
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "device_name": "Nodo Central Invernadero 1",
+    "device_active": true,
+    "area_name": "Cultivation Area 1",
+    "organization_id": "org-team3"
+  },
+  {
+    "id": "LUX-01",
+    "device_id": "dev-node-01",
+    "area_id": "AREA-1",
+    "name": "Light intensity",
+    "type": "light",
+    "unit": "lux",
+    "physical_min": 0,
+    "physical_max": 120000,
+    "is_active": true,
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "device_name": "Nodo Central Invernadero 1",
+    "device_active": true,
+    "area_name": "Cultivation Area 1",
+    "organization_id": "org-team3"
+  },
+  {
+    "id": "PH-01",
+    "device_id": "dev-node-01",
+    "area_id": "AREA-1",
+    "name": "Soil pH",
+    "type": "ph",
+    "unit": "pH",
+    "physical_min": 0,
+    "physical_max": 14,
+    "is_active": true,
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "device_name": "Nodo Central Invernadero 1",
+    "device_active": true,
+    "area_name": "Cultivation Area 1",
+    "organization_id": "org-team3"
+  },
+  {
+    "id": "SM-01",
+    "device_id": "dev-node-01",
+    "area_id": "AREA-1",
+    "name": "Soil moisture 1",
+    "type": "soil_moisture",
+    "unit": "%",
+    "physical_min": 0,
+    "physical_max": 100,
+    "is_active": true,
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "device_name": "Nodo Central Invernadero 1",
+    "device_active": true,
+    "area_name": "Cultivation Area 1",
+    "organization_id": "org-team3"
+  },
+  {
+    "id": "SM-02",
+    "device_id": "dev-node-01",
+    "area_id": "AREA-1",
+    "name": "Soil moisture 2",
+    "type": "soil_moisture",
+    "unit": "%",
+    "physical_min": 0,
+    "physical_max": 100,
+    "is_active": true,
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "device_name": "Nodo Central Invernadero 1",
+    "device_active": true,
+    "area_name": "Cultivation Area 1",
+    "organization_id": "org-team3"
+  },
+  {
+    "id": "TMP-01",
+    "device_id": "dev-node-01",
+    "area_id": "AREA-1",
+    "name": "Air temperature",
+    "type": "temperature",
+    "unit": "C",
+    "physical_min": -40,
+    "physical_max": 85,
+    "is_active": true,
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "device_name": "Nodo Central Invernadero 1",
+    "device_active": true,
+    "area_name": "Cultivation Area 1",
+    "organization_id": "org-team3"
+  },
+  {
+    "id": "WL-01",
+    "device_id": "dev-node-01",
+    "area_id": "AREA-1",
+    "name": "Water tank level",
+    "type": "water_level",
+    "unit": "%",
+    "physical_min": 0,
+    "physical_max": 100,
+    "is_active": true,
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "device_name": "Nodo Central Invernadero 1",
+    "device_active": true,
+    "area_name": "Cultivation Area 1",
+    "organization_id": "org-team3"
+  }
+]
+
+----------------------------------------------------------------------
+
+GET /api/actuators
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (8 ms)
+[
+  {
+    "id": "ACT-PUMP-01",
+    "name": "Irrigation pump",
+    "type": "irrigation_pump",
+    "area_id": "AREA-1",
+    "area_name": "Cultivation Area 1",
+    "state": "OFF",
+    "reported_state": "OFF",
+    "mode": "AUTOMATIC",
+    "is_active": true,
+    "is_offline": false,
+    "last_change": "2026-09-29T04:18:42.468Z",
+    "device_id": "dev-node-01"
+  },
+  {
+    "id": "ACT-LIGHT-01",
+    "name": "Auxiliary lighting",
+    "type": "lighting",
+    "area_id": "AREA-1",
+    "area_name": "Cultivation Area 1",
+    "state": "OFF",
+    "reported_state": "OFF",
+    "mode": "AUTOMATIC",
+    "is_active": true,
+    "is_offline": false,
+    "last_change": "2026-09-29T04:18:42.473Z",
+    "device_id": "dev-node-01"
+  },
+  {
+    "id": "ACT-SHADE-01",
+    "name": "Shade system",
+    "type": "shade",
+    "area_id": "AREA-1",
+    "area_name": "Cultivation Area 1",
+    "state": "OFF",
+    "reported_state": "OFF",
+    "mode": "AUTOMATIC",
+    "is_active": true,
+    "is_offline": false,
+    "last_change": "2026-09-29T04:18:42.477Z",
+    "device_id": "dev-node-01"
+  },
+  {
+    "id": "ACT-FAN-01",
+    "name": "Ventilation fan",
+    "type": "ventilation_fan",
+    "area_id": "AREA-1",
+    "area_name": "Cultivation Area 1",
+    "state": "OFF",
+    "reported_state": "OFF",
+    "mode": "AUTOMATIC",
+    "is_active": true,
+    "is_offline": false,
+    "last_change": "2026-09-29T04:18:42.484Z",
+    "device_id": "dev-node-01"
+  }
+]

@@ -1,0 +1,70 @@
+Device key and user token
+Captured 2026-09-29T04:18:44.799Z against http://localhost:3000
+
+GET /api/devices/me/commands
+apikey: sec_io…
+
+→ HTTP 200 OK (12 ms)
+{
+  "device_id": "dev-node-01",
+  "server_time": "2026-09-29T04:18:44.769Z",
+  "count": 0,
+  "commands": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/auth/me
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (13 ms)
+{
+  "id": "usr-admin",
+  "email": "admin@smartgreen.ai",
+  "username": "admin",
+  "full_name": "Greenhouse Administrator",
+  "role": "Administrator",
+  "organization_id": "org-team3",
+  "permissions": [
+    "actuators.command",
+    "actuators.read",
+    "actuators.write",
+    "ai.read",
+    "ai.write",
+    "alerts.ack",
+    "alerts.read",
+    "analysis.read",
+    "anomalies.read",
+    "areas.mode",
+    "areas.read",
+    "areas.write",
+    "automation.read",
+    "automation.write",
+    "crops.read",
+    "crops.write",
+    "devices.read",
+    "devices.write",
+    "greenhouses.read",
+    "greenhouses.write",
+    "irrigation.read",
+    "irrigation.write",
+    "logs.read",
+    "measurements.read",
+    "observations.read",
+    "observations.write",
+    "organizations.read",
+    "recommendations.decide",
+    "recommendations.generate",
+    "recommendations.read",
+    "roles.read",
+    "sensors.read",
+    "sensors.write",
+    "settings.read",
+    "settings.write",
+    "stats.read",
+    "thresholds.read",
+    "thresholds.write",
+    "users.read",
+    "users.write"
+  ]
+}

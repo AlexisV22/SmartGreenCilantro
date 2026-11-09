@@ -1,0 +1,42 @@
+Unauthenticated requests
+Captured 2026-09-29T04:18:44.800Z against http://localhost:3000
+
+GET /api/thresholds
+
+→ HTTP 401 Unauthorized (4 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+
+{
+  "sensor_id": "SM-01",
+  "value": 60
+}
+
+→ HTTP 401 Unauthorized (4 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "Provide either an \"apikey\" header (device) or a Bearer token (user).",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/devices/me/commands
+apikey: sec_in…
+
+→ HTTP 401 Unauthorized (4 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "The device API key is invalid or the device is deactivated.",
+  "details": []
+}

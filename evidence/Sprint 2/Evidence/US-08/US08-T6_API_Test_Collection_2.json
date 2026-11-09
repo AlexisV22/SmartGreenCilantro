@@ -1,0 +1,15 @@
+{
+  "name": "SmartGreenAI local",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api",
+      "enabled": true
+    },
+    {
+      "key": "deviceKey",
+      "value": "sec_iot_dev_node_01_smartgreen_team3",
+      "enabled": true
+    }
+  ]
+}

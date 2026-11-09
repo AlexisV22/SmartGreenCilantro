@@ -1,0 +1,634 @@
+(node:5000) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+newman
+
+SmartGreenAI: Cilantro Crop API
+
+□ 00 Health
+└ Health (public)
+  GET http://localhost:3000/api/health [200 OK, 1.09kB, 62ms]
+  √  status 200
+  √  db connected
+
+└ Unknown route -> 404
+  GET http://localhost:3000/api/nope [404 Not Found, 1.02kB, 14ms]
+  √  status 404
+  √  standard error format
+
+□ 01 Auth (US-01-C)
+└ Login producer
+  POST http://localhost:3000/api/auth/login [200 OK, 1.51kB, 29ms]
+  √  status 200
+
+└ Login administrator
+  POST http://localhost:3000/api/auth/login [200 OK, 1.5kB, 71ms]
+  √  status 200
+
+└ Login super administrator
+  POST http://localhost:3000/api/auth/login [200 OK, 1.55kB, 36ms]
+  √  status 200
+
+└ Login wrong password -> 401 generic
+  POST http://localhost:3000/api/auth/login [401 Unauthorized, 1.09kB, 19ms]
+  √  status 401
+  √  standard error format
+
+└ Login empty fields -> 400
+  POST http://localhost:3000/api/auth/login [400 Bad Request, 1.24kB, 10ms]
+  √  status 400
+  √  standard error format
+
+└ Me
+  GET http://localhost:3000/api/auth/me [200 OK, 1.41kB, 15ms]
+  √  status 200
+  √  role
+
+└ Me without token -> 401
+  GET http://localhost:3000/api/auth/me [401 Unauthorized, 1.03kB, 8ms]
+  √  status 401
+  √  standard error format
+
+□ 02 Users, administrators, roles (US-22/23/24)
+└ List users (admin)
+  GET http://localhost:3000/api/users [200 OK, 1.88kB, 15ms]
+  √  status 200
+
+└ List users as producer -> 403
+  GET http://localhost:3000/api/users [403 Forbidden, 1.1kB, 14ms]
+  √  status 403
+  √  standard error format
+
+└ Create producer
+  POST http://localhost:3000/api/users [201 Created, 1.22kB, 142ms]
+  √  status 201
+
+└ Create producer weak password -> 400
+  POST http://localhost:3000/api/users [400 Bad Request, 1.1kB, 17ms]
+  √  status 400
+  √  standard error format
+
+└ Create duplicate email -> 409
+  POST http://localhost:3000/api/users [409 Conflict, 1.09kB, 15ms]
+  √  status 409
+  √  standard error format
+
+└ Get user
+  GET http://localhost:3000/api/users/usr-3e94dc150d26 [200 OK, 1.22kB, 12ms]
+  √  status 200
+
+└ Update user
+  PUT http://localhost:3000/api/users/usr-3e94dc150d26 [200 OK, 1.23kB, 28ms]
+  √  status 200
+
+└ Deactivate user
+  PATCH http://localhost:3000/api/users/usr-3e94dc150d26/status [200 OK, 1.23kB, 23ms]
+  √  status 200
+
+└ Unknown user -> 404
+  GET http://localhost:3000/api/users/usr-nope [404 Not Found, 1.01kB, 12ms]
+  √  status 404
+  √  standard error format
+
+└ List administrators (SA)
+  GET http://localhost:3000/api/admins [200 OK, 1.53kB, 14ms]
+  √  status 200
+
+└ List administrators as admin -> 403
+  GET http://localhost:3000/api/admins [403 Forbidden, 1.04kB, 13ms]
+  √  status 403
+  √  standard error format
+
+└ Create administrator (SA)
+  POST http://localhost:3000/api/admins [201 Created, 1.21kB, 130ms]
+  √  status 201
+
+└ List roles
+  GET http://localhost:3000/api/roles [200 OK, 3.68kB, 17ms]
+  √  status 200
+
+└ List permissions
+  GET http://localhost:3000/api/roles/permissions [200 OK, 6.51kB, 12ms]
+  √  status 200
+
+└ Get role
+  GET http://localhost:3000/api/roles/role-producer [200 OK, 1.5kB, 13ms]
+  √  status 200
+
+└ Create role
+  POST http://localhost:3000/api/roles [201 Created, 1.09kB, 39ms]
+  √  status 201
+
+└ Set role permissions unknown code -> 400
+  PUT http://localhost:3000/api/roles/role-producer/permissions [400 Bad Request, 1.09kB, 18ms]
+  √  status 400
+  √  standard error format
+
+□ 03 Organizations, greenhouses, areas, crops
+└ List organizations (SA)
+  GET http://localhost:3000/api/organizations [200 OK, 1.35kB, 19ms]
+  √  status 200
+
+└ Create organization (SA)
+  POST http://localhost:3000/api/organizations [201 Created, 1.1kB, 21ms]
+  √  status 201
+
+└ Create organization as admin -> 403
+  POST http://localhost:3000/api/organizations [403 Forbidden, 1.12kB, 23ms]
+  √  status 403
+  √  standard error format
+
+└ Update organization
+  PUT http://localhost:3000/api/organizations/org-tenant-1790655903 [200 OK, 1.09kB, 19ms]
+  √  status 200
+
+└ List greenhouses
+  GET http://localhost:3000/api/greenhouses [200 OK, 1.34kB, 15ms]
+  √  status 200
+
+└ Get greenhouse
+  GET http://localhost:3000/api/greenhouses/GH-01 [200 OK, 1.11kB, 16ms]
+  √  status 200
+
+└ Create greenhouse
+  POST http://localhost:3000/api/greenhouses [201 Created, 1.1kB, 21ms]
+  √  status 201
+
+└ Create greenhouse duplicate -> 409
+  POST http://localhost:3000/api/greenhouses [409 Conflict, 1.02kB, 13ms]
+  √  status 409
+  √  standard error format
+
+└ List areas
+  GET http://localhost:3000/api/areas [200 OK, 2.05kB, 22ms]
+  √  status 200
+
+└ Get area
+  GET http://localhost:3000/api/areas/AREA-1 [200 OK, 1.29kB, 14ms]
+  √  status 200
+
+└ Create area
+  POST http://localhost:3000/api/areas [201 Created, 1.29kB, 46ms]
+  √  status 201
+
+└ Set AREA-1 mode MANUAL
+  PATCH http://localhost:3000/api/areas/AREA-1/mode [200 OK, 1.28kB, 41ms]
+  √  status 200
+
+└ Set mode invalid -> 400
+  PATCH http://localhost:3000/api/areas/AREA-1/mode [400 Bad Request, 1.14kB, 13ms]
+  √  status 400
+  √  standard error format
+
+└ List crop types
+  GET http://localhost:3000/api/crops [200 OK, 1.9kB, 18ms]
+  √  status 200
+
+└ Get crop type
+  GET http://localhost:3000/api/crops/crop-cilantro [200 OK, 1.42kB, 15ms]
+  √  status 200
+
+└ Create crop type
+  POST http://localhost:3000/api/crops [201 Created, 1.39kB, 18ms]
+  √  status 201
+
+└ Update crop type
+  PUT http://localhost:3000/api/crops/crop-cilantro [200 OK, 1.42kB, 22ms]
+  √  status 200
+
+└ Apply crop to area (auto thresholds)
+  POST http://localhost:3000/api/crops/crop-cilantro/apply [200 OK, 1.46kB, 37ms]
+  √  status 200
+
+□ 04 IoT registry (US-25)
+└ List devices
+  GET http://localhost:3000/api/devices [200 OK, 4.91kB, 13ms]
+  √  status 200
+
+└ Register device (key shown once)
+  POST http://localhost:3000/api/devices [201 Created, 1.44kB, 21ms]
+  √  status 201
+  √  api key returned
+
+└ Register device invalid MAC -> 400
+  POST http://localhost:3000/api/devices [400 Bad Request, 1.12kB, 11ms]
+  √  status 400
+  √  standard error format
+
+└ Get device (no key in response)
+  GET http://localhost:3000/api/devices/dev-pm-1790655905 [200 OK, 1.26kB, 12ms]
+  √  status 200
+  √  no key
+
+└ Update device
+  PUT http://localhost:3000/api/devices/dev-pm-1790655905 [200 OK, 1.27kB, 18ms]
+  √  status 200
+
+└ Rotate device key
+  POST http://localhost:3000/api/devices/dev-pm-1790655905/rotate-key [200 OK, 1.43kB, 22ms]
+  √  status 200
+
+└ Deactivate device
+  PUT http://localhost:3000/api/devices/dev-pm-1790655905 [200 OK, 1.27kB, 18ms]
+  √  status 200
+
+└ List sensors
+  GET http://localhost:3000/api/sensors [200 OK, 5.04kB, 14ms]
+  √  status 200
+
+└ Get sensor
+  GET http://localhost:3000/api/sensors/SM-01 [200 OK, 1.28kB, 11ms]
+  √  status 200
+
+└ Register sensor
+  POST http://localhost:3000/api/sensors [201 Created, 1.29kB, 22ms]
+  √  status 201
+
+└ Register sensor invalid range -> 400
+  POST http://localhost:3000/api/sensors [400 Bad Request, 1.1kB, 13ms]
+  √  status 400
+  √  standard error format
+
+└ Update sensor
+  PUT http://localhost:3000/api/sensors/SM-01 [200 OK, 1.28kB, 25ms]
+  √  status 200
+
+└ List actuators
+  GET http://localhost:3000/api/actuators [200 OK, 2.53kB, 13ms]
+  √  status 200
+
+└ Get actuator
+  GET http://localhost:3000/api/actuators/ACT-PUMP-01 [200 OK, 1.45kB, 14ms]
+  √  status 200
+
+└ Register actuator
+  POST http://localhost:3000/api/actuators [201 Created, 1.41kB, 20ms]
+  √  status 201
+
+└ Update actuator
+  PUT http://localhost:3000/api/actuators/ACT-PUMP-01 [200 OK, 1.45kB, 28ms]
+  √  status 200
+
+□ 05 Measurements (US-06/07/08)
+└ Device heartbeat
+  POST http://localhost:3000/api/devices/heartbeat [200 OK, 1.04kB, 23ms]
+  √  status 200
+
+└ Post one reading
+  POST http://localhost:3000/api/measurements [201 Created, 1.04kB, 34ms]
+  √  status 201
+
+└ Post buffered batch
+  POST http://localhost:3000/api/measurements [201 Created, 1.4kB, 52ms]
+  √  status 201
+  √  3 accepted
+
+└ Unknown sensor -> 400
+  POST http://localhost:3000/api/measurements [400 Bad Request, 1.07kB, 13ms]
+  √  status 400
+  √  standard error format
+
+└ Non-numeric value -> 400
+  POST http://localhost:3000/api/measurements [400 Bad Request, 1.12kB, 16ms]
+  √  status 400
+  √  standard error format
+
+└ Invalid timestamp -> 400
+  POST http://localhost:3000/api/measurements [400 Bad Request, 1.12kB, 13ms]
+  √  status 400
+  √  standard error format
+
+└ Without API key -> 401
+  POST http://localhost:3000/api/measurements [401 Unauthorized, 1.05kB, 8ms]
+  √  status 401
+  √  standard error format
+
+└ Latest measurements
+  GET http://localhost:3000/api/measurements/latest [200 OK, 4.73kB, 32ms]
+  √  status 200
+
+└ Sensor history
+  GET http://localhost:3000/api/sensors/SM-01/measurements?limit=50 [200 OK, 8.4kB, 19ms]
+  √  status 200
+
+└ Unknown sensor history -> 404
+  GET http://localhost:3000/api/sensors/NOPE/measurements [404 Not Found, 1.01kB, 12ms]
+  √  status 404
+  √  standard error format
+
+□ 06 Thresholds (US-10)
+└ List thresholds
+  GET http://localhost:3000/api/thresholds?area_id=AREA-1 [200 OK, 3.15kB, 14ms]
+  √  status 200
+
+└ Get threshold
+  GET http://localhost:3000/api/thresholds/th-a1-soil-moisture [200 OK, 1.24kB, 16ms]
+  √  status 200
+
+└ Update threshold
+  PUT http://localhost:3000/api/thresholds/th-a1-soil-moisture [200 OK, 1.24kB, 27ms]
+  √  status 200
+
+└ Update min > max -> 400
+  PUT http://localhost:3000/api/thresholds/th-a1-soil-moisture [400 Bad Request, 1.1kB, 18ms]
+  √  status 400
+  √  standard error format
+
+└ Update as producer -> 403
+  PUT http://localhost:3000/api/thresholds/th-a1-soil-moisture [403 Forbidden, 1.11kB, 11ms]
+  √  status 403
+  √  standard error format
+
+└ Create duplicate threshold -> 409
+  POST http://localhost:3000/api/thresholds [409 Conflict, 1.11kB, 14ms]
+  √  status 409
+  √  standard error format
+
+□ 07 Alerts & anomalies (US-11/12/13/19)
+└ Low soil moisture raises an alert
+  POST http://localhost:3000/api/measurements [201 Created, 1.15kB, 42ms]
+  √  status 201
+
+└ List alerts
+  GET http://localhost:3000/api/alerts?status=OPEN&limit=20 [200 OK, 2.03kB, 16ms]
+  √  status 200
+
+└ Acknowledge alert
+  PATCH http://localhost:3000/api/alerts/alr-5eb423c1f4e8/ack [200 OK, 1.34kB, 19ms]
+  √  status 200
+
+└ Acknowledge unknown -> 404
+  PATCH http://localhost:3000/api/alerts/alr-nope/ack [404 Not Found, 1.01kB, 11ms]
+  √  status 404
+  √  standard error format
+
+└ Invalid severity filter -> 400
+  GET http://localhost:3000/api/alerts?severity=CRITICAL [400 Bad Request, 1.12kB, 11ms]
+  √  status 400
+  √  standard error format
+
+└ Export alerts CSV
+  GET http://localhost:3000/api/alerts/export.csv?sensor_id=SM-01 [200 OK, 1.54kB, 13ms]
+  √  status 200
+  √  csv
+
+└ Back in range resolves it
+  POST http://localhost:3000/api/measurements [201 Created, 1.04kB, 34ms]
+  √  status 201
+
+└ Out of physical range -> anomaly
+  POST http://localhost:3000/api/measurements [201 Created, 1.19kB, 48ms]
+  √  status 201
+  √  OUT_OF_RANGE
+
+└ List anomalies
+  GET http://localhost:3000/api/anomalies?limit=20 [200 OK, 7.28kB, 14ms]
+  √  status 200
+
+□ 08 Actuators & irrigation (US-14/15/16/17)
+└ Actuator status
+  GET http://localhost:3000/api/actuators/status [200 OK, 2.84kB, 14ms]
+  √  status 200
+
+└ Device collects pending commands
+  GET http://localhost:3000/api/devices/me/commands [200 OK, 993B, 18ms]
+  √  status 200
+
+└ Manual irrigation ON
+  POST http://localhost:3000/api/actuators/ACT-PUMP-01/command [201 Created, 1.22kB, 23ms]
+  √  status 201 or 409
+
+└ Second command in flight -> 409
+  POST http://localhost:3000/api/actuators/ACT-PUMP-01/command [409 Conflict, 1.1kB, 27ms]
+  √  status 409
+  √  standard error format
+
+└ Duration above maximum -> 400
+  POST http://localhost:3000/api/actuators/ACT-FAN-01/command [400 Bad Request, 1.11kB, 13ms]
+  √  status 400
+  √  standard error format
+
+└ Device polls the command
+  GET http://localhost:3000/api/devices/me/commands [200 OK, 1.18kB, 20ms]
+  √  status 200
+
+└ Device confirms pump ON
+  POST http://localhost:3000/api/actuators/ACT-PUMP-01/state [200 OK, 1.02kB, 25ms]
+  √  status 200
+
+└ Device confirms pump OFF
+  POST http://localhost:3000/api/actuators/ACT-PUMP-01/state [200 OK, 1kB, 22ms]
+  √  status 200
+
+└ Actuator commands
+  GET http://localhost:3000/api/actuators/ACT-PUMP-01/commands [200 OK, 1.62kB, 14ms]
+  √  status 200
+
+└ Actuator events
+  GET http://localhost:3000/api/actuators/events?actuator_id=ACT-PUMP-01&limit=10 [200 OK, 4.35kB, 13ms]
+  √  status 200
+
+└ Irrigation config
+  GET http://localhost:3000/api/irrigation/config/AREA-1 [200 OK, 1.2kB, 13ms]
+  √  status 200
+
+└ Update irrigation config
+  PUT http://localhost:3000/api/irrigation/config/AREA-1 [200 OK, 1.2kB, 27ms]
+  √  status 200
+
+└ Irrigation config invalid -> 400
+  PUT http://localhost:3000/api/irrigation/config/AREA-1 [400 Bad Request, 1.09kB, 16ms]
+  √  status 400
+  √  standard error format
+
+└ Irrigation engine status
+  GET http://localhost:3000/api/irrigation/status/AREA-1 [200 OK, 1.38kB, 47ms]
+  √  status 200
+
+└ Daily irrigation minutes
+  GET http://localhost:3000/api/irrigation/daily-minutes?area_id=AREA-1&days=30 [200 OK, 2.97kB, 16ms]
+  √  status 200
+
+└ Automation rules
+  GET http://localhost:3000/api/automation-rules [200 OK, 2.64kB, 15ms]
+  √  status 200
+
+└ Create automation rule
+  POST http://localhost:3000/api/automation-rules [201 Created, 1.25kB, 20ms]
+  √  status 201 or 409
+
+└ Update automation rule
+  PUT http://localhost:3000/api/automation-rules/rul-a1-light [200 OK, 1.26kB, 26ms]
+  √  status 200
+
+└ Set AREA-1 mode AUTOMATIC
+  PATCH http://localhost:3000/api/areas/AREA-1/mode [200 OK, 1.29kB, 22ms]
+  √  status 200
+
+□ 09 Analysis & AI (US-18/20/21/26)
+└ Analysis summary
+  GET http://localhost:3000/api/analysis/summary?area_id=AREA-1 [200 OK, 46.09kB, 164ms]
+  √  status 200
+
+└ Analysis summary without area -> 400
+  GET http://localhost:3000/api/analysis/summary [400 Bad Request, 1.05kB, 13ms]
+  √  status 400
+  √  standard error format
+
+└ Trends 24h
+  GET http://localhost:3000/api/analysis/trends?area_id=AREA-1&window=24h [200 OK, 1.77kB, 61ms]
+  √  status 200
+
+└ Trends 7d
+  GET http://localhost:3000/api/analysis/trends?area_id=AREA-1&window=7d [200 OK, 1.77kB, 94ms]
+  √  status 200
+
+└ AI config
+  GET http://localhost:3000/api/ai/config [200 OK, 1.3kB, 14ms]
+  √  status 200
+
+└ Update AI config
+  PUT http://localhost:3000/api/ai/config [200 OK, 1.3kB, 25ms]
+  √  status 200
+
+└ Update AI config invalid -> 400
+  PUT http://localhost:3000/api/ai/config [400 Bad Request, 1.11kB, 9ms]
+  √  status 400
+  √  standard error format
+
+└ Generate recommendation (forced)
+  POST http://localhost:3000/api/recommendations/generate [201 Created, 4.72kB, 48ms]
+  √  status 201
+
+└ Generate as producer -> 403
+  POST http://localhost:3000/api/recommendations/generate [403 Forbidden, 1.12kB, 12ms]
+  √  status 403
+  √  standard error format
+
+└ List recommendations
+  GET http://localhost:3000/api/recommendations?status=PENDING [200 OK, 4.16kB, 16ms]
+  √  status 200
+
+└ Get recommendation (5 elements)
+  GET http://localhost:3000/api/recommendations/rec-dace52897c49 [200 OK, 2.77kB, 11ms]
+  √  status 200
+  √  5 elements
+
+└ Reject recommendation
+  POST http://localhost:3000/api/recommendations/rec-dace52897c49/decision [200 OK, 2.79kB, 18ms]
+  √  status 200
+
+└ Second decision -> 409
+  POST http://localhost:3000/api/recommendations/rec-dace52897c49/decision [409 Conflict, 1.09kB, 19ms]
+  √  status 409
+  √  standard error format
+
+└ Invalid decision -> 400
+  POST http://localhost:3000/api/recommendations/rec-dace52897c49/decision [400 Bad Request, 1.14kB, 10ms]
+  √  status 400
+  √  standard error format
+
+□ 10 Observations, logs, stats, settings, integrations
+└ Create observation
+  POST http://localhost:3000/api/observations [201 Created, 1.07kB, 16ms]
+  √  status 201
+
+└ Observation too short -> 400
+  POST http://localhost:3000/api/observations [400 Bad Request, 1.11kB, 13ms]
+  √  status 400
+  √  standard error format
+
+└ List observations
+  GET http://localhost:3000/api/observations?area_id=AREA-1 [200 OK, 1.43kB, 10ms]
+  √  status 200
+
+└ System log
+  GET http://localhost:3000/api/logs/system?limit=20 [200 OK, 4.51kB, 14ms]
+  √  status 200
+
+└ Audit log
+  GET http://localhost:3000/api/logs/audit?limit=20 [200 OK, 15.62kB, 15ms]
+  √  status 200
+
+└ Logs as producer -> 403
+  GET http://localhost:3000/api/logs/audit [403 Forbidden, 1.1kB, 13ms]
+  √  status 403
+  √  standard error format
+
+└ Statistics
+  GET http://localhost:3000/api/stats [200 OK, 3.32kB, 49ms]
+  √  status 200
+
+└ Global parameters
+  GET http://localhost:3000/api/settings/global [200 OK, 3.89kB, 17ms]
+  √  status 200
+
+└ Update global parameter
+  PUT http://localhost:3000/api/settings/global [200 OK, 1.77kB, 26ms]
+  √  status 200
+
+└ Unknown global parameter -> 400
+  PUT http://localhost:3000/api/settings/global [400 Bad Request, 1.08kB, 15ms]
+  √  status 400
+  √  standard error format
+
+└ Security settings
+  GET http://localhost:3000/api/settings/security [200 OK, 1.18kB, 10ms]
+  √  status 200
+
+└ Update security settings
+  PUT http://localhost:3000/api/settings/security [200 OK, 1.18kB, 16ms]
+  √  status 200
+
+└ Security settings invalid -> 400
+  PUT http://localhost:3000/api/settings/security [400 Bad Request, 1.11kB, 9ms]
+  √  status 400
+  √  standard error format
+
+└ Notification settings
+  GET http://localhost:3000/api/settings/notifications [200 OK, 1.15kB, 13ms]
+  √  status 200
+
+└ Update notification settings
+  PUT http://localhost:3000/api/settings/notifications [200 OK, 1.15kB, 20ms]
+  √  status 200
+
+└ List integrations (SA)
+  GET http://localhost:3000/api/integrations [200 OK, 1.14kB, 11ms]
+  √  status 200
+
+└ Create integration (SA)
+  POST http://localhost:3000/api/integrations [201 Created, 1.15kB, 18ms]
+  √  status 201
+
+└ Update integration (SA)
+  PUT http://localhost:3000/api/integrations/int-ec58410f2a [200 OK, 1.14kB, 19ms]
+  √  status 200
+
+└ Integrations as admin -> 403
+  GET http://localhost:3000/api/integrations [403 Forbidden, 1.11kB, 10ms]
+  √  status 403
+  √  standard error format
+
+└ Logout
+  POST http://localhost:3000/api/auth/logout [200 OK, 924B, 11ms]
+  √  status 200
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │               138 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │               138 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 0 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │               184 │                0 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 14.9s                                      │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 165.59kB (approx)                         │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 23ms [min: 8ms, max: 164ms, s.d.: 22ms] │
+└────────────────────────────────────────────────────────────────┘

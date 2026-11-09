@@ -1,0 +1,108 @@
+Error responses
+Captured 2026-09-29T04:18:50.213Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "sensor_id": "SM-01",
+  "value": "abc"
+}
+
+→ HTTP 400 Bad Request (8 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The submitted data does not match the required schema.",
+  "details": [
+    {
+      "field": "value",
+      "issue": "The sensor value must be a valid floating-point number."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/sensors
+
+→ HTTP 401 Unauthorized (2 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-a1-ph
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 6.2,
+  "max_value": 6.8
+}
+
+→ HTTP 403 Forbidden (6 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: thresholds.write"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/devices/dev-does-not-exist
+Authorization: Bearer eyJhbG…
+
+→ HTTP 404 Not Found (7 ms)
+{
+  "status": 404,
+  "code": "ERR_RESOURCE_NOT_FOUND",
+  "message": "No device with id \"dev-does-not-exist\".",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/no-such-route
+Authorization: Bearer eyJhbG…
+
+→ HTTP 404 Not Found (4 ms)
+{
+  "status": 404,
+  "code": "ERR_RESOURCE_NOT_FOUND",
+  "message": "No API route matches GET /api/no-such-route.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/sensors
+Authorization: Bearer eyJhbG…
+
+{
+  "id": "SM-01",
+  "device_id": "dev-node-01",
+  "area_id": "AREA-1",
+  "name": "Duplicate",
+  "type": "soil_moisture",
+  "unit": "%",
+  "physical_min": 0,
+  "physical_max": 100
+}
+
+→ HTTP 409 Conflict (7 ms)
+{
+  "status": 409,
+  "code": "ERR_CONFLICT",
+  "message": "A sensor with id \"SM-01\" is already registered.",
+  "details": []
+}

@@ -1,0 +1,40 @@
+GET with from/to filters
+Captured 2026-09-29T04:24:53.317Z against http://localhost:3000
+
+GET /api/sensors/SM-02/measurements?from=2026-09-29T02%3A24%3A53.261Z&to=2026-09-29T03%3A24%3A53.261Z&limit=3
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (20 ms)
+{
+  "sensor_id": "SM-02",
+  "type": "soil_moisture",
+  "unit": "%",
+  "area_id": "AREA-1",
+  "count": 3,
+  "data": [
+    {
+      "value": 66.7,
+      "unit": "%",
+      "recorded_at": "2026-09-29T03:20:00.000Z",
+      "received_at": "2026-09-29T03:20:02.000Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 67.8,
+      "unit": "%",
+      "recorded_at": "2026-09-29T03:15:00.000Z",
+      "received_at": "2026-09-29T03:15:02.000Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 67.3,
+      "unit": "%",
+      "recorded_at": "2026-09-29T03:10:00.000Z",
+      "received_at": "2026-09-29T03:10:02.000Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    }
+  ]
+}

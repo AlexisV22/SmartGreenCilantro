@@ -1,0 +1,829 @@
+Calls used to verify the specification
+Captured 2026-09-29T04:24:45.668Z against http://localhost:3000
+
+POST /api/auth/login
+
+{
+  "email": "admin@smartgreen.ai",
+  "password": "********"
+}
+
+→ HTTP 200 OK (22 ms)
+{
+  "access_token": "eyJhbG…",
+  "token_type": "Bearer",
+  "expires_in": 28800,
+  "user": {
+    "id": "usr-admin",
+    "email": "admin@smartgreen.ai",
+    "username": "admin",
+    "full_name": "Greenhouse Administrator",
+    "role": "Administrator",
+    "organization_id": "org-team3"
+  }
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "sensor_id": "SM-01",
+  "value": 66.3,
+  "unit": "%",
+  "recorded_at": "2026-09-29T04:24:45.443Z"
+}
+
+→ HTTP 201 Created (38 ms)
+{
+  "id": "msr-57361c1f75d0",
+  "sensor_id": "SM-01",
+  "status": "processed",
+  "inserted_at": "2026-09-29T04:24:45.456Z",
+  "alert": null,
+  "anomalies": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/sensors/SM-01/measurements?limit=2
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (16 ms)
+{
+  "sensor_id": "SM-01",
+  "type": "soil_moisture",
+  "unit": "%",
+  "area_id": "AREA-1",
+  "count": 2,
+  "data": [
+    {
+      "value": 66.3,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:24:45.443Z",
+      "received_at": "2026-09-29T04:24:45.456Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 68.26,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:24:45.189Z",
+      "received_at": "2026-09-29T04:24:45.275Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/thresholds
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (15 ms)
+[
+  {
+    "id": "th-a1-air-humidity",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.987Z",
+    "updated_by": "usr-admin",
+    "parameter": "air_humidity",
+    "sensor_type": "air_humidity",
+    "min_value": 50,
+    "max_value": 70,
+    "unit": "%",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-co2",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.987Z",
+    "updated_by": "usr-admin",
+    "parameter": "co2",
+    "sensor_type": "co2",
+    "min_value": 400,
+    "max_value": 1000,
+    "unit": "ppm",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-light",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.987Z",
+    "updated_by": "usr-admin",
+    "parameter": "light",
+    "sensor_type": "light",
+    "min_value": 10000,
+    "max_value": 40000,
+    "unit": "lux",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-ph",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.987Z",
+    "updated_by": "usr-admin",
+    "parameter": "ph",
+    "sensor_type": "ph",
+    "min_value": 6.2,
+    "max_value": 6.8,
+    "unit": "pH",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-soil-moisture",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:19:00.986Z",
+    "updated_by": "usr-admin",
+    "parameter": "soil_moisture",
+    "sensor_type": "soil_moisture",
+    "min_value": 60,
+    "max_value": 80,
+    "unit": "%",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-temperature",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:19:13.996Z",
+    "updated_by": "usr-admin",
+    "parameter": "temperature",
+    "sensor_type": "temperature",
+    "min_value": 15,
+    "max_value": 25,
+    "unit": "C",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-a1-water-level",
+    "area_id": "AREA-1",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.987Z",
+    "updated_by": "usr-admin",
+    "parameter": "water_level",
+    "sensor_type": "water_level",
+    "min_value": 20,
+    "max_value": 100,
+    "unit": "%",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 1"
+  },
+  {
+    "id": "th-area-1790655537-air-humidity",
+    "area_id": "AREA-1790655537",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.254Z",
+    "updated_by": "usr-admin",
+    "parameter": "air_humidity",
+    "sensor_type": "air_humidity",
+    "min_value": 50,
+    "max_value": 70,
+    "unit": "%",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Postman area"
+  },
+  {
+    "id": "th-area-1790655537-co2",
+    "area_id": "AREA-1790655537",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.254Z",
+    "updated_by": "usr-admin",
+    "parameter": "co2",
+    "sensor_type": "co2",
+    "min_value": 400,
+    "max_value": 1000,
+    "unit": "ppm",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Postman area"
+  },
+  {
+    "id": "th-area-1790655537-light",
+    "area_id": "AREA-1790655537",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.254Z",
+    "updated_by": "usr-admin",
+    "parameter": "light",
+    "sensor_type": "light",
+    "min_value": 10000,
+    "max_value": 40000,
+    "unit": "lux",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Postman area"
+  },
+  {
+    "id": "th-area-1790655537-ph",
+    "area_id": "AREA-1790655537",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.254Z",
+    "updated_by": "usr-admin",
+    "parameter": "ph",
+    "sensor_type": "ph",
+    "min_value": 6.2,
+    "max_value": 6.8,
+    "unit": "pH",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Postman area"
+  },
+  {
+    "id": "th-area-1790655537-soil-moisture",
+    "area_id": "AREA-1790655537",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.254Z",
+    "updated_by": "usr-admin",
+    "parameter": "soil_moisture",
+    "sensor_type": "soil_moisture",
+    "min_value": 60,
+    "max_value": 80,
+    "unit": "%",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Postman area"
+  },
+  {
+    "id": "th-area-1790655537-temperature",
+    "area_id": "AREA-1790655537",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.254Z",
+    "updated_by": "usr-admin",
+    "parameter": "temperature",
+    "sensor_type": "temperature",
+    "min_value": 15,
+    "max_value": 25,
+    "unit": "C",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Postman area"
+  },
+  {
+    "id": "th-area-1790655537-water-level",
+    "area_id": "AREA-1790655537",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:18:57.254Z",
+    "updated_by": "usr-admin",
+    "parameter": "water_level",
+    "sensor_type": "water_level",
+    "min_value": 20,
+    "max_value": 100,
+    "unit": "%",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Postman area"
+  },
+  {
+    "id": "th-a2-air-humidity",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "air_humidity",
+    "sensor_type": "air_humidity",
+    "min_value": 50,
+    "max_value": 70,
+    "unit": "%",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 2"
+  },
+  {
+    "id": "th-938f341da1",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "test",
+    "updated_at": "2026-09-29T04:19:14.047Z",
+    "updated_by": "usr-admin",
+    "parameter": "co2",
+    "sensor_type": "co2",
+    "min_value": 400,
+    "max_value": 1000,
+    "unit": "ppm",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 2"
+  },
+  {
+    "id": "th-a2-co2",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "co2",
+    "sensor_type": "co2",
+    "min_value": 400,
+    "max_value": 1000,
+    "unit": "ppm",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 2"
+  },
+  {
+    "id": "th-a2-light",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "light",
+    "sensor_type": "light",
+    "min_value": 10000,
+    "max_value": 40000,
+    "unit": "lux",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 2"
+  },
+  {
+    "id": "th-a2-ph",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "ph",
+    "sensor_type": "ph",
+    "min_value": 6.2,
+    "max_value": 6.8,
+    "unit": "pH",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 2"
+  },
+  {
+    "id": "th-126bbdbddb",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "seedling",
+    "updated_at": "2026-09-29T04:19:09.911Z",
+    "updated_by": "usr-admin",
+    "parameter": "ph",
+    "sensor_type": "ph",
+    "min_value": 6.1,
+    "max_value": 20,
+    "unit": "pH",
+    "updated_by_email": "admin@smartgreen.ai",
+    "area_name": "Cultivation Area 2"
+  },
+  {
+    "id": "th-a2-soil-moisture",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "soil_moisture",
+    "sensor_type": "soil_moisture",
+    "min_value": 60,
+    "max_value": 80,
+    "unit": "%",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 2"
+  },
+  {
+    "id": "th-a2-temperature",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "temperature",
+    "sensor_type": "temperature",
+    "min_value": 15,
+    "max_value": 25,
+    "unit": "C",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 2"
+  },
+  {
+    "id": "th-a2-water-level",
+    "area_id": "AREA-2",
+    "greenhouse_id": null,
+    "crop_stage": "vegetative",
+    "updated_at": "2026-09-29T04:16:35.799Z",
+    "updated_by": null,
+    "parameter": "water_level",
+    "sensor_type": "water_level",
+    "min_value": 20,
+    "max_value": 100,
+    "unit": "%",
+    "updated_by_email": null,
+    "area_name": "Cultivation Area 2"
+  }
+]
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-a1-soil-moisture
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 60,
+  "max_value": 80,
+  "unit": "%"
+}
+
+→ HTTP 200 OK (25 ms)
+{
+  "id": "th-a1-soil-moisture",
+  "area_id": "AREA-1",
+  "greenhouse_id": null,
+  "crop_stage": "vegetative",
+  "updated_at": "2026-09-29T04:24:45.551Z",
+  "updated_by": "usr-admin",
+  "parameter": "soil_moisture",
+  "sensor_type": "soil_moisture",
+  "min_value": 60,
+  "max_value": 80,
+  "unit": "%",
+  "updated_by_email": "admin@smartgreen.ai",
+  "area_name": "Cultivation Area 1"
+}
+
+----------------------------------------------------------------------
+
+GET /api/actuators/status
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (11 ms)
+{
+  "timestamp": "2026-09-29T04:24:45.570Z",
+  "actuators": [
+    {
+      "id": "ACT-PUMP-01",
+      "name": "Irrigation pump",
+      "type": "irrigation_pump",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:24:45.117Z",
+      "device_id": "dev-node-01"
+    },
+    {
+      "id": "ACT-LIGHT-01",
+      "name": "Auxiliary lighting",
+      "type": "lighting",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:24:45.123Z",
+      "device_id": "dev-node-01"
+    },
+    {
+      "id": "ACT-SHADE-01",
+      "name": "Shade system",
+      "type": "shade",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:24:45.129Z",
+      "device_id": "dev-node-01"
+    },
+    {
+      "id": "ACT-1790655539",
+      "name": "Extra fan",
+      "type": "ventilation_fan",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:24:45.135Z",
+      "device_id": "dev-node-01"
+    },
+    {
+      "id": "ACT-FAN-01",
+      "name": "Ventilation fan",
+      "type": "ventilation_fan",
+      "area_id": "AREA-1",
+      "area_name": "Cultivation Area 1",
+      "state": "OFF",
+      "reported_state": "OFF",
+      "mode": "AUTOMATIC",
+      "is_active": true,
+      "is_offline": false,
+      "last_change": "2026-09-29T04:24:45.141Z",
+      "device_id": "dev-node-01"
+    },
+    {
+      "id": "ACT-25A",
+      "name": "Pump 25A",
+      "type": "irrigation_pump",
+      "area_id": "AREA-2",
+      "area_name": "Cultivation Area 2",
+      "state": "OFFLINE",
+      "reported_state": "OFF",
+      "mode": "MANUAL",
+      "is_active": false,
+      "is_offline": true,
+      "last_change": null,
+      "device_id": "dev-node-25a"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/devices
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "Spec check node",
+  "mac_address": "A4:CF:12:89:56:B9",
+  "location": "Bloque A - Cilantro",
+  "sensors_attached": []
+}
+
+→ HTTP 201 Created (18 ms)
+{
+  "device_id": "dev-node-mum6a424",
+  "id": "dev-node-mum6a424",
+  "name": "Spec check node",
+  "mac_address": "A4:CF:12:89:56:B9",
+  "location": "Bloque A - Cilantro",
+  "organization_id": "org-team3",
+  "greenhouse_id": null,
+  "area_id": null,
+  "firmware": null,
+  "is_active": true,
+  "last_seen": null,
+  "created_at": "2026-09-29T04:24:45.581Z",
+  "updated_at": "2026-09-29T04:24:45.581Z",
+  "connectivity": "OFFLINE",
+  "status": "REGISTERED",
+  "api_key": "sec_io…",
+  "api_key_notice": "Store this key now: it is shown only once and cannot be recovered."
+}
+
+----------------------------------------------------------------------
+
+GET /api/devices
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (42 ms)
+[
+  {
+    "device_id": "dev-node-mum62hsq",
+    "id": "dev-node-mum62hsq",
+    "name": "Endpoint check node",
+    "mac_address": null,
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": null,
+    "area_id": null,
+    "firmware": null,
+    "is_active": false,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:18:50.139Z",
+    "updated_at": "2026-09-29T04:18:50.139Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  },
+  {
+    "device_id": "dev-node-mum60kx3",
+    "id": "dev-node-mum60kx3",
+    "name": "Matrix probe node",
+    "mac_address": null,
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": null,
+    "area_id": null,
+    "firmware": null,
+    "is_active": false,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:17:20.873Z",
+    "updated_at": "2026-09-29T04:17:20.873Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  },
+  {
+    "device_id": "dev-node-mum60kxk",
+    "id": "dev-node-mum60kxk",
+    "name": "Matrix probe node",
+    "mac_address": null,
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": null,
+    "area_id": null,
+    "firmware": null,
+    "is_active": false,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:17:20.890Z",
+    "updated_at": "2026-09-29T04:17:20.890Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  },
+  {
+    "device_id": "dev-node-25a",
+    "id": "dev-node-25a",
+    "name": "Node 25A (bench 2)",
+    "mac_address": "A4:CF:12:25:0A:01",
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": "GH-01",
+    "area_id": "AREA-2",
+    "firmware": null,
+    "is_active": false,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:19:58.658Z",
+    "updated_at": "2026-09-29T04:19:58.789Z",
+    "sensor_count": 1,
+    "actuator_count": 1,
+    "connectivity": "DISABLED"
+  },
+  {
+    "device_id": "dev-node-25b",
+    "id": "dev-node-25b",
+    "name": "Node 25B",
+    "mac_address": null,
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": "GH-01",
+    "area_id": "AREA-2",
+    "firmware": null,
+    "is_active": false,
+    "last_seen": "2026-09-29T04:20:00.563Z",
+    "created_at": "2026-09-29T04:20:00.505Z",
+    "updated_at": "2026-09-29T04:20:00.579Z",
+    "sensor_count": 1,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  },
+  {
+    "device_id": "dev-node-25c",
+    "id": "dev-node-25c",
+    "name": "Node 25C",
+    "mac_address": "A4:CF:12:25:0C:01",
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": "GH-01",
+    "area_id": "AREA-2",
+    "firmware": null,
+    "is_active": true,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:20:02.224Z",
+    "updated_at": "2026-09-29T04:20:02.224Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "OFFLINE"
+  },
+  {
+    "device_id": "dev-node-01",
+    "id": "dev-node-01",
+    "name": "Nodo Central Invernadero 1",
+    "mac_address": "A4:CF:12:89:56:B2",
+    "location": "Bloque A - Cilantro",
+    "organization_id": "org-team3",
+    "greenhouse_id": "GH-01",
+    "area_id": "AREA-1",
+    "firmware": "esp32-smartgreen-1.0.0",
+    "is_active": true,
+    "last_seen": "2026-09-29T04:24:45.449Z",
+    "created_at": "2026-09-29T04:16:35.799Z",
+    "updated_at": "2026-09-29T04:24:45.112Z",
+    "sensor_count": 9,
+    "actuator_count": 5,
+    "connectivity": "ONLINE"
+  },
+  {
+    "device_id": "dev-pm-1790655538",
+    "id": "dev-pm-1790655538",
+    "name": "Postman node",
+    "mac_address": "a2:ce:69:a9:2c:8e",
+    "location": "Bench 3",
+    "organization_id": "org-team3",
+    "greenhouse_id": "GH-01",
+    "area_id": "AREA-1",
+    "firmware": null,
+    "is_active": false,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:18:58.194Z",
+    "updated_at": "2026-09-29T04:18:58.657Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  },
+  {
+    "device_id": "dev-node-mum6a424",
+    "id": "dev-node-mum6a424",
+    "name": "Spec check node",
+    "mac_address": "A4:CF:12:89:56:B9",
+    "location": "Bloque A - Cilantro",
+    "organization_id": "org-team3",
+    "greenhouse_id": null,
+    "area_id": null,
+    "firmware": null,
+    "is_active": true,
+    "last_seen": null,
+    "created_at": "2026-09-29T04:24:45.581Z",
+    "updated_at": "2026-09-29T04:24:45.581Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "OFFLINE"
+  },
+  {
+    "device_id": "dev-test-06t2",
+    "id": "dev-test-06t2",
+    "name": "Test node US06-T2",
+    "mac_address": "A4:CF:12:06:02:01",
+    "location": null,
+    "organization_id": "org-team3",
+    "greenhouse_id": "GH-01",
+    "area_id": "AREA-1",
+    "firmware": "test",
+    "is_active": false,
+    "last_seen": "2026-09-29T04:17:45.066Z",
+    "created_at": "2026-09-29T04:17:44.912Z",
+    "updated_at": "2026-09-29T04:17:45.105Z",
+    "sensor_count": 0,
+    "actuator_count": 0,
+    "connectivity": "DISABLED"
+  }
+]
+
+----------------------------------------------------------------------
+
+PUT /api/devices/dev-node-mum6a424
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "Spec check node - updated",
+  "is_active": false
+}
+
+→ HTTP 200 OK (22 ms)
+{
+  "device_id": "dev-node-mum6a424",
+  "id": "dev-node-mum6a424",
+  "name": "Spec check node - updated",
+  "mac_address": "A4:CF:12:89:56:B9",
+  "location": "Bloque A - Cilantro",
+  "organization_id": "org-team3",
+  "greenhouse_id": null,
+  "area_id": null,
+  "firmware": null,
+  "is_active": false,
+  "last_seen": null,
+  "created_at": "2026-09-29T04:24:45.581Z",
+  "updated_at": "2026-09-29T04:24:45.647Z",
+  "connectivity": "DISABLED"
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "sensor_id": "SM-01",
+  "value": "x"
+}
+
+→ HTTP 400 Bad Request (11 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The submitted data does not match the required schema.",
+  "details": [
+    {
+      "field": "value",
+      "issue": "The sensor value must be a valid floating-point number."
+    }
+  ]
+}

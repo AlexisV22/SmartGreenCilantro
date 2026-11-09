@@ -1,0 +1,105 @@
+(node:20764) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+newman
+
+SmartGreenAI: Cilantro Crop API
+
+□ 01 Auth (US-01-C)
+└ Login producer
+  POST http://localhost:3000/api/auth/login [200 OK, 1.51kB, 94ms]
+  √  status 200
+
+└ Login administrator
+  POST http://localhost:3000/api/auth/login [200 OK, 1.5kB, 33ms]
+  √  status 200
+
+└ Login super administrator
+  POST http://localhost:3000/api/auth/login [200 OK, 1.55kB, 36ms]
+  √  status 200
+
+└ Login wrong password -> 401 generic
+  POST http://localhost:3000/api/auth/login [401 Unauthorized, 1.09kB, 28ms]
+  √  status 401
+  √  standard error format
+
+└ Login empty fields -> 400
+  POST http://localhost:3000/api/auth/login [400 Bad Request, 1.24kB, 12ms]
+  √  status 400
+  √  standard error format
+
+└ Me
+  GET http://localhost:3000/api/auth/me [200 OK, 1.41kB, 18ms]
+  √  status 200
+  √  role
+
+└ Me without token -> 401
+  GET http://localhost:3000/api/auth/me [401 Unauthorized, 1.03kB, 6ms]
+  √  status 401
+  √  standard error format
+
+□ 05 Measurements (US-06/07/08)
+└ Device heartbeat
+  POST http://localhost:3000/api/devices/heartbeat [200 OK, 1.04kB, 28ms]
+  √  status 200
+
+└ Post one reading
+  POST http://localhost:3000/api/measurements [201 Created, 1.04kB, 40ms]
+  √  status 201
+
+└ Post buffered batch
+  POST http://localhost:3000/api/measurements [201 Created, 1.4kB, 57ms]
+  √  status 201
+  √  3 accepted
+
+└ Unknown sensor -> 400
+  POST http://localhost:3000/api/measurements [400 Bad Request, 1.07kB, 16ms]
+  √  status 400
+  √  standard error format
+
+└ Non-numeric value -> 400
+  POST http://localhost:3000/api/measurements [400 Bad Request, 1.12kB, 17ms]
+  √  status 400
+  √  standard error format
+
+└ Invalid timestamp -> 400
+  POST http://localhost:3000/api/measurements [400 Bad Request, 1.12kB, 16ms]
+  √  status 400
+  √  standard error format
+
+└ Without API key -> 401
+  POST http://localhost:3000/api/measurements [401 Unauthorized, 1.05kB, 7ms]
+  √  status 401
+  √  standard error format
+
+└ Latest measurements
+  GET http://localhost:3000/api/measurements/latest [200 OK, 4.73kB, 52ms]
+  √  status 200
+
+└ Sensor history
+  GET http://localhost:3000/api/sensors/SM-01/measurements?limit=50 [200 OK, 8.4kB, 26ms]
+  √  status 200
+
+└ Unknown sensor history -> 404
+  GET http://localhost:3000/api/sensors/NOPE/measurements [404 Not Found, 1.01kB, 13ms]
+  √  status 404
+  √  standard error format
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│                         │         executed │           failed │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              iterations │                1 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│                requests │               17 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│            test-scripts │               17 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│      prerequest-scripts │                0 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              assertions │               27 │                0 │
+├─────────────────────────┴──────────────────┴──────────────────┤
+│ total run duration: 1892ms                                    │
+├───────────────────────────────────────────────────────────────┤
+│ total data received: 15.41kB (approx)                         │
+├───────────────────────────────────────────────────────────────┤
+│ average response time: 29ms [min: 6ms, max: 94ms, s.d.: 21ms] │
+└───────────────────────────────────────────────────────────────┘
