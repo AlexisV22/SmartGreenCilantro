@@ -1,0 +1,5 @@
+indexname,indexdef
+idx_measurements_anomaly,CREATE INDEX idx_measurements_anomaly ON public.measurements USING btree (is_anomaly) WHERE is_anomaly
+idx_measurements_received,CREATE INDEX idx_measurements_received ON public.measurements USING btree (received_at DESC)
+idx_measurements_sensor_time,"CREATE INDEX idx_measurements_sensor_time ON public.measurements USING btree (sensor_id, recorded_at DESC)"
+measurements_pkey,CREATE UNIQUE INDEX measurements_pkey ON public.measurements USING btree (id)

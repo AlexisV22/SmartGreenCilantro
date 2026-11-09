@@ -1,0 +1,10 @@
+$ npm run db:schema
+(2026-09-29T04:16:35.046Z, clean database)
+
+
+> smartgreenai-cilantro@1.0.0 db:schema
+> node server/scripts/run-sql.js database/schema.sql
+
+OK  database\schema.sql applied in 906 ms
+
+exit code 0

@@ -1,0 +1,23 @@
+Valid measurement
+Captured 2026-09-29T04:18:43.967Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "HUM-01",
+  "value": 61.2,
+  "unit": "%",
+  "recorded_at": "2026-09-29T04:18:43.078Z"
+}
+
+→ HTTP 201 Created (25 ms)
+{
+  "id": "msr-8136ad153eee",
+  "sensor_id": "HUM-01",
+  "status": "processed",
+  "inserted_at": "2026-09-29T04:18:43.091Z",
+  "alert": null,
+  "anomalies": []
+}

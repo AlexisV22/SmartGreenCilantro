@@ -1,0 +1,10 @@
+$ npm run db:seed
+(2026-09-29T04:16:35.891Z, clean database)
+
+
+> smartgreenai-cilantro@1.0.0 db:seed
+> node server/scripts/run-sql.js database/seed.sql
+
+OK  database\seed.sql applied in 90 ms
+
+exit code 0

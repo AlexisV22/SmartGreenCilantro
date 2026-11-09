@@ -1,0 +1,56 @@
+Query by sensor
+Captured 2026-09-29T04:18:44.075Z against http://localhost:3000
+
+GET /api/sensors/SM-01/measurements?limit=5
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (20 ms)
+{
+  "sensor_id": "SM-01",
+  "type": "soil_moisture",
+  "unit": "%",
+  "area_id": "AREA-1",
+  "count": 5,
+  "data": [
+    {
+      "value": 67.91,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:18:42.534Z",
+      "received_at": "2026-09-29T04:18:42.611Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 67.9,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:18:40.737Z",
+      "received_at": "2026-09-29T04:18:40.749Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 67.5,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:18:39.616Z",
+      "received_at": "2026-09-29T04:18:39.627Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 67.9,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:18:38.482Z",
+      "received_at": "2026-09-29T04:18:38.495Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 68,
+      "unit": "%",
+      "recorded_at": "2026-09-29T04:18:37.343Z",
+      "received_at": "2026-09-29T04:18:37.360Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    }
+  ]
+}

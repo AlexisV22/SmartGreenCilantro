@@ -1,0 +1,687 @@
+Queries by sensor and time range
+Captured 2026-09-29T04:18:44.747Z against http://localhost:3000
+
+GET /api/sensors/HUM-01/measurements?from=2026-08-15T04%3A28%3A44.081Z&to=2026-08-15T04%3A47%3A44.081Z&limit=100
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (11 ms)
+{
+  "sensor_id": "HUM-01",
+  "type": "air_humidity",
+  "unit": "%",
+  "area_id": "AREA-1",
+  "count": 20,
+  "data": [
+    {
+      "value": 57,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:47:44.081Z",
+      "received_at": "2026-09-29T04:18:44.364Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:46:44.081Z",
+      "received_at": "2026-09-29T04:18:44.357Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.1,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:45:44.081Z",
+      "received_at": "2026-09-29T04:18:44.348Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.2,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:44:44.081Z",
+      "received_at": "2026-09-29T04:18:44.340Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:43:44.081Z",
+      "received_at": "2026-09-29T04:18:44.330Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.7,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:42:44.081Z",
+      "received_at": "2026-09-29T04:18:44.321Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 58.1,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:41:44.081Z",
+      "received_at": "2026-09-29T04:18:44.311Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 58.5,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:40:44.081Z",
+      "received_at": "2026-09-29T04:18:44.302Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 58.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:39:44.081Z",
+      "received_at": "2026-09-29T04:18:44.291Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 59.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:38:44.081Z",
+      "received_at": "2026-09-29T04:18:44.281Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 59.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:37:44.081Z",
+      "received_at": "2026-09-29T04:18:44.274Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:36:44.081Z",
+      "received_at": "2026-09-29T04:18:44.264Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:35:44.081Z",
+      "received_at": "2026-09-29T04:18:44.255Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:34:44.081Z",
+      "received_at": "2026-09-29T04:18:44.246Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.8,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:33:44.081Z",
+      "received_at": "2026-09-29T04:18:44.237Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.2,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:32:44.081Z",
+      "received_at": "2026-09-29T04:18:44.230Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.5,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:31:44.081Z",
+      "received_at": "2026-09-29T04:18:44.221Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.7,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:30:44.081Z",
+      "received_at": "2026-09-29T04:18:44.211Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:29:44.081Z",
+      "received_at": "2026-09-29T04:18:44.203Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 63,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:28:44.081Z",
+      "received_at": "2026-09-29T04:18:44.193Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/sensors/HUM-01/measurements?from=2026-08-15T04%3A18%3A44.081Z&to=2026-08-15T05%3A18%3A44.081Z&limit=100
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (11 ms)
+{
+  "sensor_id": "HUM-01",
+  "type": "air_humidity",
+  "unit": "%",
+  "area_id": "AREA-1",
+  "count": 60,
+  "data": [
+    {
+      "value": 58.8,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:17:44.081Z",
+      "received_at": "2026-09-29T04:18:44.682Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 59.3,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:16:44.081Z",
+      "received_at": "2026-09-29T04:18:44.671Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 59.8,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:15:44.081Z",
+      "received_at": "2026-09-29T04:18:44.660Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.3,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:14:44.081Z",
+      "received_at": "2026-09-29T04:18:44.650Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.8,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:13:44.081Z",
+      "received_at": "2026-09-29T04:18:44.637Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.2,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:12:44.081Z",
+      "received_at": "2026-09-29T04:18:44.626Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.7,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:11:44.081Z",
+      "received_at": "2026-09-29T04:18:44.615Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.1,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:10:44.081Z",
+      "received_at": "2026-09-29T04:18:44.606Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:09:44.081Z",
+      "received_at": "2026-09-29T04:18:44.595Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.7,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:08:44.081Z",
+      "received_at": "2026-09-29T04:18:44.585Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:07:44.081Z",
+      "received_at": "2026-09-29T04:18:44.575Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 63,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:06:44.081Z",
+      "received_at": "2026-09-29T04:18:44.563Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 63,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:05:44.081Z",
+      "received_at": "2026-09-29T04:18:44.551Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:04:44.081Z",
+      "received_at": "2026-09-29T04:18:44.540Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.8,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:03:44.081Z",
+      "received_at": "2026-09-29T04:18:44.524Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.6,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:02:44.081Z",
+      "received_at": "2026-09-29T04:18:44.513Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.3,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:01:44.081Z",
+      "received_at": "2026-09-29T04:18:44.503Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62,
+      "unit": "%",
+      "recorded_at": "2026-08-15T05:00:44.081Z",
+      "received_at": "2026-09-29T04:18:44.491Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.6,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:59:44.081Z",
+      "received_at": "2026-09-29T04:18:44.481Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.1,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:58:44.081Z",
+      "received_at": "2026-09-29T04:18:44.472Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.6,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:57:44.081Z",
+      "received_at": "2026-09-29T04:18:44.463Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.2,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:56:44.081Z",
+      "received_at": "2026-09-29T04:18:44.454Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 59.7,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:55:44.081Z",
+      "received_at": "2026-09-29T04:18:44.444Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 59.2,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:54:44.081Z",
+      "received_at": "2026-09-29T04:18:44.432Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 58.7,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:53:44.081Z",
+      "received_at": "2026-09-29T04:18:44.422Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 58.3,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:52:44.081Z",
+      "received_at": "2026-09-29T04:18:44.413Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:51:44.081Z",
+      "received_at": "2026-09-29T04:18:44.403Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.6,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:50:44.081Z",
+      "received_at": "2026-09-29T04:18:44.392Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.3,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:49:44.081Z",
+      "received_at": "2026-09-29T04:18:44.382Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.1,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:48:44.081Z",
+      "received_at": "2026-09-29T04:18:44.372Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:47:44.081Z",
+      "received_at": "2026-09-29T04:18:44.364Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:46:44.081Z",
+      "received_at": "2026-09-29T04:18:44.357Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.1,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:45:44.081Z",
+      "received_at": "2026-09-29T04:18:44.348Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.2,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:44:44.081Z",
+      "received_at": "2026-09-29T04:18:44.340Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:43:44.081Z",
+      "received_at": "2026-09-29T04:18:44.330Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 57.7,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:42:44.081Z",
+      "received_at": "2026-09-29T04:18:44.321Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 58.1,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:41:44.081Z",
+      "received_at": "2026-09-29T04:18:44.311Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 58.5,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:40:44.081Z",
+      "received_at": "2026-09-29T04:18:44.302Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 58.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:39:44.081Z",
+      "received_at": "2026-09-29T04:18:44.291Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 59.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:38:44.081Z",
+      "received_at": "2026-09-29T04:18:44.281Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 59.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:37:44.081Z",
+      "received_at": "2026-09-29T04:18:44.274Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:36:44.081Z",
+      "received_at": "2026-09-29T04:18:44.264Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:35:44.081Z",
+      "received_at": "2026-09-29T04:18:44.255Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:34:44.081Z",
+      "received_at": "2026-09-29T04:18:44.246Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.8,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:33:44.081Z",
+      "received_at": "2026-09-29T04:18:44.237Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.2,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:32:44.081Z",
+      "received_at": "2026-09-29T04:18:44.230Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.5,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:31:44.081Z",
+      "received_at": "2026-09-29T04:18:44.221Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.7,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:30:44.081Z",
+      "received_at": "2026-09-29T04:18:44.211Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:29:44.081Z",
+      "received_at": "2026-09-29T04:18:44.203Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 63,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:28:44.081Z",
+      "received_at": "2026-09-29T04:18:44.193Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 63,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:27:44.081Z",
+      "received_at": "2026-09-29T04:18:44.184Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:26:44.081Z",
+      "received_at": "2026-09-29T04:18:44.175Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.8,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:25:44.081Z",
+      "received_at": "2026-09-29T04:18:44.165Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.5,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:24:44.081Z",
+      "received_at": "2026-09-29T04:18:44.154Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 62.2,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:23:44.081Z",
+      "received_at": "2026-09-29T04:18:44.145Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.9,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:22:44.081Z",
+      "received_at": "2026-09-29T04:18:44.136Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61.4,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:21:44.081Z",
+      "received_at": "2026-09-29T04:18:44.126Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 61,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:20:44.081Z",
+      "received_at": "2026-09-29T04:18:44.116Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60.5,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:19:44.081Z",
+      "received_at": "2026-09-29T04:18:44.106Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 60,
+      "unit": "%",
+      "recorded_at": "2026-08-15T04:18:44.081Z",
+      "received_at": "2026-09-29T04:18:44.093Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/sensors/SM-01/measurements?from=2026-08-15T04%3A18%3A44.081Z&to=2026-08-15T05%3A18%3A44.081Z&limit=100
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (10 ms)
+{
+  "sensor_id": "SM-01",
+  "type": "soil_moisture",
+  "unit": "%",
+  "area_id": "AREA-1",
+  "count": 0,
+  "data": []
+}

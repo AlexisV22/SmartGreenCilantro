@@ -1,0 +1,589 @@
+Insert calls (valid batch summarised, invalid batch)
+Captured 2026-09-29T04:18:44.746Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+"[60 readings of HUM-01 from 2026-08-15T04:18:44.081Z to 2026-08-15T05:17:44.081Z]"
+
+→ HTTP 201 Created (613 ms)
+{
+  "status": "processed",
+  "received": 60,
+  "accepted": 60,
+  "rejected": 0,
+  "results": [
+    {
+      "id": "msr-9cfc388e6481",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.093Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-65329ddcf264",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.106Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-42d6a39952c6",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.116Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-c2ae33f96cb4",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.126Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-3a43cf76aca7",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.136Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-869eddb6cab3",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.145Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-3939404d43da",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.154Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-573c4b0af257",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.165Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-b3caa262f34e",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.175Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-31968f19487a",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.184Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-a5e9fa2b09ca",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.193Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-14b7bf5b228a",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.203Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-af79065b6e75",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.211Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-22970aa3b868",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.221Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-b62f6a693b05",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.230Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-4ca41d3be006",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.237Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-084178deaea1",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.246Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-48e5ad79cdfb",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.255Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-ec5c3938c2a9",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.264Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-d68cc750fd8e",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.274Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-af2ede38c5c4",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.281Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-2558f802dedd",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.291Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-f36614ca02a5",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.302Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-0d2393023d99",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.311Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-17f8cdbbf683",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.321Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-1aa7ef694b97",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.330Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-ab83f1fa4db3",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.340Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-84d99af8ee5e",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.348Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-743f0ff44048",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.357Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-ffe439ed2d6f",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.364Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-832cc6295991",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.372Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-319bbb0732bf",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.382Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-045f86283c78",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.392Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-5e33427f5475",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.403Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-eaa50ebd4aba",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.413Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-10ba54aff340",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.422Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-0f4beb140924",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.432Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-695d3ef3037c",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.444Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-9bf1d3289d71",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.454Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-925becb27fcc",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.463Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-69736d460752",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.472Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-2456a7ffce38",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.481Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-a6b4dc6a1d83",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.491Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-aa902bd72fc0",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.503Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-1ef8d84cad3e",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.513Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-ca8f4e1da071",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.524Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-8a0cc9924ba8",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.540Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-c444325993e7",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.551Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-e89b9027efe9",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.563Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-8362b7a84112",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.575Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-966d55d1cbd9",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.585Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-3e8c61aebf9b",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.595Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-59721dfb594a",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.606Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-410fa18d6c98",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.615Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-03fef3853752",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.626Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-5be9344c5e38",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.637Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-f353222be461",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.650Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-f04de506c2cb",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.660Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-aad0d5a99358",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.671Z",
+      "alert": null,
+      "anomalies": []
+    },
+    {
+      "id": "msr-75489ac53230",
+      "sensor_id": "HUM-01",
+      "status": "processed",
+      "inserted_at": "2026-09-29T04:18:44.682Z",
+      "alert": null,
+      "anomalies": []
+    }
+  ],
+  "errors": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+[
+  {
+    "sensor_id": "HUM-01",
+    "value": "humid",
+    "unit": "%",
+    "recorded_at": "2026-08-15T04:18:44.081Z"
+  },
+  {
+    "sensor_id": "XX-01",
+    "value": 55,
+    "unit": "%",
+    "recorded_at": "2026-08-15T04:18:44.081Z"
+  },
+  {
+    "sensor_id": "HUM-01",
+    "value": 55,
+    "unit": "%",
+    "recorded_at": "not-a-date"
+  },
+  {
+    "sensor_id": "HUM-01",
+    "value": null,
+    "unit": "%",
+    "recorded_at": "2026-08-15T04:18:44.081Z"
+  }
+]
+
+→ HTTP 201 Created (13 ms)
+{
+  "status": "processed",
+  "received": 4,
+  "accepted": 0,
+  "rejected": 4,
+  "results": [],
+  "errors": [
+    {
+      "index": 0,
+      "sensor_id": "HUM-01",
+      "code": "ERR_VALIDATION_FAILED",
+      "message": "The submitted data does not match the required schema.",
+      "details": [
+        {
+          "field": "value",
+          "issue": "The sensor value must be a valid floating-point number."
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "sensor_id": "XX-01",
+      "code": "ERR_VALIDATION_FAILED",
+      "message": "The sensor is not registered.",
+      "details": [
+        {
+          "field": "sensor_id",
+          "issue": "Unknown sensor \"XX-01\"."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "sensor_id": "HUM-01",
+      "code": "ERR_VALIDATION_FAILED",
+      "message": "The submitted data does not match the required schema.",
+      "details": [
+        {
+          "field": "recorded_at",
+          "issue": "The timestamp must be a valid ISO-8601 instant in UTC."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "sensor_id": "HUM-01",
+      "code": "ERR_VALIDATION_FAILED",
+      "message": "The submitted data does not match the required schema.",
+      "details": [
+        {
+          "field": "value",
+          "issue": "The sensor value must be a valid floating-point number."
+        }
+      ]
+    }
+  ]
+}

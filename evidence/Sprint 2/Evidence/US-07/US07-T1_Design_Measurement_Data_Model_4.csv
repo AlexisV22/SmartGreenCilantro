@@ -1,0 +1,6 @@
+table_name,column_name,references_table,references_column
+actuators,area_id,areas,id
+actuators,device_id,devices,id
+measurements,sensor_id,sensors,id
+sensors,area_id,areas,id
+sensors,device_id,devices,id

@@ -1,0 +1,9 @@
+column_name,data_type,is_nullable,column_default
+id,text,NO,"('msr-'::text || encode(gen_random_bytes(6), 'hex'::text))"
+sensor_id,text,NO,
+value,numeric,NO,
+unit,text,NO,
+recorded_at,timestamp with time zone,NO,
+received_at,timestamp with time zone,NO,now()
+device_status,text,NO,'OK'::text
+is_anomaly,boolean,NO,false

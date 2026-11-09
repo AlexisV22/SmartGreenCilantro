@@ -1,0 +1,9 @@
+sensor_id,sensor_type,value,unit,recorded_at
+CO2-01,co2,815.310,ppm,2026-09-29T04:18:42.534Z
+HUM-01,air_humidity,61.200,%,2026-09-29T04:18:43.078Z
+LUX-01,light,0.000,lux,2026-09-29T04:18:42.534Z
+PH-01,ph,6.500,pH,2026-09-29T04:18:42.534Z
+SM-01,soil_moisture,67.910,%,2026-09-29T04:18:42.534Z
+SM-02,soil_moisture,67.420,%,2026-09-29T04:18:42.534Z
+TMP-01,temperature,21.810,C,2026-09-29T04:18:42.534Z
+WL-01,water_level,84.960,%,2026-09-29T04:18:42.534Z

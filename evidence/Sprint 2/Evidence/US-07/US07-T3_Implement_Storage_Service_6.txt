@@ -1,0 +1,100 @@
+Invalid measurements
+Captured 2026-09-29T04:18:43.968Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "sensor_id": "SM-99",
+  "value": 50,
+  "unit": "%",
+  "recorded_at": "2026-09-29T04:18:43.111Z"
+}
+
+→ HTTP 400 Bad Request (12 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The sensor is not registered.",
+  "details": [
+    {
+      "field": "sensor_id",
+      "issue": "Unknown sensor \"SM-99\"."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "sensor_id": "PH-01",
+  "value": 6.5,
+  "unit": "pH",
+  "recorded_at": "2026-09-29T04:18:43.123Z"
+}
+
+→ HTTP 400 Bad Request (12 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The sensor is deactivated and cannot report measurements.",
+  "details": [
+    {
+      "field": "sensor_id",
+      "issue": "Sensor \"PH-01\" is not active."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "sensor_id": "SM-01",
+  "value": "wet",
+  "unit": "%",
+  "recorded_at": "2026-09-29T04:18:43.135Z"
+}
+
+→ HTTP 400 Bad Request (9 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The submitted data does not match the required schema.",
+  "details": [
+    {
+      "field": "value",
+      "issue": "The sensor value must be a valid floating-point number."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "sensor_id": "SM-01",
+  "value": 60,
+  "unit": "%",
+  "recorded_at": "28/09/2026 10:00"
+}
+
+→ HTTP 400 Bad Request (12 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The submitted data does not match the required schema.",
+  "details": [
+    {
+      "field": "recorded_at",
+      "issue": "The timestamp must be a valid ISO-8601 instant in UTC."
+    }
+  ]
+}

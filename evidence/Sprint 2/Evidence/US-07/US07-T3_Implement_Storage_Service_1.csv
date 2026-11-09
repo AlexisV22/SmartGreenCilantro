@@ -1,0 +1,2 @@
+id,sensor_id,value,unit,recorded_at,received_at,is_anomaly
+msr-8136ad153eee,HUM-01,61.200,%,2026-09-29T04:18:43.078Z,2026-09-29T04:18:43.091Z,false

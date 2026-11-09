@@ -1,0 +1,5 @@
+created_at,level,source,message
+2026-09-29T04:18:43.121Z,WARN,measurements,"Rejected reading for unknown sensor ""SM-99""."
+2026-09-29T04:18:43.134Z,WARN,measurements,"Rejected reading for inactive sensor ""PH-01""."
+2026-09-29T04:18:43.143Z,WARN,measurements,"Rejected reading for ""SM-01"": value The sensor value must be a valid floating-point number."
+2026-09-29T04:18:43.156Z,WARN,measurements,"Rejected reading for ""SM-01"": recorded_at The timestamp must be a valid ISO-8601 instant in UTC."
