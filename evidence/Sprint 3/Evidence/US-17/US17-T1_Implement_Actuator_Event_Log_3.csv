@@ -1,0 +1,13 @@
+created_at,actuator_id,action,source,user_email,duration_min,reason
+2026-09-29T04:54:37.946Z,ACT-PUMP-01,OFF,SYSTEM,,,State reported by the device.
+2026-09-29T04:54:31.258Z,ACT-PUMP-01,ON,AUTOMATIC,,3.5,"Soil moisture is 58.1 %, below the minimum of 60 % for 2 consecutive readings."
+2026-09-29T04:53:08.028Z,ACT-PUMP-01,OFF,SYSTEM,,,State reported by the device.
+2026-09-29T04:53:00.881Z,ACT-PUMP-01,ON,AUTOMATIC,,3.9,"Soil moisture is 57.1 %, below the minimum of 60 % for 2 consecutive readings."
+2026-09-29T04:45:13.869Z,ACT-PUMP-01,OFF,SYSTEM,,,State reported by the device.
+2026-09-29T04:40:47.331Z,ACT-FAN-01,OFF,SYSTEM,,,State reported by the device.
+2026-09-29T04:40:13.873Z,ACT-PUMP-01,OFF,MANUAL,producer@smartgreen.ai,,Manual control from the dashboard.
+2026-09-29T04:40:13.819Z,ACT-PUMP-01,ON,MANUAL,producer@smartgreen.ai,5,Manual control from the dashboard.
+2026-09-29T04:40:13.741Z,ACT-PUMP-01,ON,MANUAL,producer@smartgreen.ai,1,Manual control from the dashboard.
+2026-09-29T04:40:13.624Z,ACT-PUMP-01,OFF,MANUAL,producer@smartgreen.ai,,Manual control from the dashboard.
+2026-09-29T04:40:11.818Z,ACT-PUMP-01,ON,MANUAL,producer@smartgreen.ai,1,Manual control from the dashboard.
+2026-09-29T04:39:53.369Z,ACT-PUMP-01,OFF,SYSTEM,,,State reported by the device.

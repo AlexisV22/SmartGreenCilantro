@@ -1,0 +1,10 @@
+column_name,data_type,is_nullable
+id,text,NO
+actuator_id,text,NO
+command_id,text,YES
+action,text,NO
+source,text,NO
+user_id,text,YES
+reason,text,YES
+duration_min,numeric,YES
+created_at,timestamp with time zone,NO

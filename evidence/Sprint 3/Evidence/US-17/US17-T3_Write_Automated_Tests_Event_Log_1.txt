@@ -1,0 +1,28 @@
+PASS server/tests/integration/events.test.js
+  US17-T3 recordEvent
+    √ stores actuator, action, source, user, reason and duration (8 ms)
+    √ source MANUAL is accepted (6 ms)
+    √ source AUTOMATIC is accepted (5 ms)
+    √ source AI is accepted (4 ms)
+    √ an event without actuator is rejected (18 ms)
+    √ an event without action is rejected (13 ms)
+    √ an event without source is rejected (12 ms)
+    √ an unknown source is rejected (3 ms)
+    √ an unknown action is rejected (11 ms)
+    √ an unknown actuator is rejected (14 ms)
+  US17-T3 event query
+    √ GET /actuators/events returns the newest first with actuator and user (99 ms)
+    √ filter by source distinguishes MANUAL, AUTOMATIC and AI (35 ms)
+    √ filter by date range (17 ms)
+  US17-T3 daily irrigation minutes
+    √ an ON closed by the next OFF counts the real minutes (10 ms)
+    √ an ON without OFF counts its commanded duration (5 ms)
+    √ a late OFF never counts more than the commanded duration (7 ms)
+    √ several irrigations of the same day are added; other actuators are ignored (23 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        2.196 s, estimated 3 s
+Ran all test suites matching /server\\tests\\integration\\events.test.js/i.
+Test results written to: tools\evidence\out\jest_US17-T3.json
