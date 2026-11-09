@@ -1,0 +1,120 @@
+Calls of the test
+Captured 2026-10-02T23:22:01.439Z against http://localhost:3000
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 1
+}
+
+→ HTTP 201 Created (8 ms)
+{
+  "id": "cmd-8b77e7c0de8d",
+  "actuator_id": "ACT-PUMP-01",
+  "action": "ON",
+  "duration_min": 1,
+  "source": "MANUAL",
+  "status": "PENDING",
+  "reason": "Manual control from the dashboard.",
+  "requested_by": "usr-producer",
+  "created_at": "2026-10-02T23:20:11.156Z",
+  "sent_at": null,
+  "executed_at": null,
+  "expires_at": "2026-10-02T23:21:11.156Z"
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 5
+}
+
+→ HTTP 201 Created (9 ms)
+{
+  "id": "cmd-98fd3f7c8418",
+  "actuator_id": "ACT-PUMP-01",
+  "action": "ON",
+  "duration_min": 5,
+  "source": "MANUAL",
+  "status": "PENDING",
+  "reason": "Manual control from the dashboard.",
+  "requested_by": "usr-producer",
+  "created_at": "2026-10-02T23:20:11.201Z",
+  "sent_at": null,
+  "executed_at": null,
+  "expires_at": "2026-10-02T23:21:11.201Z"
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "OFF"
+}
+
+→ HTTP 201 Created (7 ms)
+{
+  "id": "cmd-0a7d9459b557",
+  "actuator_id": "ACT-PUMP-01",
+  "action": "OFF",
+  "duration_min": null,
+  "source": "MANUAL",
+  "status": "PENDING",
+  "reason": "Manual control from the dashboard.",
+  "requested_by": "usr-producer",
+  "created_at": "2026-10-02T23:20:11.231Z",
+  "sent_at": null,
+  "executed_at": null,
+  "expires_at": "2026-10-02T23:21:11.231Z"
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-PUMP-01/command
+
+{
+  "action": "ON",
+  "duration_min": 1
+}
+
+→ HTTP 401 Unauthorized (2 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 2
+}
+
+→ HTTP 201 Created (6 ms)
+{
+  "id": "cmd-90755adfd020",
+  "actuator_id": "ACT-PUMP-01",
+  "action": "ON",
+  "duration_min": 2,
+  "source": "MANUAL",
+  "status": "PENDING",
+  "reason": "Manual control from the dashboard.",
+  "requested_by": "usr-producer",
+  "created_at": "2026-10-02T23:20:11.263Z",
+  "sent_at": null,
+  "executed_at": null,
+  "expires_at": "2026-10-02T23:21:11.263Z"
+}

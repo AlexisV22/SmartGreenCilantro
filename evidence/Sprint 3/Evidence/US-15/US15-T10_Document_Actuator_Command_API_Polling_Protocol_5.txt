@@ -1,0 +1,223 @@
+Protocol calls against the running API (queue, 409, poll, acknowledge, expiry)
+Captured 2026-10-30T22:50:35.367Z against http://localhost:3000
+
+POST /api/actuators/ACT-FAN-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 1,
+  "reason": "US15-T10 protocol check"
+}
+
+→ HTTP 201 Created (12 ms)
+{
+  "id": "cmd-ca5a57a8496f",
+  "actuator_id": "ACT-FAN-01",
+  "action": "ON",
+  "duration_min": 1,
+  "source": "MANUAL",
+  "status": "PENDING",
+  "reason": "US15-T10 protocol check",
+  "requested_by": "usr-producer",
+  "created_at": "2026-10-30T22:49:31.472Z",
+  "sent_at": null,
+  "executed_at": null,
+  "expires_at": "2026-10-30T22:50:31.472Z"
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-FAN-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "OFF"
+}
+
+→ HTTP 409 Conflict (20 ms)
+{
+  "status": 409,
+  "code": "ERR_CONFLICT",
+  "message": "Another command for this actuator is still pending execution.",
+  "details": [
+    {
+      "field": "actuator_id",
+      "issue": "Command cmd-ca5a57a8496f is PENDING."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/devices/me/commands
+apikey: sec_io…
+
+→ HTTP 200 OK (11 ms)
+{
+  "device_id": "dev-node-01",
+  "server_time": "2026-10-30T22:49:31.507Z",
+  "count": 1,
+  "commands": [
+    {
+      "id": "cmd-ca5a57a8496f",
+      "actuator_id": "ACT-FAN-01",
+      "action": "ON",
+      "duration_min": 1,
+      "source": "MANUAL",
+      "created_at": "2026-10-30T22:49:31.472Z",
+      "expires_at": "2026-10-30T22:50:31.472Z"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-FAN-01/state
+apikey: sec_io…
+
+{
+  "state": "ON",
+  "duration_min": 1
+}
+
+→ HTTP 200 OK (15 ms)
+{
+  "actuator_id": "ACT-FAN-01",
+  "state": "ON",
+  "last_update": "2026-10-30T22:49:31.516Z",
+  "command_id": "cmd-ca5a57a8496f"
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-FAN-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "OFF"
+}
+
+→ HTTP 201 Created (11 ms)
+{
+  "id": "cmd-4660c5635f71",
+  "actuator_id": "ACT-FAN-01",
+  "action": "OFF",
+  "duration_min": null,
+  "source": "MANUAL",
+  "status": "PENDING",
+  "reason": "Manual control from the dashboard.",
+  "requested_by": "usr-producer",
+  "created_at": "2026-10-30T22:49:31.530Z",
+  "sent_at": null,
+  "executed_at": null,
+  "expires_at": "2026-10-30T22:50:31.530Z"
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-FAN-01/state
+apikey: sec_io…
+
+{
+  "state": "OFF"
+}
+
+→ HTTP 200 OK (13 ms)
+{
+  "actuator_id": "ACT-FAN-01",
+  "state": "OFF",
+  "last_update": "2026-10-30T22:49:31.549Z",
+  "command_id": "cmd-4660c5635f71"
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-FAN-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 1,
+  "reason": "US15-T10 expiry check (device offline)"
+}
+
+→ HTTP 201 Created (8 ms)
+{
+  "id": "cmd-c6f2599ff801",
+  "actuator_id": "ACT-FAN-01",
+  "action": "ON",
+  "duration_min": 1,
+  "source": "MANUAL",
+  "status": "PENDING",
+  "reason": "US15-T10 expiry check (device offline)",
+  "requested_by": "usr-producer",
+  "created_at": "2026-10-30T22:49:31.560Z",
+  "sent_at": null,
+  "executed_at": null,
+  "expires_at": "2026-10-30T22:50:31.560Z"
+}
+
+----------------------------------------------------------------------
+
+GET /api/devices/me/commands
+apikey: sec_io…
+
+→ HTTP 200 OK (29 ms)
+{
+  "device_id": "dev-node-01",
+  "server_time": "2026-10-30T22:50:33.596Z",
+  "count": 0,
+  "commands": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/actuators/ACT-FAN-01/commands
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (22 ms)
+[
+  {
+    "id": "cmd-c6f2599ff801",
+    "actuator_id": "ACT-FAN-01",
+    "action": "ON",
+    "duration_min": 1,
+    "source": "MANUAL",
+    "status": "EXPIRED",
+    "reason": "US15-T10 expiry check (device offline)",
+    "requested_by": "usr-producer",
+    "created_at": "2026-10-30T22:49:31.560Z",
+    "sent_at": null,
+    "executed_at": null,
+    "expires_at": "2026-10-30T22:50:31.560Z"
+  },
+  {
+    "id": "cmd-4660c5635f71",
+    "actuator_id": "ACT-FAN-01",
+    "action": "OFF",
+    "duration_min": null,
+    "source": "MANUAL",
+    "status": "EXECUTED",
+    "reason": "Manual control from the dashboard.",
+    "requested_by": "usr-producer",
+    "created_at": "2026-10-30T22:49:31.530Z",
+    "sent_at": "2026-10-30T22:49:31.539Z",
+    "executed_at": "2026-10-30T22:49:31.549Z",
+    "expires_at": "2026-10-30T22:50:31.530Z"
+  },
+  {
+    "id": "cmd-ca5a57a8496f",
+    "actuator_id": "ACT-FAN-01",
+    "action": "ON",
+    "duration_min": 1,
+    "source": "MANUAL",
+    "status": "EXECUTED",
+    "reason": "US15-T10 protocol check",
+    "requested_by": "usr-producer",
+    "created_at": "2026-10-30T22:49:31.472Z",
+    "sent_at": "2026-10-30T22:49:31.505Z",
+    "executed_at": "2026-10-30T22:49:31.516Z",
+    "expires_at": "2026-10-30T22:50:31.472Z"
+  }
+]

@@ -1,0 +1,26 @@
+Valid command
+Captured 2026-10-02T23:18:17.495Z against http://localhost:3000
+
+POST /api/actuators/ACT-FAN-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 2
+}
+
+→ HTTP 201 Created (10 ms)
+{
+  "id": "cmd-fb7e9e9f6ed1",
+  "actuator_id": "ACT-FAN-01",
+  "action": "ON",
+  "duration_min": 2,
+  "source": "MANUAL",
+  "status": "PENDING",
+  "reason": "Manual control from the dashboard.",
+  "requested_by": "usr-producer",
+  "created_at": "2026-10-02T23:18:17.308Z",
+  "sent_at": null,
+  "executed_at": null,
+  "expires_at": "2026-10-02T23:19:17.308Z"
+}

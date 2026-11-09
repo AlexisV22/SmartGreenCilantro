@@ -1,0 +1,38 @@
+PASS server/tests/integration/commands.test.js
+  US-14 actuator status
+    √ never-updated actuators are shown OFFLINE; a recent report shows its state (78 ms)
+    √ no report for more than 5 minutes -> OFFLINE (12 ms)
+  US-15 manual control
+    √ commands are refused while the area is in AUTOMATIC mode (46 ms)
+    √ full cycle: ON -> device polls (SENT) -> device confirms (EXECUTED) -> event MANUAL (96 ms)
+    √ a second command while one is in flight -> 409 ERR_CONFLICT (25 ms)
+    √ duration above the configured maximum (10 min) -> 400 (14 ms)
+    √ non-positive duration -> 400 (11 ms)
+    √ unknown action -> 400 (10 ms)
+    √ unknown actuator -> 404 (10 ms)
+    √ commands not collected within 60 s expire and are never delivered (40 ms)
+    √ a device cannot report the state of an actuator of another device (20 ms)
+  US15-T8 command API: roles and authentication
+    √ without a token -> 401 ERR_AUTH_REQUIRED (7 ms)
+    √ a device API key cannot send a user command (8 ms)
+    √ a role without actuators.command -> 403 ERR_INSUFFICIENT_PERMISSIONS (15 ms)
+    √ producer can send a command in MANUAL mode (25 ms)
+    √ admin can send a command in MANUAL mode (26 ms)
+    √ superadmin can send a command in MANUAL mode (39 ms)
+    √ polling and acknowledgement need a valid device key (19 ms)
+  US15-T8 command API: polling and acknowledgement
+    √ poll answers device_id, server_time, count and the commands with their expiry (35 ms)
+    √ OFF cycle: the confirmation closes the OFF command and records an OFF event (50 ms)
+    √ a state report without a pending command is recorded with source SYSTEM (50 ms)
+    √ invalid state reports -> 400 (29 ms)
+  US15-T8 command API: expiry (offline device)
+    √ a command gets expires_at = created_at + command.expiry_seconds (60 s) (23 ms)
+    √ the poll itself expires stale commands, and an expired command frees the actuator (50 ms)
+    √ a SENT command the device never confirmed also expires (48 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       25 passed, 25 total
+Snapshots:   0 total
+Time:        2.939 s, estimated 5 s
+Ran all test suites matching /server\\tests\\integration\\commands.test.js/i.
+Test results written to: tools\evidence\out\jest_US15-T8.json

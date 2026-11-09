@@ -1,0 +1,4 @@
+conname,definition
+actuator_commands_action_check,"CHECK ((action = ANY (ARRAY['ON'::text, 'OFF'::text])))"
+actuator_commands_source_check,"CHECK ((source = ANY (ARRAY['MANUAL'::text, 'AUTOMATIC'::text, 'AI'::text])))"
+actuator_commands_status_check,"CHECK ((status = ANY (ARRAY['PENDING'::text, 'SENT'::text, 'EXECUTED'::text, 'FAILED'::text, 'EXPIRED'::text])))"

@@ -1,0 +1,18 @@
+Acknowledgement
+Captured 2026-10-23T01:50:05.794Z against http://localhost:3000
+
+POST /api/actuators/ACT-FAN-01/state
+apikey: sec_io…
+
+{
+  "state": "ON",
+  "duration_min": 1
+}
+
+→ HTTP 200 OK (14 ms)
+{
+  "actuator_id": "ACT-FAN-01",
+  "state": "ON",
+  "last_update": "2026-10-23T01:50:05.735Z",
+  "command_id": "cmd-9ca98ddced16"
+}

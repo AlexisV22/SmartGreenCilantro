@@ -1,0 +1,2 @@
+id,actuator_id,action,duration_min,source,status,requested_by,created_at,expires_at
+cmd-fb7e9e9f6ed1,ACT-FAN-01,ON,2,MANUAL,PENDING,usr-producer,2026-10-02T23:18:17.308Z,2026-10-02T23:19:17.308Z

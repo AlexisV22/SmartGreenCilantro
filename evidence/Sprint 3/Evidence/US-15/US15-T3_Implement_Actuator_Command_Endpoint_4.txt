@@ -1,0 +1,114 @@
+Invalid commands
+Captured 2026-10-02T23:18:17.496Z against http://localhost:3000
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 45
+}
+
+→ HTTP 400 Bad Request (6 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The duration exceeds the maximum configured for this area (10 min).",
+  "details": [
+    {
+      "field": "duration_min",
+      "issue": "Maximum allowed: 10 minutes."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": -1
+}
+
+→ HTTP 400 Bad Request (6 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The submitted data does not match the required schema.",
+  "details": [
+    {
+      "field": "duration_min",
+      "issue": "Number must be greater than 0"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "BLINK"
+}
+
+→ HTTP 400 Bad Request (4 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The submitted data does not match the required schema.",
+  "details": [
+    {
+      "field": "action",
+      "issue": "Invalid enum value. Expected 'ON' | 'OFF', received 'BLINK'"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 2
+}
+
+→ HTTP 400 Bad Request (6 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "Area AREA-1 is in AUTOMATIC mode. Switch it to MANUAL before sending commands by hand.",
+  "details": [
+    {
+      "field": "mode",
+      "issue": "The area is in AUTOMATIC mode."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-SHADE-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 2
+}
+
+→ HTTP 400 Bad Request (6 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The actuator is deactivated.",
+  "details": [
+    {
+      "field": "actuator_id",
+      "issue": "Actuator \"ACT-SHADE-01\" is not active."
+    }
+  ]
+}

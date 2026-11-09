@@ -1,0 +1,36 @@
+Polling twice
+Captured 2026-10-23T01:50:05.793Z against http://localhost:3000
+
+GET /api/devices/me/commands
+apikey: sec_io…
+
+→ HTTP 200 OK (10 ms)
+{
+  "device_id": "dev-node-01",
+  "server_time": "2026-10-23T01:50:05.717Z",
+  "count": 1,
+  "commands": [
+    {
+      "id": "cmd-9ca98ddced16",
+      "actuator_id": "ACT-FAN-01",
+      "action": "ON",
+      "duration_min": 1,
+      "source": "MANUAL",
+      "created_at": "2026-10-23T01:50:05.701Z",
+      "expires_at": "2026-10-23T01:51:05.701Z"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/devices/me/commands
+apikey: sec_io…
+
+→ HTTP 200 OK (6 ms)
+{
+  "device_id": "dev-node-01",
+  "server_time": "2026-10-23T01:50:05.723Z",
+  "count": 0,
+  "commands": []
+}

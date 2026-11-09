@@ -1,0 +1,4 @@
+key,value,description
+actuator.offline_minutes,5,Minutes without a state report after which an actuator is shown as OFFLINE
+command.expiry_seconds,60,Seconds a command waits to be collected by the device before EXPIRED
+device.offline_minutes,5,Minutes without contact after which a device is OFFLINE (FR-11)

@@ -1,0 +1,42 @@
+Requests without a valid device key
+Captured 2026-10-23T01:50:05.795Z against http://localhost:3000
+
+GET /api/devices/me/commands
+
+→ HTTP 401 Unauthorized (2 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A device API key is required in the \"apikey\" header.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/devices/me/commands
+apikey: sec_in…
+
+→ HTTP 401 Unauthorized (2 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "The device API key is invalid or the device is deactivated.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-FAN-01/state
+apikey: sec_in…
+
+{
+  "state": "OFF"
+}
+
+→ HTTP 401 Unauthorized (3 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "The device API key is invalid or the device is deactivated.",
+  "details": []
+}

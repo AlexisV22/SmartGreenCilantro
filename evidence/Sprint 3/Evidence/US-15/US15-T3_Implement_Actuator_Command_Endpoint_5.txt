@@ -1,0 +1,40 @@
+Unauthenticated and unauthorized
+Captured 2026-10-02T23:18:17.497Z against http://localhost:3000
+
+POST /api/actuators/ACT-PUMP-01/command
+
+{
+  "action": "ON",
+  "duration_min": 2
+}
+
+→ HTTP 401 Unauthorized (3 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators/ACT-PUMP-01/command
+Authorization: Bearer eyJhbG…
+
+{
+  "action": "ON",
+  "duration_min": 2
+}
+
+→ HTTP 403 Forbidden (5 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: actuators.command"
+    }
+  ]
+}
