@@ -1,0 +1,23 @@
+Payload example accepted by POST /api/measurements
+Captured 2026-09-29T04:17:43.219Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "SM-01",
+  "value": 66.4,
+  "unit": "%",
+  "recorded_at": "2026-09-29T04:17:43Z"
+}
+
+→ HTTP 201 Created (24 ms)
+{
+  "id": "msr-5516b4b1accb",
+  "sensor_id": "SM-01",
+  "status": "processed",
+  "inserted_at": "2026-09-29T04:17:43.206Z",
+  "alert": null,
+  "anomalies": []
+}

@@ -1,0 +1,4 @@
+id,name,is_active,api_key_hash,hash_len,last_seen
+dev-node-01,Nodo Central Invernadero 1,true,2586c11fce2b88656a7a8dc6d536017da97eb17877839493e0d240c721e3e1f0,64,2026-09-29T04:17:43.200Z
+dev-node-mum60kx3,Matrix probe node,false,6082730603b9cd963a85428520099b376adab05ce8a05e36d91f0f3798043958,64,
+dev-node-mum60kxk,Matrix probe node,false,3a4b72878f6d06bd5935b779256946d73aa79eb5b010bce1fe2a0ff8f6a996a5,64,

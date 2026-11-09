@@ -1,0 +1,50 @@
+Heartbeat of each device with its own key, and without a key
+Captured 2026-09-29T04:17:45.116Z against http://localhost:3000
+
+POST /api/devices/heartbeat
+apikey: sec_io…
+
+{
+  "firmware": "esp32-smartgreen-1.0.0"
+}
+
+→ HTTP 200 OK (16 ms)
+{
+  "device_id": "dev-node-01",
+  "status": "ONLINE",
+  "actuators_refreshed": 0,
+  "server_time": "2026-09-29T04:17:45.091Z",
+  "offline_after_minutes": 5
+}
+
+----------------------------------------------------------------------
+
+POST /api/devices/heartbeat
+apikey: sec_io…
+
+{
+  "firmware": "test"
+}
+
+→ HTTP 200 OK (17 ms)
+{
+  "device_id": "dev-test-06t2",
+  "status": "ONLINE",
+  "actuators_refreshed": 0,
+  "server_time": "2026-09-29T04:17:45.075Z",
+  "offline_after_minutes": 5
+}
+
+----------------------------------------------------------------------
+
+POST /api/devices/heartbeat
+
+{}
+
+→ HTTP 401 Unauthorized (3 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A device API key is required in the \"apikey\" header.",
+  "details": []
+}
