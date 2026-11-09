@@ -26,6 +26,8 @@
  *     --offline-seconds <s>   simulate a network outage of s seconds after the first cycle (buffer test)
  *     --poll <s>              command polling period in seconds (default 5)
  *     --csv <file>            append every cycle to a CSV file (for charts)
+ *     --device <id>           device_id sent in every reading (default dev-node-01)
+ *     --sensors <ids>         comma-separated sensor_ids to send (default all 8; Heltec prototype: SM-01,TMP-01,HUM-01)
  *     --quiet                 only print the summary lines
  */
 
@@ -55,10 +57,12 @@ const OPTS = {
   poll: Number(opt('poll', 5)),
   csv: opt('csv', null),
   quiet: Boolean(opt('quiet', false)),
+  deviceId: String(opt('device', process.env.DEVICE_ID || 'dev-node-01')),
+  sensors: opt('sensors', null) === null ? null : String(opt('sensors')).split(',').map(s => s.trim()).filter(Boolean),
   firmware: 'simulator-1.0.0',
 };
 
-const SCENARIOS = ['normal', 'dry', 'hot', 'wet', 'spike', 'flatline', 'disconnect', 'low-tank', 'outlier', 'acceptance'];
+const SCENARIOS = ['normal', 'dry', 'hot', 'wet', 'spike', 'flatline', 'disconnect', 'low-tank', 'outlier', 'acceptance', 'alerts'];
 if (!SCENARIOS.includes(OPTS.scenario)) {
   console.error(`Unknown scenario "${OPTS.scenario}". Use one of: ${SCENARIOS.join(', ')}`);
   process.exit(1);
@@ -71,9 +75,10 @@ const log = (...args) => { if (!OPTS.quiet) console.log(new Date().toISOString()
 // ---------------------------------------------------------------------------
 // Greenhouse model (closed loop)
 // ---------------------------------------------------------------------------
+const SIM_START = Date.now();
 const env = {
   moisture: 68, temperature: 22, humidity: 60, light: 20000, co2: 600, tank: 85, ph: 6.5,
-  simTime: Date.now(),
+  simTime: SIM_START,
 };
 const actuators = {
   'ACT-PUMP-01': { state: 'OFF', offAt: null },
@@ -141,7 +146,9 @@ let flatValue = null;
 
 function readSensors() {
   cycle += 1;
-  const at = new Date(env.simTime).toISOString();
+  // The physics may run accelerated (--speed), but readings carry the real
+  // clock time: the server rejects timestamps in the future (US07-T3).
+  const at = new Date().toISOString();
   let sm1 = r1(env.moisture + noise(0.5));
   let sm2 = r1(env.moisture - 1 + noise(0.6));
   let tmp = r1(env.temperature);
@@ -149,17 +156,30 @@ function readSensors() {
   if (OPTS.scenario === 'spike' && cycle % 10 === 0) tmp = r1(tmp + 15);         // SUDDEN_JUMP
   if (OPTS.scenario === 'outlier' && cycle % 8 === 0) sm2 = 150;                 // OUT_OF_RANGE (0-100 %)
   if (OPTS.scenario === 'flatline') { if (flatValue === null) flatValue = sm1; sm1 = flatValue; } // FLATLINE
+  let hum = r1(env.humidity);
+  if (OPTS.scenario === 'alerts') {
+    // Odd cycles leave the optimal range on four sensors (LOW soil moisture x2,
+    // HIGH temperature, LOW humidity); even cycles return to range and resolve
+    // them. Steps stay below the sudden-jump limits so every alert is genuine.
+    const out = cycle % 2 === 1;
+    sm1 = out ? r1(55.5 + noise(0.3)) : r1(68 + noise(0.3));
+    sm2 = out ? r1(55 + noise(0.3)) : r1(67 + noise(0.3));
+    tmp = out ? r1(26.5 + noise(0.2)) : r1(22 + noise(0.2));
+    hum = out ? r1(45 + noise(0.5)) : r1(60 + noise(0.5));
+  }
 
-  return [
-    { sensor_id: 'SM-01', value: sm1, unit: '%', recorded_at: at },
-    { sensor_id: 'SM-02', value: sm2, unit: '%', recorded_at: at },
-    { sensor_id: 'TMP-01', value: tmp, unit: 'C', recorded_at: at },
-    { sensor_id: 'HUM-01', value: r1(env.humidity), unit: '%', recorded_at: at },
-    { sensor_id: 'LUX-01', value: Math.round(env.light), unit: 'lux', recorded_at: at },
-    { sensor_id: 'CO2-01', value: Math.round(env.co2), unit: 'ppm', recorded_at: at },
-    { sensor_id: 'WL-01', value: r1(env.tank), unit: '%', recorded_at: at },
-    { sensor_id: 'PH-01', value: Math.round(env.ph * 100) / 100, unit: 'pH', recorded_at: at },
+  const d = OPTS.deviceId;
+  const all = [
+    { device_id: d, sensor_id: 'SM-01', value: sm1, unit: '%', recorded_at: at },
+    { device_id: d, sensor_id: 'SM-02', value: sm2, unit: '%', recorded_at: at },
+    { device_id: d, sensor_id: 'TMP-01', value: tmp, unit: 'C', recorded_at: at },
+    { device_id: d, sensor_id: 'HUM-01', value: hum, unit: '%', recorded_at: at },
+    { device_id: d, sensor_id: 'LUX-01', value: Math.round(env.light), unit: 'lux', recorded_at: at },
+    { device_id: d, sensor_id: 'CO2-01', value: Math.round(env.co2), unit: 'ppm', recorded_at: at },
+    { device_id: d, sensor_id: 'WL-01', value: r1(env.tank), unit: '%', recorded_at: at },
+    { device_id: d, sensor_id: 'PH-01', value: Math.round(env.ph * 100) / 100, unit: 'pH', recorded_at: at },
   ];
+  return OPTS.sensors ? all.filter(r => OPTS.sensors.includes(r.sensor_id)) : all;
 }
 
 // ---------------------------------------------------------------------------
@@ -224,8 +244,11 @@ async function sendReadings(readings) {
     nextRetryAt = 0;
     const alerts = (res.results || []).filter((r) => r.alert && r.alert.created);
     const anomalies = (res.results || []).flatMap((r) => r.anomalies || []);
+    const v = Object.fromEntries(readings.map((r) => [r.sensor_id, r.value]));
+    const shown = [['SM-01', 'soil', '%'], ['SM-02', 'soil 2', '%'], ['TMP-01', 'temp', '°C'], ['HUM-01', 'hum', '%'], ['WL-01', 'tank', '%']]
+      .filter(([id]) => v[id] !== undefined).map(([id, label, unit]) => `${label} ${v[id]} ${unit}`);
     log(`→  ${res.accepted}/${res.received} readings stored in ${delay} ms`
-      + (readings.length ? ` | soil ${readings[0].value}/${readings[1].value} % temp ${readings[2].value} °C tank ${readings[6].value} %` : '')
+      + (shown.length ? ` | ${shown.join(' ')}` : '')
       + `${alerts.length ? ` | ${alerts.length} new alert(s)` : ''}${anomalies.length ? ` | anomalies: ${anomalies.map((a) => a.method).join(',')}` : ''}`
       + `${res.rejected ? ` | rejected: ${res.errors.map((e) => `${e.sensor_id} ${e.message}`).join('; ')}` : ''}`);
   } catch (err) {
@@ -269,9 +292,9 @@ async function heartbeat() {
 function csv(readings) {
   if (!OPTS.csv) return;
   const file = path.resolve(process.cwd(), String(OPTS.csv));
-  if (!fs.existsSync(file)) fs.writeFileSync(file, 'recorded_at,sm01,sm02,temperature,humidity,light,co2,tank,ph,pump,fan,buffered\n');
+  if (!fs.existsSync(file)) fs.writeFileSync(file, 'recorded_at,sim_minutes,sm01,sm02,temperature,humidity,light,co2,tank,ph,pump,fan,buffered\n');
   const v = Object.fromEntries(readings.map((r) => [r.sensor_id, r.value]));
-  fs.appendFileSync(file, [readings[0].recorded_at, v['SM-01'], v['SM-02'], v['TMP-01'], v['HUM-01'], v['LUX-01'], v['CO2-01'], v['WL-01'], v['PH-01'],
+  fs.appendFileSync(file, [readings[0].recorded_at, ((env.simTime - SIM_START) / 60000).toFixed(1), v['SM-01'], v['SM-02'], v['TMP-01'], v['HUM-01'], v['LUX-01'], v['CO2-01'], v['WL-01'], v['PH-01'],
     actuators['ACT-PUMP-01'].state, actuators['ACT-FAN-01'].state, buffer.length].join(',') + '\n');
 }
 
@@ -280,7 +303,7 @@ function csv(readings) {
 // ---------------------------------------------------------------------------
 function report() {
   const avg = stats.delays.length ? stats.delays.reduce((s, d) => s + d, 0) / stats.delays.length : 0;
-  const expected = stats.cycles * 8;
+  const expected = stats.cycles * (OPTS.sensors ? OPTS.sensors.length : 8);
   const rate = expected ? (stats.accepted / expected) * 100 : 0;
   console.log('\n=== Delivery report (US06-T5) ===');
   console.log(`cycles: ${stats.cycles} · readings generated: ${expected} · accepted by the API: ${stats.accepted} · rejected: ${stats.rejected}`);

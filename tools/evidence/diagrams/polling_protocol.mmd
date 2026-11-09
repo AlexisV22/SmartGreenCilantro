@@ -1,0 +1,12 @@
+sequenceDiagram
+  participant U as Web / engine
+  participant A as API
+  participant D as Device (poll every 5 s)
+  U->>A: POST /actuators/:id/command {action, duration_min}
+  A-->>U: 201 PENDING (expires_at = now + 60 s)
+  D->>A: GET /devices/me/commands (apikey)
+  A-->>D: 200 {commands[]} → SENT
+  D->>D: switch relay / servo, start duration timer
+  D->>A: POST /actuators/:id/state {state, duration_min}
+  A-->>D: 200 → EXECUTED + actuator event (source, user)
+  Note over A: not collected or not confirmed before expires_at → EXPIRED

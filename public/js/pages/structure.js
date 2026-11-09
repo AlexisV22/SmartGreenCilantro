@@ -51,7 +51,7 @@ const areas = crudSection({
     { label: 'Mode', render: (a) => (a.mode === 'AUTOMATIC' ? badge('info', 'Automatic', '⚙') : badge('neutral', 'Manual', '✋')) },
     activeColumn,
   ],
-  createFields: [
+  createFields: () => [
     { name: 'id', label: 'Identifier', required: true, placeholder: 'AREA-3' },
     { name: 'name', label: 'Name', required: true },
     { name: 'greenhouse_id', label: 'Greenhouse', type: 'select', options: ghOptions() },

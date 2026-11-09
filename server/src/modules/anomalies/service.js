@@ -9,9 +9,10 @@
  *   OUT_OF_RANGE  value outside the physical range of the sensor
  *   SUDDEN_JUMP   change between consecutive readings above the per-type limit
  *                 (e.g. > 15 % soil moisture, > 5 C temperature)
- *   ZSCORE        |z| > 3 against the last 24 h of the same sensor
+ *   ZSCORE        |z| > 3.5 against the last 24 h of the same sensor (US19-T9)
  *   MISSING_DATA  no reading for 5 minutes
- *   FLATLINE      an identical value repeated for 30 minutes
+ *   FLATLINE      an identical value repeated for 30 minutes (per-type window
+ *                 anomaly.flatline_minutes.<type>; light only in daylight)
  *
  * OUT_OF_RANGE, SUDDEN_JUMP and ZSCORE run on ingestion; MISSING_DATA and
  * FLATLINE run in the periodic job because they are defined by absence.
@@ -19,7 +20,11 @@
 
 const db = require('../../db');
 const settings = require('../../utils/settings');
+const daylight = require('../../utils/daylight');
 const { logSystem } = require('../../utils/logger');
+
+/** Per-type FLATLINE windows tuned in US19-T9 (minutes); other types use anomaly.flatline_minutes. */
+const FLATLINE_DEFAULTS = { water_level: 300 };
 
 /** Insert an anomaly, flag its measurement, and never duplicate it. */
 async function record({ sensorId, measurementId = null, method, value = null, score = null, explanation }) {
@@ -130,7 +135,7 @@ async function checkMeasurement(sensor, measurement) {
   // At least 20 samples and a non-degenerate spread, otherwise a z-score is
   // meaningless and would produce false positives.
   if (stats && stats.n >= 20 && stats.sd && stats.sd > 0.01) {
-    const zThreshold = await settings.getNumber('anomaly.zscore_threshold', 3);
+    const zThreshold = await settings.getNumber('anomaly.zscore_threshold', 3.5);
     const z = Math.abs((value - stats.mean) / stats.sd);
     if (z > zThreshold) {
       const anomaly = await record({
@@ -182,35 +187,53 @@ async function runPeriodicChecks() {
   }
 
   // --- 5. Flatline -------------------------------------------------------
-  const flat = await db.rows(
-    `SELECT s.id, s.name, s.unit,
-            stats.distinct_values, stats.n, stats.value
-       FROM sensors s
-       JOIN LATERAL (
-            SELECT COUNT(DISTINCT m.value) AS distinct_values,
-                   COUNT(*)                AS n,
-                   MAX(m.value)            AS value
-              FROM measurements m
-             WHERE m.sensor_id = s.id
-               AND m.recorded_at > NOW() - ($1 || ' minutes')::interval
-       ) stats ON TRUE
-      WHERE s.is_active
-        AND stats.n >= 3
-        AND stats.distinct_values = 1`,
-    [String(flatlineMinutes)],
-  );
+  // The window can be set per sensor type (anomaly.flatline_minutes.<type>,
+  // US19-T9): a water tank that nobody draws from keeps the same level for
+  // hours, so it needs a much longer window than a soil or air sensor.
+  // Darkness at night is a constant 0 lux by nature, so light is only
+  // checked during the daylight hours of the greenhouse.
+  const types = (await db.rows('SELECT DISTINCT type FROM sensors WHERE is_active')).map((r) => r.type);
+  const isDay = await daylight.isDaylight();
+  const windows = new Map();
+  for (const type of types) {
+    if (type === 'light' && !isDay) continue;
+    const minutes = await settings.getNumber(`anomaly.flatline_minutes.${type}`, FLATLINE_DEFAULTS[type] ?? flatlineMinutes);
+    if (!(minutes > 0)) continue;
+    windows.set(minutes, [...(windows.get(minutes) || []), type]);
+  }
 
-  for (const sensor of flat) {
-    if (await recentlyRecorded(sensor.id, 'FLATLINE', flatlineMinutes)) continue;
+  for (const [minutes, windowTypes] of windows) {
+    const flat = await db.rows(
+      `SELECT s.id, s.name, s.unit,
+              stats.distinct_values, stats.n, stats.value
+         FROM sensors s
+         JOIN LATERAL (
+              SELECT COUNT(DISTINCT m.value) AS distinct_values,
+                     COUNT(*)                AS n,
+                     MAX(m.value)            AS value
+                FROM measurements m
+               WHERE m.sensor_id = s.id
+                 AND m.recorded_at > NOW() - ($1 || ' minutes')::interval
+         ) stats ON TRUE
+        WHERE s.is_active
+          AND s.type = ANY($2::text[])
+          AND stats.n >= 3
+          AND stats.distinct_values = 1`,
+      [String(minutes), windowTypes],
+    );
 
-    const anomaly = await record({
-      sensorId: sensor.id,
-      method: 'FLATLINE',
-      value: sensor.value,
-      score: Number(sensor.n),
-      explanation: `${sensor.name} has reported exactly ${sensor.value} ${sensor.unit} in its last ${sensor.n} readings over ${flatlineMinutes} minutes. A frozen value usually means the sensor stopped responding.`,
-    });
-    if (anomaly) created.push(anomaly);
+    for (const sensor of flat) {
+      if (await recentlyRecorded(sensor.id, 'FLATLINE', minutes)) continue;
+
+      const anomaly = await record({
+        sensorId: sensor.id,
+        method: 'FLATLINE',
+        value: sensor.value,
+        score: Number(sensor.n),
+        explanation: `${sensor.name} has reported exactly ${sensor.value} ${sensor.unit} in its last ${sensor.n} readings over ${minutes} minutes. A frozen value usually means the sensor stopped responding.`,
+      });
+      if (anomaly) created.push(anomaly);
+    }
   }
 
   return created;

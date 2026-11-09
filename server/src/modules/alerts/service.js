@@ -14,6 +14,7 @@
 
 const db = require('../../db');
 const settings = require('../../utils/settings');
+const daylight = require('../../utils/daylight');
 const { notFound, badRequest } = require('../../middleware/errors');
 const { logSystem } = require('../../utils/logger');
 
@@ -78,7 +79,10 @@ async function evaluateMeasurement(sensor, measurement) {
   const max = Number(threshold.max_value);
   const label = VARIABLE_LABEL[sensor.type] || sensor.type;
 
-  const isLow = value < min;
+  // Darkness at night is not a problem: the light minimum applies only during
+  // the daylight hours of the greenhouse (local time of the reading).
+  const nightLight = sensor.type === 'light' && value < min && !(await daylight.isDaylight(measurement.recorded_at));
+  const isLow = value < min && !nightLight;
   const isHigh = value > max;
 
   // --- Back inside the range: resolve whatever was open (US11-T2) ---------

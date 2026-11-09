@@ -1,0 +1,10 @@
+flowchart TD
+  M[New measurement stored] --> F{Sensor fault?<br/>out of physical range<br/>or sudden jump}
+  F -- yes --> X[No threshold alert<br/>anomaly recorded instead]
+  F -- no --> T{Compare with the threshold<br/>of its type and area}
+  T -- value < min --> L[LOW condition]
+  T -- value > max --> H[HIGH condition]
+  T -- inside range --> R[Resolve the open alert<br/>status RESOLVED, resolved_at = now]
+  L & H --> O{Open or acknowledged alert<br/>for this sensor and type?}
+  O -- no --> N[Create alert OPEN<br/>with severity]
+  O -- yes --> U[Keep the same alert<br/>upgrade severity if the deviation grew]

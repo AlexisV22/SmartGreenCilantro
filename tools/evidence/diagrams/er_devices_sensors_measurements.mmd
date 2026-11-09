@@ -1,0 +1,41 @@
+erDiagram
+  AREAS ||--o{ DEVICES : "hosts"
+  DEVICES ||--o{ SENSORS : "has"
+  DEVICES ||--o{ ACTUATORS : "drives"
+  AREAS ||--o{ SENSORS : "located in"
+  SENSORS ||--o{ MEASUREMENTS : "produces"
+  DEVICES {
+    text id PK "dev-node-01"
+    text name
+    text mac_address
+    text area_id FK
+    text api_key_hash "SHA-256"
+    boolean is_active
+    timestamptz last_seen
+  }
+  SENSORS {
+    text id PK "SM-01"
+    text device_id FK
+    text area_id FK
+    text type "soil_moisture, temperature..."
+    text unit
+    numeric physical_min
+    numeric physical_max
+    boolean is_active
+  }
+  ACTUATORS {
+    text id PK "ACT-PUMP-01"
+    text device_id FK
+    text type
+    text state "ON OFF OFFLINE"
+    timestamptz last_update
+  }
+  MEASUREMENTS {
+    text id PK "msr-..."
+    text sensor_id FK
+    numeric value
+    text unit
+    timestamptz recorded_at "UTC, device"
+    timestamptz received_at "UTC, server"
+    boolean is_anomaly
+  }

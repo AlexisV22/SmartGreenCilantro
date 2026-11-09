@@ -58,6 +58,20 @@ describe('POST /api/measurements (device apikey)', () => {
     expect(res.body.details.map((d) => d.field)).toContain(field);
   });
 
+  test('US06-T1: the optional device_id must match the sensor and the API key', async () => {
+    const ok = await device().post('/measurements', { ...reading('SM-01', 66.1), device_id: 'dev-node-01' });
+    expect(ok.status).toBe(201);
+    const bad = await device().post('/measurements', { ...reading('SM-01', 66.1), device_id: 'dev-node-99' });
+    expect(bad.status).toBe(400);
+    expect(bad.body.details[0].field).toBe('device_id');
+  });
+
+  test('US07-T3: rejected readings are written to the system log', async () => {
+    await device().post('/measurements', { ...reading('SM-01', 50), value: 'wet' });
+    const log = await db.one("SELECT message FROM system_logs WHERE source = 'measurements' AND message LIKE 'Rejected reading%value%' ORDER BY created_at DESC LIMIT 1");
+    expect(log.message).toMatch(/floating-point/);
+  });
+
   test('a sensor of another device is rejected', async () => {
     await db.query("INSERT INTO devices (id, name, organization_id, greenhouse_id, area_id, api_key_hash) VALUES ('dev-x', 'X', 'org-team3', 'GH-01', 'AREA-1', 'x')");
     await db.query("INSERT INTO sensors (id, device_id, area_id, name, type, unit, physical_min, physical_max) VALUES ('SM-X', 'dev-x', 'AREA-1', 'x', 'soil_moisture', '%', 0, 100)");
@@ -107,6 +121,14 @@ describe('US07 / US08 history and latest values', () => {
     expect(res.body.data.length).toBeLessThanOrEqual(2);
     const times = res.body.data.map((d) => new Date(d.recorded_at).getTime());
     expect([...times].sort((a, b) => b - a)).toEqual(times);
+  });
+
+  test('include_anomalies=false leaves out readings flagged as faults', async () => {
+    await device().post('/measurements', reading('SM-02', 150, 0));
+    const all = await api('producer').get('/sensors/SM-02/measurements?limit=100');
+    const clean = await api('producer').get('/sensors/SM-02/measurements?limit=100&include_anomalies=false');
+    expect(all.body.data.some((m) => m.is_anomaly)).toBe(true);
+    expect(clean.body.data.some((m) => m.is_anomaly)).toBe(false);
   });
 
   test('unknown sensor history -> 404', async () => {

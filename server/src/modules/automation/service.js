@@ -17,14 +17,7 @@ const { notFound, badRequest } = require('../../middleware/errors');
 const { logSystem } = require('../../utils/logger');
 const settings = require('../../utils/settings');
 
-/** Hour of day (0-23) in the greenhouse time zone, not in UTC. */
-function localHour(timeZone, date = new Date()) {
-  try {
-    return Number(new Intl.DateTimeFormat('en-US', { hour: 'numeric', hourCycle: 'h23', timeZone }).format(date));
-  } catch {
-    return date.getUTCHours();
-  }
-}
+const { localHour } = require('../../utils/daylight');
 
 async function list({ areaId = null } = {}) {
   return db.rows(

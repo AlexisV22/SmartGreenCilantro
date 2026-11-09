@@ -1,0 +1,10 @@
+flowchart LR
+  I[Inputs: soil moisture SM-01/SM-02 and trend,<br/>temperature, humidity,<br/>hours since irrigation, tank level,<br/>recent sensor faults] --> S[Weighted score 0-100<br/>of irrigation need]
+  I --> R{Rules}
+  S --> R
+  R -- faults or probes disagree > 15 pts --> CS[CHECK_SENSOR]
+  R -- tank < 20 % --> CW[CHECK_WATER]
+  R -- not in cooldown and<br/>moisture < min or score ≥ 60 --> IR[IRRIGATE<br/>duration = deficit × factor, max 10 min]
+  R -- hot and humid --> VE[VENTILATE]
+  R -- otherwise --> WA[WAIT]
+  I --> C[Confidence = completeness × agreement × 1 − anomaly ratio]

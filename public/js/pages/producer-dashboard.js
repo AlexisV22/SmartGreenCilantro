@@ -27,18 +27,21 @@ head.appendChild(h('div', { class: 'row' }, h('label', { for: 'area-select', sty
   h('button', { onclick: () => refresh(), title: 'Refresh now' }, '⟳ Refresh'), refreshInfo));
 
 const bannerSlot = h('div');
+const noticeSlot = h('div');
 const summarySlot = h('div', { class: 'grid cols-4' });
 const sensorsSlot = h('div', { class: 'grid cols-4' });
 const actuatorsSlot = h('div');
 const recsSlot = h('div', { class: 'stack' });
 const alertsSlot = h('div');
 const devicesSlot = h('div');
+const anomaliesSlot = h('div');
 const chartCanvas = h('canvas', { id: 'history-chart', 'aria-label': 'Historical chart' });
 const chartSensor = h('select', { id: 'chart-sensor', 'aria-label': 'Variable', style: { width: 'auto' } });
 const periodButtons = ['24h', '7d', '30d'].map((p) => h('button', { 'data-p': p, onclick: () => { state.period = p; loadChart(); } }, p === '24h' ? '24 h' : p === '7d' ? '7 days' : '30 days'));
 const chartNote = h('p', { class: 'small muted' });
 
 main.append(
+  noticeSlot,
   bannerSlot,
   summarySlot,
   h('h2', { style: { margin: '1.2rem 0 .6rem' } }, 'Sensors'),
@@ -60,6 +63,10 @@ main.append(
       h('div', { class: 'card-head' }, h('h2', {}, '🔔 Active alerts'), h('a', { href: '/producer/alerts.html', class: 'small' }, 'Alert history →')),
       alertsSlot),
     h('section', { class: 'card' }, h('div', { class: 'card-head' }, h('h2', {}, '📡 Device connectivity')), devicesSlot)),
+  h('section', { class: 'card', id: 'anomalies-panel', style: { marginTop: '1rem' } },
+    h('div', { class: 'card-head' }, h('h2', {}, '⚡ Recent unusual readings'),
+      h('span', { class: 'small muted' }, 'Readings that look wrong or unusual, explained in plain words.')),
+    anomaliesSlot),
 );
 sensorsSlot.appendChild(loading());
 
@@ -82,7 +89,7 @@ const area = () => state.areas.find((a) => a.id === state.areaId) || {};
 async function refresh() {
   if (!state.areaId) { clear(sensorsSlot, h('div', { class: 'empty' }, 'No cultivation area is configured yet.')); return; }
   try {
-    const [areas, latest, actuators, open, acked, devices, irrigation, recs, sensors] = await Promise.all([
+    const [areas, latest, actuators, open, acked, devices, irrigation, recs, sensors, anomalies] = await Promise.all([
       get('/areas'),
       get('/measurements/latest'),
       get('/actuators/status'),
@@ -92,6 +99,7 @@ async function refresh() {
       get(`/irrigation/status/${state.areaId}`).catch(() => null),
       get('/recommendations', { status: 'PENDING', area_id: state.areaId, limit: 5 }),
       get('/sensors', { area_id: state.areaId }),
+      get('/anomalies', { area_id: state.areaId, limit: 6 }),
     ]);
     state.areas = areas.filter((a) => a.is_active);
     const readings = latest.filter((m) => m.area_id === state.areaId);
@@ -106,6 +114,8 @@ async function refresh() {
     renderRecs(recs);
     renderAlerts(alerts);
     renderDevices(areaDevices);
+    renderAnomalies(anomalies);
+    renderNotice(recs);
 
     const sensorsChanged = sensors.map((s) => s.id).join() !== state.sensors.map((s) => s.id).join();
     state.sensors = sensors.filter((s) => s.is_active);
@@ -304,6 +314,42 @@ function renderDevices(devices) {
   clear(devicesSlot, devices.map((d) => h('div', { class: 'row', style: { justifyContent: 'space-between', padding: '.5rem 0', borderBottom: '1px solid var(--line)' } },
     h('div', {}, h('strong', {}, d.name), h('div', { class: 'small muted' }, `${d.id} · ${d.sensor_count} sensors · ${d.actuator_count} actuators`)),
     h('div', { class: 'row' }, connectivityBadge(d.connectivity), h('span', { class: 'small muted' }, `last seen ${fmtAgo(d.last_seen)}`)))));
+}
+
+// US19-T3: recent anomalies with a plain-language explanation.
+const ANOMALY_LABEL = {
+  OUT_OF_RANGE: ['danger', 'Impossible value', '✖', 'The sensor reported a value it cannot physically measure. Check that it is connected.'],
+  SUDDEN_JUMP: ['danger', 'Sudden jump', '⚡', 'The value changed too fast between two readings. It is probably a sensor or wiring problem.'],
+  ZSCORE: ['warn', 'Unusual value', '⚠', 'The value is very different from the last 24 hours. It may be real (heat, dry soil) or a sensor issue.'],
+  MISSING_DATA: ['warn', 'No data', '⌛', 'The sensor stopped sending readings. Check the power and the WiFi of the greenhouse node.'],
+  FLATLINE: ['warn', 'Frozen value', '■', 'The sensor has sent exactly the same value for a long time. It may be stuck.'],
+};
+function renderAnomalies(rows) {
+  if (!rows.length) { clear(anomaliesSlot, h('div', { class: 'empty' }, '✔ No unusual readings detected recently.')); return; }
+  clear(anomaliesSlot, rows.map((a) => {
+    const [kind, label, icon, advice] = ANOMALY_LABEL[a.method] || ['neutral', a.method, '●', ''];
+    return h('div', { style: { padding: '.55rem 0', borderBottom: '1px solid var(--line)' } },
+      h('div', { class: 'row', style: { justifyContent: 'space-between' } },
+        h('div', { class: 'row' }, badge(kind, label, icon), h('strong', {}, `${a.sensor_name || a.sensor_id} (${a.sensor_id})`),
+          a.value !== null && a.value !== undefined ? h('span', { class: 'small' }, `${fmtNum(a.value, 2)} ${unitLabel(a.unit || '')}`) : null),
+        h('span', { class: 'small muted', title: fmtDate(a.detected_at) }, fmtAgo(a.detected_at))),
+      h('div', { class: 'small' }, advice),
+      h('div', { class: 'small muted' }, a.explanation));
+  }));
+}
+
+// US20-T5: notify the producer when a new AI recommendation appears.
+function seenRecs() { try { return JSON.parse(localStorage.getItem('sg_seen_recs') || '[]'); } catch { return []; } }
+function markSeen(ids) { try { localStorage.setItem('sg_seen_recs', JSON.stringify([...new Set([...seenRecs(), ...ids])].slice(-200))); } catch { /* ignore */ } }
+function renderNotice(recs) {
+  const fresh = recs.filter((r) => !seenRecs().includes(r.id));
+  if (!fresh.length) { clear(noticeSlot); return; }
+  const r = fresh[0];
+  clear(noticeSlot, h('div', { class: 'banner info', role: 'status', id: 'new-recommendation' },
+    h('span', { 'aria-hidden': 'true' }, '🤖'),
+    h('span', { class: 'grow' }, `New AI recommendation for ${area().name || r.area_id}: ${r.recommendation}`),
+    h('button', { onclick: () => { markSeen(fresh.map((x) => x.id)); clear(noticeSlot); document.querySelector('article.rec')?.scrollIntoView({ behavior: 'smooth' }); } }, 'View'),
+    h('button', { onclick: () => { markSeen(fresh.map((x) => x.id)); clear(noticeSlot); } }, 'Dismiss')));
 }
 
 // ---------- Historical chart (FR-10) ----------

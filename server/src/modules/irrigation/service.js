@@ -223,18 +223,18 @@ async function decide(area) {
   }
 
   // --- Go -----------------------------------------------------------------
-  // Duration proportional to the deficit, capped by the configured maximum.
+  // US16-T1: the pump runs until the target is reached (the engine sends OFF,
+  // see the stop condition above) or until the maximum duration ends. The
+  // command therefore carries the maximum duration, which the device enforces
+  // by itself as a safety cap even if the server becomes unreachable.
   const deficit = Number(config.target_moisture) - currentMoisture;
-  const duration = Math.min(
-    Number(config.max_duration_min),
-    Math.max(1, Math.round(deficit * 0.5 * 10) / 10),
-  );
+  const duration = Number(config.max_duration_min);
 
   return {
     action: 'ON',
     actuator_id: pump.id,
     duration_min: duration,
-    reason: `Soil moisture is ${currentMoisture.toFixed(1)} %, below the minimum of ${threshold.min_value} % for ${config.consecutive_readings} consecutive readings.`,
+    reason: `Soil moisture is ${currentMoisture.toFixed(1)} %, below the minimum of ${threshold.min_value} % for ${config.consecutive_readings} consecutive readings. Irrigating until ${config.target_moisture} % (deficit ${deficit.toFixed(1)} points) or at most ${duration} min.`,
     current_moisture: currentMoisture,
     target_moisture: Number(config.target_moisture),
   };

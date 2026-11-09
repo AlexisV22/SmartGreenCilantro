@@ -15,7 +15,7 @@ rules, and gives the producer **explainable** AI irrigation recommendations to a
 | Database | PostgreSQL 15 (runs unchanged on Supabase) — `database/schema.sql` + `database/seed.sql` |
 | Web app | Static HTML + CSS + vanilla JS modules served by Express, Chart.js vendored locally (no build step) |
 | AI | Explainable weighted recommender (`server/src/ai`), optional rewording with the Claude API |
-| Tests | Jest + Supertest (259 tests), Playwright e2e (10), Postman/newman (138 requests), acceptance script (15 steps) |
+| Tests | Jest + Supertest (263 tests), Playwright e2e (10), Postman/newman (144 requests), acceptance script (15 steps) |
 
 ## Requirements
 
@@ -73,13 +73,13 @@ The database stores only the SHA-256 hash of the key. New devices get their key 
 | `npm run postman` | run the Postman collection with newman (server must be running) |
 | `npm run postman:build` | regenerate the Postman collection |
 
-## Test results (September 28, 2026)
+## Test results (September 29, 2026)
 
 | Suite | Result |
 |---|---|
-| Jest (unit + integration) | **259 / 259 passed**, 12 suites · coverage 82 % lines, 79 % statements |
+| Jest (unit + integration) | **263 / 263 passed**, 12 suites · coverage ≈ 82 % lines |
 | Playwright e2e | **10 / 10 passed** · dashboard with 30 days of data renders in ~0.25 s (NFR-01 target: 3 s) |
-| Postman / newman | **138 requests, 184 / 184 assertions passed**, repeatable |
+| Postman / newman | **144 requests, 190 / 190 assertions passed**, repeatable (test records are deactivated at the end) |
 | Acceptance scenario (section 24) | **15 / 15 steps PASS** |
 | Simulator delivery (US06-T5) | 48 / 48 readings delivered (100 %) through a simulated 5 s outage, average round-trip 118 ms |
 
@@ -101,6 +101,8 @@ iot/               esp32_smartgreen/ (firmware), simulator/
 e2e/               Playwright tests
 postman/           collection + environment
 docs/              project and Scrum documents, ARCHITECTURE, API, DEPLOYMENT, TRACEABILITY, TEST_PLAN, USER_MANUAL
+tools/evidence/    evidence generator of Sprints 2-4 (run_all.js, collectors, build_docs.js, check_evidence.js)
+evidence/          generated evidence documents, one folder per sprint and user story
 legacy/nextjs/     the Sprint 1 Next.js login prototype (kept for reference, not used)
 ```
 
@@ -123,7 +125,9 @@ administrator thresholds, IoT registry (API key shown once), roles & permissions
 ## Assumptions
 
 - One IoT node (`dev-node-01`) serves AREA-1. AREA-2 exists to show the multi-area structure (NFR-02).
-- Time is stored in UTC. Daytime automation windows use `platform.timezone` (America/Mexico_City).
+- Time is stored in UTC. Daytime rules use `platform.timezone` (America/Mexico_City): the lighting
+  automation window and the light threshold, which only applies between `light.day_start_hour` and
+  `light.day_end_hour` (7–19 h) — darkness at night never raises an alert.
 - A z-score outlier is recorded as an anomaly but does not invalidate the reading, because a real
   heat or drying trend is also statistically unusual. Only out-of-physical-range values and impossible jumps
   are treated as sensor faults: they are excluded from statistics, alerts, automatic irrigation and the AI.

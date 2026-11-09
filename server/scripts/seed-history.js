@@ -46,8 +46,16 @@ function noise(amplitude) { return (rand() - 0.5) * 2 * amplitude; }
 function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
 function round(v, d = 1) { const f = 10 ** d; return Math.round(v * f) / f; }
 
-function generate() {
-  const end = new Date();
+/**
+ * Generate the readings. Options { days, stepMin, end, faults } are used by
+ * the CLI below and by tools/evidence/fp_replay.js (24 h of normal data).
+ */
+function generate({ days = DAYS, stepMin = STEP_MIN, end: endAt = new Date(), faults: withFaults = true } = {}) {
+  // eslint-disable-next-line no-shadow
+  const DAYS = days;
+  // eslint-disable-next-line no-shadow
+  const STEP_MIN = stepMin;
+  const end = new Date(endAt);
   end.setUTCSeconds(0, 0);
   end.setUTCMinutes(end.getUTCMinutes() - (end.getUTCMinutes() % STEP_MIN));
   const start = new Date(end.getTime() - DAYS * 24 * 3600 * 1000);
@@ -66,12 +74,12 @@ function generate() {
 
   // Fault injection points (step index -> sensor), spread over the window.
   const totalSteps = Math.floor((end - start) / (STEP_MIN * 60000));
-  const faults = new Map([
+  const faults = new Map(withFaults ? [
     [Math.floor(totalSteps * 0.21), 'TMP-01'],
     [Math.floor(totalSteps * 0.47), 'SM-02'],
     [Math.floor(totalSteps * 0.66), 'HUM-01'],
     [Math.floor(totalSteps * 0.83), 'SM-01'],
-  ]);
+  ] : []);
 
   for (let step = 0; step <= totalSteps; step += 1) {
     const t = new Date(start.getTime() + step * STEP_MIN * 60000);
@@ -225,9 +233,13 @@ async function main() {
   console.log(`    window ${start.toISOString()} -> ${end.toISOString()}`);
 }
 
-main()
-  .catch((err) => {
-    console.error('seed-history failed:', err.message);
-    process.exitCode = 1;
-  })
-  .finally(() => db.close());
+module.exports = { generate };
+
+if (require.main === module) {
+  main()
+    .catch((err) => {
+      console.error('seed-history failed:', err.message);
+      process.exitCode = 1;
+    })
+    .finally(() => db.close());
+}

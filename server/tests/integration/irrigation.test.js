@@ -34,13 +34,14 @@ const area = () => db.one("SELECT * FROM areas WHERE id = 'AREA-1'");
 describe('US16-T2 start condition', () => {
   beforeEach(() => reset());
 
-  test('N consecutive readings below the minimum -> ON with duration from the deficit', async () => {
+  test('N consecutive readings below the minimum -> ON until the target, capped by the maximum duration', async () => {
     await soil([56, 55]);
     const d = await irrigation.decide(await area());
     expect(d.action).toBe('ON');
-    // average of the newest bucket: (55 + 54) / 2 = 54.5 -> (65 - 54.5) * 0.5 = 5.25 -> 5.3 min
-    expect(d.duration_min).toBeCloseTo(5.3, 1);
+    // The device enforces the maximum duration; the engine stops earlier at the target.
+    expect(d.duration_min).toBe(10);
     expect(d.reason).toMatch(/below the minimum of 60/);
+    expect(d.reason).toMatch(/until 65 %/);
 
     const applied = await irrigation.apply(await area(), d);
     expect(applied.command).toMatchObject({ action: 'ON', source: 'AUTOMATIC', status: 'PENDING' });

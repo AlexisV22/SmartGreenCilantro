@@ -1,0 +1,16 @@
+flowchart LR
+  subgraph G[Greenhouse GH-01 / AREA-1]
+    S1[SM-01 soil moisture] --> MCU
+    S2[SM-02 soil moisture] --> MCU
+    S3[TMP-01 temperature] --> MCU
+    S4[HUM-01, LUX-01, WL-01] --> MCU
+    MCU[ESP32 dev-node-01<br/>reads every 60 s<br/>NTP UTC time<br/>ring buffer 100 readings]
+  end
+  MCU -- "HTTPS POST /api/measurements<br/>header apikey<br/>JSON array" --> API
+  SIM[Node.js simulator<br/>same protocol] -. "when hardware is not connected" .-> API
+  subgraph C[Cloud]
+    API[Express API<br/>validate · authenticate device]
+    DB[(PostgreSQL<br/>measurements<br/>recorded_at + received_at)]
+    API --> DB
+  end
+  API -- "201 processed" --> MCU

@@ -76,7 +76,7 @@ const sensorSection = crudSection({
     { label: 'Physical range', render: (s) => `${s.physical_min} – ${s.physical_max} ${s.unit}` },
     activeColumn,
   ],
-  createFields: [
+  createFields: () => [
     { name: 'id', label: 'Identifier', required: true, placeholder: 'SM-03' },
     { name: 'name', label: 'Name', required: true },
     { name: 'type', label: 'Type', type: 'select', options: SENSOR_TYPES.map((t) => ({ value: t, label: SENSOR_LABELS[t] })) },
@@ -109,7 +109,7 @@ const actSection = crudSection({
     { label: 'State', render: (a) => stateBadge(a.state) },
     activeColumn,
   ],
-  createFields: [
+  createFields: () => [
     { name: 'id', label: 'Identifier', required: true, placeholder: 'ACT-FAN-02' },
     { name: 'name', label: 'Name', required: true },
     { name: 'type', label: 'Type', type: 'select', options: ACT_TYPES.map((t) => ({ value: t, label: ACTUATOR_LABELS[t] })) },

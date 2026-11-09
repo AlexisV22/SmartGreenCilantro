@@ -19,6 +19,7 @@ node iot/simulator/simulator.js --interval 5 --speed 60 --scenario acceptance
 | `--offline-seconds <s>` | 0 | simulate a network outage after the first cycle; readings are buffered and resent as one batch — US06-T4 |
 | `--poll <s>` | 5 | command polling period |
 | `--csv <file>` | — | append every cycle to a CSV file for charts (US16-T5) |
+| `--sensors <ids>` | all 8 | comma-separated sensor_ids to send; `SM-01,TMP-01,HUM-01` matches the Heltec prototype |
 | `--quiet` | — | only the final report |
 
 ## Scenarios
@@ -34,6 +35,7 @@ node iot/simulator/simulator.js --interval 5 --speed 60 --scenario acceptance
 | `disconnect` | stops transmitting after 3 cycles → DEVICE_OFFLINE alert after 5 min |
 | `low-tank` | water tank 12 % → irrigation blocked, LOW_WATER alert, AI CHECK_WATER |
 | `outlier` | SM-02 sends 150 % every 8th reading → OUT_OF_RANGE anomaly |
+| `alerts` | odd cycles leave the range on SM-01, SM-02, TMP-01 and HUM-01, even cycles return — 4 alerts opened and resolved every 2 cycles (US13-T3) |
 | `acceptance` | section 24 of the project: soil 56 %, 29 °C → alert, AI recommends irrigation, accepted command raises the moisture |
 
 ## Closed loop

@@ -86,6 +86,15 @@ describe('US-11 / US-12 alert engine', () => {
     expect(a.resolved_at).not.toBeNull();
   });
 
+  test('low light is normal at night: the light minimum only applies during daylight (local time)', async () => {
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    // 05:00 UTC = 23:00 in Mexico City (night); 18:00 UTC = 12:00 (noon).
+    const night = await device().post('/measurements', { sensor_id: 'LUX-01', value: 0, unit: 'lux', recorded_at: `${yesterday}T05:00:00Z` });
+    expect(night.body.alert).toBeNull();
+    const noon = await device().post('/measurements', { sensor_id: 'LUX-01', value: 2000, unit: 'lux', recorded_at: `${yesterday}T18:00:00Z` });
+    expect(noon.body.alert).toMatchObject({ type: 'LOW' });
+  });
+
   test('a reading outside the physical range raises an anomaly, not a threshold alert', async () => {
     const res = await device().post('/measurements', reading('SM-02', 150, 0));
     expect(res.body.alert).toBeNull();

@@ -38,7 +38,10 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.47.0",
+    "docx": "^9.8.1",
+    "exceljs": "^4.4.0",
     "jest": "^29.7.0",
+    "mermaid": "^11.17.2",
     "newman": "^6.2.1",
     "supertest": "^7.0.0"
   },

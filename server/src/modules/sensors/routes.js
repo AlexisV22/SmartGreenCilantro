@@ -25,7 +25,8 @@ const historyQuery = z.object({
   from: z.string().datetime({ offset: true }).optional(),
   to: z.string().datetime({ offset: true }).optional(),
   limit: z.coerce.number().int().min(1).max(10000).optional(),
-  include_anomalies: z.coerce.boolean().optional(),
+  // z.coerce.boolean() would turn the string "false" into true.
+  include_anomalies: z.enum(['true', 'false', '1', '0']).transform((v) => v === 'true' || v === '1').optional(),
 });
 
 const createSchema = z.object({

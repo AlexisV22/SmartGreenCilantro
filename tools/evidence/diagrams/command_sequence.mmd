@@ -1,0 +1,18 @@
+sequenceDiagram
+  participant W as Web app (producer)
+  participant A as API
+  participant Q as actuator_commands
+  participant D as ESP32 / simulator
+  W->>A: POST /actuators/ACT-PUMP-01/command {ON, 5 min}
+  A->>A: checks: role, MANUAL mode, active actuator, max duration, none in flight
+  A->>Q: insert PENDING (expires in 60 s)
+  loop every 5 s
+    D->>A: GET /devices/me/commands (apikey)
+    A->>Q: PENDING → SENT
+    A-->>D: [{id, ON, 5 min}]
+  end
+  D->>D: relay ON, auto-OFF timer
+  D->>A: POST /actuators/ACT-PUMP-01/state {ON}
+  A->>Q: SENT → EXECUTED + actuator_events (US-17)
+  D->>A: POST /actuators/ACT-PUMP-01/state {OFF} after 5 min
+  Note over A,Q: a command not collected in 60 s becomes EXPIRED, a device error gives FAILED

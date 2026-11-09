@@ -33,3 +33,6 @@ Thumbs.db
 # --- Legacy Next.js prototype ---
 legacy/nextjs/node_modules/
 legacy/nextjs/.next/
+
+# --- Evidence tooling scratch output ---
+tools/evidence/out/

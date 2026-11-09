@@ -33,6 +33,7 @@ const char* HUM_SENSOR_ID    = "HUM-01";
 const char* LIGHT_SENSOR_ID  = "LUX-01";
 const char* WATER_SENSOR_ID  = "WL-01";
 const char* PUMP_ID          = "ACT-PUMP-01";
+const char* DEVICE_ID        = "dev-node-01";   // must match the registry and the API key
 const char* FIRMWARE         = "esp32-smartgreen-1.0.0";
 
 // ---- Pins (ESP32 ADC1 pins so they keep working with WiFi on) ----
@@ -180,6 +181,7 @@ void flushBuffer() {
   for (int i = 0; i < bufCount; i++) {
     Reading& r = buffer[(bufHead + i) % BUFFER_SIZE];
     JsonObject o = arr.add<JsonObject>();
+    o["device_id"] = DEVICE_ID;
     o["sensor_id"] = r.sensorId;
     o["value"] = r.value;
     o["unit"] = r.unit;

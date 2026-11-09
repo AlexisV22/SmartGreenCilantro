@@ -5,22 +5,34 @@
 //   Humedad de suelo : VCC -> 3V3 | GND -> GND | AO   -> pin 2
 //   LDR (modulo)     : izquierdo (senal) -> pin 3 | centro -> GND | derecho -> 3V3
 //   DHT11            : VCC -> 3V3 | GND -> GND | DATA -> pin 4
-//   Servomotor (llave): senal (naranja/amarillo) -> pin 36 | rojo -> 5V | cafe/negro -> GND
+//   Servomotor (llave): senal -> GPIO 5 | alimentacion segun el servo | GND comun
+//   Modulo rele (bomba): IN -> GPIO 6 | VCC -> alimentacion compatible | GND -> GND
+//   Bomba/motor: alimentacion externa a traves de los contactos COM/NO del rele
 //   LED verde (abierto): pin 42 -> resistencia 220 ohm -> LED (+) ; LED (-) -> GND
 //   LED rojo (cerrado) : pin 45 -> resistencia 220 ohm -> LED (+) ; LED (-) -> GND
-//   * Todos los GND deben estar unidos (placa, servo, LEDs).
+//   LEDs de actuadores (provisionales, cada uno con resistencia 220 ohm a GND):
+//     ACT-PUMP-01  (bomba)       -> pin 7
+//     ACT-FAN-01   (ventilador)  -> pin 19
+//     ACT-SHADE-01 (sombra)      -> pin 20
+//     ACT-LIGHT-01 (luz)         -> pin 26  (no usar 21: es el RST de la OLED en la V3)
+//   * Todos los GND deben estar unidos (placa, servo, rele, LEDs y sensores).
 //
-// RIEGO (el servo es la bomba ACT-PUMP-01 de la plataforma)
+// RIEGO (servo de la llave, rele y LED de la bomba siguen las mismas ordenes)
 //   1) Comandos de la plataforma (tienen prioridad). Cada 5 s se consulta GET /api/devices/me/commands:
 //        ON  -> llave ABIERTA durante la duracion elegida; al terminar se cierra sola.
 //        OFF -> llave CERRADA y el riego local queda en pausa PAUSA_LOCAL_MS (para que no se reabra solo).
 //   2) Riego local por humedad de suelo, con histeresis, cuando no hay un comando en curso:
-//        Suelo < UMBRAL_ABRIR  (60 %) -> llave ABIERTA: servo a 90 grados, LED verde ON, rojo OFF
-//        Suelo >= UMBRAL_CERRAR (75 %) -> llave CERRADA: servo a 0 grados,  LED rojo ON, verde OFF
+//        Suelo < UMBRAL_ABRIR  (60 %) -> llave ABIERTA, rele ON, LED verde ON, rojo OFF
+//        Suelo >= UMBRAL_CERRAR (75 %) -> llave CERRADA, rele OFF, LED rojo ON, verde OFF
 //        Entre 60 % y 75 % se mantiene el estado anterior.
 //   Todo cambio se confirma con POST /api/actuators/ACT-PUMP-01/state (marca el comando EXECUTED
-//   y queda en la bitacora de riego). Cada 30 s se manda un heartbeat con el estado de la llave.
+//   y queda en la bitacora de riego).
 //
+// VENTILADOR, SOMBRA Y LUZ (LEDs): solo obedecen comandos de la plataforma (manuales o automatizacion).
+//   ON enciende el LED (si trae duracion se apaga solo al cumplirla), OFF lo apaga, y cada cambio se
+//   confirma con POST /api/actuators/<ID>/state.
+//
+// Cada 30 s se manda un heartbeat con el estado de los 4 actuadores (si no, la plataforma los ve OFFLINE).
 // Cada 2 s: lee los sensores, decide el riego y actualiza OLED y Monitor Serie.
 // Cada 60 s: obtiene hora UTC (NTP) y envia SM-01, TMP-01, HUM-01 y LUX-01 a POST /api/measurements.
 // La LDR no mide lux reales: el % de luz se convierte a lux aproximados con LUZ_LUX_MAX.
@@ -50,11 +62,29 @@ const uint16_t HTTP_TIMEOUT_MS = 15000;         // Vercel puede tardar unos segu
 #define PIN_DHT   4
 
 // ---------- Riego ----------
-#define PIN_SERVO     36
+#define PIN_SERVO     5    // servo de la llave
+#define PIN_RELE      6    // IN del modulo rele de la bomba
 #define PIN_LED_VERDE 42   // llave abierta
 #define PIN_LED_ROJO  45   // llave cerrada
+#define PIN_LED_BOMBA 7    // LED del actuador ACT-PUMP-01
+const bool RELE_ACTIVO_BAJO = false;  // false: activa con HIGH; true: activa con LOW
 
-const char* PUMP_ID = "ACT-PUMP-01";  // actuador de la plataforma que representa el servo
+const char* PUMP_ID = "ACT-PUMP-01";  // actuador de la plataforma que representa el riego
+
+// ---------- Actuadores con LED ----------
+struct ActuadorLed {
+  const char* id;
+  int pin;
+  bool encendido;
+  unsigned long apagarMs;   // != 0: ON con duracion, se apaga a esta hora
+};
+
+ActuadorLed actuadores[] = {
+  {"ACT-FAN-01",   19, false, 0},   // ventilador
+  {"ACT-SHADE-01", 20, false, 0},   // sombra
+  {"ACT-LIGHT-01", 26, false, 0},   // luz auxiliar
+};
+const int NUM_ACTUADORES = sizeof(actuadores) / sizeof(actuadores[0]);
 
 const float UMBRAL_ABRIR  = 60.0f;   // % humedad de suelo: por debajo se abre la llave
 const float UMBRAL_CERRAR = 75.0f;   // % humedad de suelo: desde aqui se cierra la llave
@@ -187,23 +217,40 @@ const char* enviarANube(float suelo, float temp, float hum, bool dhtOk, int luzP
   return (respuesta.indexOf("\"rejected\":0") >= 0) ? "Enviado OK" : "Lecturas rechazadas";
 }
 
-// ---------- Riego ----------
-void aplicarRiego(bool abierto) {
-  riegoActivo = abierto;
-  servoLlave.write(abierto ? ANGULO_ABIERTO : ANGULO_CERRADO);
-  digitalWrite(PIN_LED_VERDE, abierto ? HIGH : LOW);
-  digitalWrite(PIN_LED_ROJO,  abierto ? LOW  : HIGH);
-}
-
-// Confirma el estado de la llave a la plataforma (comando EXECUTED + evento en la bitacora).
-void reportarEstado(float duracionMin) {
+// Confirma el estado de un actuador a la plataforma (comando EXECUTED + evento en la bitacora).
+void reportarEstado(const char* id, bool encendido, float duracionMin) {
   if (WiFi.status() != WL_CONNECTED) return;
-  String body = String("{\"state\":\"") + (riegoActivo ? "ON" : "OFF") + "\"";
+  String body = String("{\"state\":\"") + (encendido ? "ON" : "OFF") + "\"";
   if (duracionMin > 0) body += ",\"duration_min\":" + String(duracionMin, 1);
   body += "}";
   String respuesta;
-  int code = apiRequest("POST", String("/actuators/") + PUMP_ID + "/state", body, respuesta);
-  Serial.printf(">> Estado %s %s reportado: HTTP %d\n", PUMP_ID, riegoActivo ? "ON" : "OFF", code);
+  int code = apiRequest("POST", String("/actuators/") + id + "/state", body, respuesta);
+  Serial.printf(">> Estado %s %s reportado: HTTP %d\n", id, encendido ? "ON" : "OFF", code);
+}
+
+// ---------- Riego ----------
+void releBomba(bool encendido) {
+  if (RELE_ACTIVO_BAJO) {
+    if (encendido) {
+      pinMode(PIN_RELE, OUTPUT);
+      digitalWrite(PIN_RELE, LOW);
+    } else {
+      // Alta impedancia al apagar; el modulo debe tener una polarizacion adecuada.
+      pinMode(PIN_RELE, INPUT);
+    }
+  } else {
+    pinMode(PIN_RELE, OUTPUT);
+    digitalWrite(PIN_RELE, encendido ? HIGH : LOW);
+  }
+}
+
+void aplicarRiego(bool abierto) {
+  riegoActivo = abierto;
+  servoLlave.write(abierto ? ANGULO_ABIERTO : ANGULO_CERRADO);
+  releBomba(abierto);
+  digitalWrite(PIN_LED_BOMBA, abierto ? HIGH : LOW);
+  digitalWrite(PIN_LED_VERDE, abierto ? HIGH : LOW);
+  digitalWrite(PIN_LED_ROJO,  abierto ? LOW  : HIGH);
 }
 
 // Decide con histeresis segun el % de humedad de suelo (solo sin comando de la plataforma en curso).
@@ -216,11 +263,11 @@ void actualizarRiego(float sueloPct) {
   if (!riegoActivo && sueloPct < UMBRAL_ABRIR) {
     aplicarRiego(true);
     Serial.println(">> RIEGO local: llave ABIERTA");
-    reportarEstado(0);
+    reportarEstado(PUMP_ID, true, 0);
   } else if (riegoActivo && sueloPct >= UMBRAL_CERRAR) {
     aplicarRiego(false);
     Serial.println(">> RIEGO local: llave CERRADA");
-    reportarEstado(0);
+    reportarEstado(PUMP_ID, false, 0);
   }
 }
 
@@ -238,7 +285,24 @@ void ejecutarComando(bool abrir, float duracionMin) {
     if (pausaLocalHastaMs == 0) pausaLocalHastaMs = 1;
   }
   Serial.printf(">> RIEGO plataforma: llave %s\n", abrir ? "ABIERTA" : "CERRADA");
-  reportarEstado(abrir ? duracionMin : 0);
+  reportarEstado(PUMP_ID, abrir, abrir ? duracionMin : 0);
+}
+
+// ---------- Ventilador, sombra y luz ----------
+void aplicarActuador(ActuadorLed &a, bool encendido) {
+  a.encendido = encendido;
+  digitalWrite(a.pin, encendido ? HIGH : LOW);
+}
+
+void ejecutarComandoActuador(ActuadorLed &a, bool encender, float duracionMin) {
+  aplicarActuador(a, encender);
+  a.apagarMs = 0;
+  if (encender && duracionMin > 0) {
+    a.apagarMs = millis() + (unsigned long)(duracionMin * 60000.0f);
+    if (a.apagarMs == 0) a.apagarMs = 1;
+  }
+  Serial.printf(">> %s %s (plataforma)\n", a.id, encender ? "ENCENDIDO" : "APAGADO");
+  reportarEstado(a.id, encender, encender ? duracionMin : 0);
 }
 
 void consultarComandos() {
@@ -257,21 +321,35 @@ void consultarComandos() {
     // duration_min puede llegar como numero, como texto ("5.00") o null
     JsonVariant d = cmd["duration_min"];
     float duracion = d.is<const char*>() ? atof(d.as<const char*>()) : (d | 0.0f);
+    bool encender = strcmp(accion, "ON") == 0;
     Serial.printf(">> Comando %s %s %.1f min (origen %s)\n", actuador, accion, duracion,
                   (const char*)(cmd["source"] | ""));
-    if (strcmp(actuador, PUMP_ID) == 0) ejecutarComando(strcmp(accion, "ON") == 0, duracion);
+    if (strcmp(actuador, PUMP_ID) == 0) {
+      ejecutarComando(encender, duracion);
+      continue;
+    }
+    for (int i = 0; i < NUM_ACTUADORES; i++) {
+      if (strcmp(actuador, actuadores[i].id) == 0) ejecutarComandoActuador(actuadores[i], encender, duracion);
+    }
   }
 }
 
+// El heartbeat lleva el estado de todos los actuadores para que la plataforma no los marque OFFLINE.
 void heartbeat() {
   if (WiFi.status() != WL_CONNECTED) return;
-  String body = String("{\"firmware\":\"heltec-prototipo-1.1\",\"actuators\":[{\"id\":\"") +
-                PUMP_ID + "\",\"state\":\"" + (riegoActivo ? "ON" : "OFF") + "\"}]}";
+  String body = String("{\"firmware\":\"heltec-prototipo-1.2\",\"actuators\":[{\"id\":\"") +
+                PUMP_ID + "\",\"state\":\"" + (riegoActivo ? "ON" : "OFF") + "\"}";
+  for (int i = 0; i < NUM_ACTUADORES; i++) {
+    body += String(",{\"id\":\"") + actuadores[i].id + "\",\"state\":\"" +
+            (actuadores[i].encendido ? "ON" : "OFF") + "\"}";
+  }
+  body += "]}";
   String respuesta;
-  apiRequest("POST", "/devices/heartbeat", body, respuesta);
+  int code = apiRequest("POST", "/devices/heartbeat", body, respuesta);
+  Serial.printf(">> Heartbeat: HTTP %d\n", code);
 }
 
-// Cierre programado, comandos y heartbeat; se llama tambien durante la espera del loop.
+// Cierres programados, comandos y heartbeat; se llama tambien durante la espera del loop.
 void atenderPlataforma() {
   static unsigned long ultimoPoll = 0, ultimoBeat = 0;
   unsigned long ahora = millis();
@@ -281,7 +359,16 @@ void atenderPlataforma() {
     cierreProgramadoMs = 0;
     aplicarRiego(false);
     Serial.println(">> RIEGO plataforma: duracion cumplida, llave CERRADA");
-    reportarEstado(0);
+    reportarEstado(PUMP_ID, false, 0);
+  }
+  for (int i = 0; i < NUM_ACTUADORES; i++) {
+    ActuadorLed &a = actuadores[i];
+    if (a.apagarMs && (long)(ahora - a.apagarMs) >= 0) {
+      a.apagarMs = 0;
+      aplicarActuador(a, false);
+      Serial.printf(">> %s: duracion cumplida, APAGADO\n", a.id);
+      reportarEstado(a.id, false, 0);
+    }
   }
   if (ahora - ultimoPoll >= POLL_INTERVAL_MS) { ultimoPoll = ahora; consultarComandos(); }
   if (ahora - ultimoBeat >= HEARTBEAT_MS)     { ultimoBeat = ahora; heartbeat(); }
@@ -289,6 +376,7 @@ void atenderPlataforma() {
 
 // ---------- Programa ----------
 void setup() {
+  releBomba(false);  // intenta mantener la bomba apagada desde el inicio
   Serial.begin(115200);
   analogReadResolution(12);                      // 0 a 4095
   analogSetPinAttenuation(PIN_SUELO, ADC_11db);
@@ -296,12 +384,19 @@ void setup() {
 
   if (PIN_SUELO_PWR >= 0) { pinMode(PIN_SUELO_PWR, OUTPUT); digitalWrite(PIN_SUELO_PWR, LOW); }
 
-  // Riego: LEDs y servo. Arranca con la llave cerrada (LED rojo).
+  // Riego: inicializa LEDs y servo con la llave cerrada (LED rojo).
   pinMode(PIN_LED_VERDE, OUTPUT);
   pinMode(PIN_LED_ROJO, OUTPUT);
+  pinMode(PIN_LED_BOMBA, OUTPUT);
   servoLlave.setPeriodHertz(50);
   servoLlave.attach(PIN_SERVO, 500, 2400);
   aplicarRiego(false);
+
+  // Ventilador, sombra y luz arrancan apagados.
+  for (int i = 0; i < NUM_ACTUADORES; i++) {
+    pinMode(actuadores[i].pin, OUTPUT);
+    aplicarActuador(actuadores[i], false);
+  }
 
   dht.begin();
 
@@ -315,8 +410,8 @@ void setup() {
   display.display();
   conectarWifi();
   sincronizarHora();
-  heartbeat();
-  reportarEstado(0);                             // tras un reinicio la plataforma ve la llave cerrada
+  heartbeat();                                   // tras un reinicio la plataforma ve todo apagado
+  reportarEstado(PUMP_ID, false, 0);
 }
 
 void loop() {
@@ -355,7 +450,10 @@ void loop() {
                 sueloCrudo, sueloPct, luzCrudo, luzPct);
   if (dhtOk) Serial.printf("Temp: %.1f C  Hum aire: %.0f%%", temp, hum);
   else       Serial.print("DHT11: error de lectura");
-  Serial.printf(" | Riego: %s (%s) | %s\n", riegoActivo ? "ABIERTO" : "CERRADO", modo, estado);
+  Serial.printf(" | Riego: %s (%s) | Vent:%s Sombra:%s Luz:%s | %s\n",
+                riegoActivo ? "ABIERTO" : "CERRADO", modo,
+                actuadores[0].encendido ? "ON" : "OFF", actuadores[1].encendido ? "ON" : "OFF",
+                actuadores[2].encendido ? "ON" : "OFF", estado);
 
   // OLED
   display.clear();

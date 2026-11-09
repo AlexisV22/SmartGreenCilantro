@@ -266,9 +266,10 @@ INSERT INTO system_parameters (key, value, description) VALUES
     ('device.offline_minutes',        '5',     'Minutes without contact after which a device is OFFLINE (FR-11)'),
     ('actuator.offline_minutes',      '5',     'Minutes without a state report after which an actuator is shown as OFFLINE'),
     ('command.expiry_seconds',        '60',    'Seconds a command waits to be collected by the device before EXPIRED'),
-    ('anomaly.zscore_threshold',      '3',     'Z-score above which a reading is a statistical outlier (24 h window)'),
+    ('anomaly.zscore_threshold',      '3.5',   'Z-score above which a reading is a statistical outlier (24 h window; tuned in US19-T9)'),
     ('anomaly.missing_data_minutes',  '5',     'Minutes without readings that raise a MISSING_DATA anomaly (NFR-08)'),
     ('anomaly.flatline_minutes',      '30',    'Minutes with an identical value that raise a FLATLINE anomaly'),
+    ('anomaly.flatline_minutes.water_level', '300', 'FLATLINE window of the water tank: an idle tank keeps its level for hours (US19-T9)'),
     ('anomaly.jump.soil_moisture',    '15',    'Maximum % change in soil moisture between consecutive readings'),
     ('anomaly.jump.temperature',      '5',     'Maximum C change in temperature between consecutive readings'),
     ('anomaly.jump.air_humidity',     '20',    'Maximum % change in relative humidity between consecutive readings'),
@@ -278,7 +279,9 @@ INSERT INTO system_parameters (key, value, description) VALUES
     ('anomaly.jump.ph',               '1',     'Maximum pH change between consecutive readings'),
     ('analysis.trend_tolerance',      '0.05',  'Absolute slope below which a trend is classified STABLE'),
     ('platform.name',                 'SmartGreenAI: Cilantro Crop', 'Name displayed in the web application'),
-    ('platform.timezone',             'America/Mexico_City', 'IANA time zone of the greenhouse, used for daytime automation windows')
+    ('platform.timezone',             'America/Mexico_City', 'IANA time zone of the greenhouse, used for daytime automation windows'),
+    ('light.day_start_hour',          '7',     'Local hour when daylight starts: the light minimum only applies from this hour'),
+    ('light.day_end_hour',            '19',    'Local hour when daylight ends: low light after this hour is normal (no alert)')
 ON CONFLICT (key) DO NOTHING;
 
 -- ===========================================================================

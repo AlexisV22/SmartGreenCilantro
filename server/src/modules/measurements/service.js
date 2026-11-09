@@ -35,6 +35,9 @@ function validateReading(reading, index = null) {
   if (!reading.sensor_id || typeof reading.sensor_id !== 'string') {
     details.push({ field: `${at}sensor_id`, issue: 'A sensor identifier is required.' });
   }
+  if (reading.device_id !== undefined && (typeof reading.device_id !== 'string' || !reading.device_id)) {
+    details.push({ field: `${at}device_id`, issue: 'When present, device_id must be the identifier of the sending device.' });
+  }
 
   const value = Number(reading.value);
   if (reading.value === null || reading.value === undefined || reading.value === '' || !Number.isFinite(value)) {
@@ -57,12 +60,14 @@ function validateReading(reading, index = null) {
 /**
  * Store one reading and run the downstream engines.
  *
- * @param {object}  reading  { sensor_id, value, unit?, recorded_at?, device_status? }
+ * @param {object}  reading  { sensor_id, value, unit?, recorded_at?, device_id?, device_status? }
  * @param {object?} device   the authenticated device, when the caller is a node
  */
 async function store(reading, device = null) {
   const problems = validateReading(reading);
   if (problems.length) {
+    logSystem('WARN', 'measurements',
+      `Rejected reading for "${reading && reading.sensor_id}": ${problems.map((p) => `${p.field} ${p.issue}`).join(' ')}`);
     throw badRequest('The submitted data does not match the required schema.', problems);
   }
 
@@ -85,6 +90,14 @@ async function store(reading, device = null) {
   if (!sensor.device_active) {
     throw badRequest('The device owning this sensor is deactivated.', [
       { field: 'sensor_id', issue: `Device "${sensor.device_id}" is not active.` },
+    ]);
+  }
+  // The optional device_id of the payload (US06-T1) must be the sensor's
+  // device and, for a node, the device authenticated by the API key.
+  if (reading.device_id && (reading.device_id !== sensor.device_id || (device && reading.device_id !== device.id))) {
+    logSystem('WARN', 'measurements', `Rejected reading: device_id "${reading.device_id}" does not own sensor "${reading.sensor_id}".`);
+    throw badRequest('The device_id of the payload does not match the sensor or the API key.', [
+      { field: 'device_id', issue: `Sensor "${reading.sensor_id}" belongs to "${sensor.device_id}".` },
     ]);
   }
   // A device may only report for its own sensors.

@@ -1,0 +1,18 @@
+flowchart TD
+  S([every 30 s, per area]) --> M{mode AUTOMATIC<br/>and enabled?}
+  M -- no --> K[skip]
+  M -- yes --> Q{command already<br/>PENDING / SENT?}
+  Q -- yes --> K
+  Q -- no --> ST{soil data older<br/>than 5 min?}
+  ST -- yes --> B1[blocked: stale sensor]
+  ST -- no --> P{pump ON?}
+  P -- yes --> TG{moisture ≥ target 65 %<br/>or running ≥ 10 min?}
+  TG -- yes --> OFF[command OFF]
+  TG -- no --> K
+  P -- no --> C{average moisture < min 60 %<br/>for 2 consecutive readings?}
+  C -- no --> K
+  C -- yes --> CD{last irrigation<br/>< 30 min ago?}
+  CD -- yes --> B2[blocked: cooldown]
+  CD -- no --> TK{tank < 20 %?}
+  TK -- yes --> B3[blocked + LOW_WATER alert]
+  TK -- no --> ON[command ON, source AUTOMATIC<br/>until the target, device cap = max duration]

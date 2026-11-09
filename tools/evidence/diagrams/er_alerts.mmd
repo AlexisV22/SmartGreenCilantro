@@ -1,0 +1,17 @@
+erDiagram
+  SENSORS ||--o{ ALERTS : raises
+  THRESHOLDS ||--o{ ALERTS : "evaluated against"
+  USERS ||--o{ ALERTS : acknowledges
+  ALERTS {
+    text id PK
+    text sensor_id FK
+    text threshold_id FK
+    text type "LOW HIGH DEVICE_OFFLINE LOW_WATER ANOMALY"
+    numeric value
+    text severity "LOW MEDIUM HIGH"
+    text status "OPEN ACKNOWLEDGED RESOLVED"
+    numeric deviation_pct
+    timestamptz created_at
+    text acknowledged_by FK
+    timestamptz resolved_at
+  }

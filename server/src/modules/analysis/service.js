@@ -14,6 +14,7 @@
  */
 
 const db = require('../../db');
+const daylight = require('../../utils/daylight');
 const trends = require('../../ai/trends');
 const preprocessing = require('../../ai/preprocessing');
 const settings = require('../../utils/settings');
@@ -46,6 +47,7 @@ async function summary({ areaId, from = null, to = null }) {
   );
 
   // Percentage of readings inside the optimal band, per variable.
+  const dayWindow = await daylight.daylightWindow();
   const inRange = await db.rows(
     `SELECT s.type AS sensor_type,
             COUNT(*)::int AS total,
@@ -59,8 +61,11 @@ async function summary({ areaId, from = null, to = null }) {
         AND m.is_anomaly = FALSE
         AND ($2::timestamptz IS NULL OR m.recorded_at >= $2)
         AND ($3::timestamptz IS NULL OR m.recorded_at <= $3)
+        -- light is only judged during the daylight hours of the greenhouse
+        AND (s.type <> 'light' OR EXTRACT(HOUR FROM m.recorded_at AT TIME ZONE $4) >= $5
+                               AND EXTRACT(HOUR FROM m.recorded_at AT TIME ZONE $4) < $6)
       GROUP BY s.type`,
-    [areaId, from, to],
+    [areaId, from, to, dayWindow.timeZone, dayWindow.from, dayWindow.to],
   );
 
   const optimalRange = inRange.map((row) => ({

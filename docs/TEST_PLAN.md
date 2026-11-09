@@ -30,8 +30,8 @@ results never depend on timers.
 | `unit/recommender.test.js` | 25 | US-20 rules, duration, confidence; US-21 five elements for every type |
 | `integration/auth.test.js` | 17 | US-01-C login, generic errors, expired/forged tokens, direct URL, deactivation, health |
 | `integration/rbac.test.js` | 92 | FR-02/03, NFR-04: 30 endpoint groups × 3 roles, organization scope |
-| `integration/measurements.test.js` | 18 | US-06/07/08 ingestion, validation, batch, history, heartbeat |
-| `integration/thresholds-alerts.test.js` | 16 | US-10, US-11, US-12, US-13 |
+| `integration/measurements.test.js` | 21 | US-06/07/08 ingestion, validation, batch, history, heartbeat |
+| `integration/thresholds-alerts.test.js` | 17 | US-10, US-11, US-12, US-13 |
 | `integration/commands.test.js` | 11 | US-14, US-15, US-17 |
 | `integration/irrigation.test.js` | 17 | US-16 start/stop, safety rules, modes, FR-18 automation, time zone |
 | `integration/anomalies-analysis.test.js` | 13 | US-19 each method and no duplicates; US-18 statistics |
@@ -59,13 +59,13 @@ results never depend on timers.
 - **Exit**: all Jest, Playwright and Postman cases pass, the acceptance scenario prints 15/15 PASS, and no open
   defect of severity High remains on the board.
 
-## Results — September 28, 2026
+## Results — September 29, 2026
 
 | Suite | Result |
 |---|---|
-| Jest | 259 / 259 passed · coverage: statements 79.3 %, branches 60.9 %, functions 72.4 %, lines 82.1 % |
+| Jest | 263 / 263 passed (coverage report: npm run test:coverage) |
 | Playwright | 10 / 10 passed (two consecutive runs) |
-| Postman / newman | 138 requests, 184 / 184 assertions (two consecutive runs) |
+| Postman / newman | 144 requests, 190 / 190 assertions (two consecutive runs) |
 | Acceptance scenario | 15 / 15 PASS |
 
 ### Defects found and fixed while testing
@@ -84,3 +84,10 @@ results never depend on timers.
 | Batch ingestion did not echo alerts/anomalies per reading | batch results include `alert` and `anomalies` |
 | `anomalies_excluded` counted z-score findings that are not excluded | counts the readings flagged `is_anomaly` |
 | The server started in production with the default JWT secret | startup guard in `server.js` |
+| Low light raised a HIGH alert every night | the light minimum applies only during daylight hours (local time) |
+| A device registered on the IoT page could not be selected for a new sensor until reload | form fields are built when the dialog opens |
+| `include_anomalies=false` was read as `true` | explicit true/false parsing of the query |
+| The payload could not carry `device_id` (US06-T1) | optional `device_id`, validated against the API key |
+| Readings rejected for schema errors were not logged | WARN entry in `system_logs` for every rejection |
+| Accelerated simulator runs sent timestamps in the future | readings carry the real clock time; only the physics is accelerated |
+| The Postman run left test hardware in the live area | test records go to AREA-2 and are deactivated at the end of the run |

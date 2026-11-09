@@ -131,7 +131,8 @@ flowchart TD
 database state, so it is fully unit-testable. It runs these checks in order: MANUAL mode, disabled,
 command in flight, stale soil data (> 5 min), pump running (stop at the target or at the maximum
 duration), N consecutive readings below the minimum, cooldown, and tank below the minimum (→ LOW_WATER
-alert). Only then does it switch ON, for a duration proportional to the deficit.
+alert). Only then does it switch ON until the target is reached (the engine sends OFF), with the
+maximum duration as a cap that the device enforces by itself.
 
 **Database**: see [database/README.md](../database/README.md). Organizations make it multi-tenant.
 Administrators are scoped to their organization; the Super Administrator sees everything. New sensors,

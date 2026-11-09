@@ -1,0 +1,8 @@
+stateDiagram-v2
+  [*] --> PENDING: POST /command
+  PENDING --> SENT: device poll
+  SENT --> EXECUTED: POST /state
+  PENDING --> EXPIRED: 60 s without poll
+  SENT --> EXPIRED: 60 s without confirmation
+  EXECUTED --> [*]
+  EXPIRED --> [*]

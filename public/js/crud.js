@@ -50,8 +50,10 @@ export function crudSection(opts) {
   }
 
   async function createRecord() {
+    // Fields may be a function so selectors (devices, greenhouses…) include records created after the page loaded.
+    const fields = typeof opts.createFields === 'function' ? opts.createFields() : opts.createFields;
     const created = await formDialog({
-      title: `${opts.createLabel || 'Add'}`, fields: opts.createFields, submitText: 'Create', onSubmit: opts.create,
+      title: `${opts.createLabel || 'Add'}`, fields, submitText: 'Create', onSubmit: opts.create,
     });
     if (created) {
       toast('Record created.');

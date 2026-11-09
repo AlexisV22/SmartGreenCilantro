@@ -84,7 +84,37 @@ Press **Why?** to see how much each factor contributed. Then press **✔ Accept*
 starts for the recommended minutes) or **✖ Reject**, optionally writing a reason. You can decide only once
 per recommendation. Past recommendations and decisions are listed under **AI recommendations** in the menu.
 
-### 3.4 Other pages
+### 3.4 Alerts
+
+The system checks every new reading against the optimal range of its variable. You receive an alert when
+a reading leaves that range:
+
+- **LOW** — the value is **below** the minimum (for example soil moisture under 60 %: the soil is drying out).
+- **HIGH** — the value is **above** the maximum (for example air temperature over 25 °C: the greenhouse is too hot).
+
+A value exactly on the limit (60 % or 80 % of soil moisture) is still inside the range. Light under its minimum at
+night does not raise an alert, because darkness at night is normal.
+
+Each alert shows how serious it is, with a word and a colour:
+
+| Severity | How far outside the range | What to do |
+|---|---|---|
+| **Low** | up to 10 % of the range | keep an eye on it |
+| **Medium** | from 10 % to 25 % | act soon (irrigate, ventilate, open the shade…) |
+| **High** | more than 25 % | act now |
+
+While the problem continues you see **one** alert per sensor, not one per reading; its severity goes up if the
+situation gets worse. The alert appears on the dashboard banner and in *Active alerts* within 30 seconds.
+
+**Acknowledging an alert.** Press **Acknowledge** on the alert. This tells the rest of the team that you have
+seen it and are taking care of it; your name and the time are recorded. Acknowledging does not close the alert:
+it stays visible until the value returns to its range, and then it closes by itself (*Resolved*). Resolved alerts
+are kept in the *Alert history*.
+
+Other alerts you may see: **Device offline** (the greenhouse node stopped sending data), **Low water** (the tank is
+too low to irrigate — refill it) and **Anomaly** (a reading looks wrong; check the sensor).
+
+### 3.5 Other pages
 
 - **Alert history**: filter by status, severity, sensor and dates. Press **⬇ Export CSV** to open it in Excel.
 - **Irrigation history**: every activation with who or what started it (Manual, Automatic, AI) and minutes per day.

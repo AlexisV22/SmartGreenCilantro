@@ -25,7 +25,7 @@ Abbreviations: **svc** = `server/src/modules/<m>/service.js`, **rt** = `…/rout
 | US06-T2 Configure the cloud service and device authentication | `middleware/apiKey.js` (`requireDeviceKey`, SHA-256 `hashApiKey`); `devices.api_key_hash`; `docs/DEPLOYMENT.md` | `integration/measurements.test.js` (missing/wrong key 401, inactive device 401, hash stored) |
 | US06-T3 Implement measurement sending from the device (or simulator) | `iot/esp32_smartgreen/esp32_smartgreen.ino` (`readSensors`, `flushBuffer`); `iot/simulator/simulator.js` (`readSensors`, `sendReadings`) | simulator run log; `postman/` folder 05 |
 | US06-T4 Handle connection failures | firmware ring buffer `pushReading` + back-off in `flushBuffer`; simulator `pushBuffer` / `--offline-seconds`; batch ingestion `storeBatch()` in measurements svc | `node iot/simulator/simulator.js --count 6 --interval 2 --offline-seconds 5` (24 buffered readings resent in one batch); `integration/measurements.test.js` › batch |
-| US06-T5 End-to-end transmission test | simulator `--count` delivery report (success rate, average delay) | report: 48/48 delivered, 100 %, 118 ms average; acceptance step 2 |
+| US06-T5 End-to-end transmission test | simulator `--count` delivery report (success rate, average delay) | simulator delivery report (≥ 100 readings, success rate and average delay); acceptance step 2 |
 
 ### US-07 — Store measurements with sensor IDs and timestamps
 
@@ -148,6 +148,24 @@ Abbreviations: **svc** = `server/src/modules/<m>/service.js`, **rt** = `…/rout
 | US19-T2 Implement the anomaly detection service | anomalies svc `checkMeasurement()`, `runPeriodicChecks()`, `record()` (no duplicates); `jobs/anomalyJob.js` | `integration/anomalies-analysis.test.js` › US-19 |
 | US19-T3 Display anomalies to the producer | dashboard anomaly badge and red ✖ markers on the chart (`charts.js` scatter series); `GET /anomalies` | `e2e/dashboard.spec.js` |
 | US19-T4 Test anomaly detection | — | `integration/anomalies-analysis.test.js` (each method + no duplicates); simulator scenarios `spike`, `outlier`, `flatline`, `disconnect` |
+
+### Sprint 3 — Week 3 tasks (Scrum board numbering)
+
+The tables above use the 28-task numbering of the original Sprint 3 Planning. The Scrum board and the Week 1–3
+planning documents split the work into 48 tasks; these are the Week 3 tasks that have no counterpart above.
+
+| Task | Implementation | Verification |
+|---|---|---|
+| US11-T6 Write automated unit tests for the alert engine | alerts svc `evaluateMeasurement()` | `unit/alert-engine.test.js` (in-memory database: creation, boundaries, de-duplication, resolution) |
+| US11-T8 Verify ingestion performance with alert evaluation | measurements svc `store()` → `evaluateMeasurement()` | `tools/evidence/ingest_perf.js` (simulator burst of 120 POST /measurements, with and without evaluation) |
+| US11-T9 Document the alert API and alert rules | `docs/API.md` › Alert API and alert rules in detail; `docs/USER_MANUAL.md` › 3.4 Alerts | calls against the running API |
+| US12-T3 Write automated unit tests for the severity calculation | alerts svc `deviationPercent()`, `classifySeverity()`, upgrade in `evaluateMeasurement()` | `unit/severity.test.js` |
+| US15-T8 Write automated tests for the command API | commands svc `createCommand()`, `collectForDevice()`, `reportState()`, `expireStale()` | `integration/commands.test.js` (roles, polling, acknowledgement, expiry) |
+| US15-T10 Document the actuator command API and polling protocol | `docs/API.md` › Actuator command API and polling protocol | calls against the running API |
+| US16-T7 Write automated unit tests for the irrigation engine | irrigation svc `decide()`, `apply()` | `unit/irrigation-engine.test.js` (mocked readings) |
+| US17-T3 Write automated tests for the event log | events svc `recordEvent()`, `list()`, `dailyIrrigationMinutes()` | `integration/events.test.js` |
+| US19-T7 Write automated unit tests for the detection methods | anomalies svc `checkMeasurement()`, `runPeriodicChecks()` | `unit/anomaly-detection.test.js` (fixed data sets, no database) |
+| US19-T9 Tune the detection parameters | `anomaly.zscore_threshold` 3.5, `anomaly.flatline_minutes.water_level` 300, light FLATLINE only in daylight (`system_parameters`, anomalies svc) | `tools/evidence/tune_detection.js` (false positives on normal data + injected anomalies) |
 
 ### Sprint 3 — sprint-level tasks
 

@@ -1,0 +1,18 @@
+erDiagram
+  GREENHOUSES ||--o{ AREAS : contains
+  AREAS ||--o{ DEVICES : "zone of"
+  DEVICES ||--o{ SENSORS : has
+  DEVICES ||--o{ ACTUATORS : drives
+  DEVICES { text id PK
+    text name
+    text greenhouse_id FK
+    text area_id FK "greenhouse zone"
+    boolean is_active "status"
+    text api_key_hash }
+  SENSORS { text id PK
+    text device_id FK "NOT NULL"
+    text type
+    text unit }
+  ACTUATORS { text id PK
+    text device_id FK "NOT NULL"
+    text type }
