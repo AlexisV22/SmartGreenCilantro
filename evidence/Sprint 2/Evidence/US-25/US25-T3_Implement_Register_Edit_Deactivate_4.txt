@@ -1,0 +1,247 @@
+Register, edit, deactivate
+Captured 2026-09-29T04:20:00.476Z against http://localhost:3000
+
+POST /api/devices
+Authorization: Bearer eyJhbG…
+
+{
+  "id": "dev-node-25a",
+  "name": "Node 25A",
+  "mac_address": "A4:CF:12:25:0A:01",
+  "greenhouse_id": "GH-01",
+  "area_id": "AREA-2"
+}
+
+→ HTTP 201 Created (20 ms)
+{
+  "device_id": "dev-node-25a",
+  "id": "dev-node-25a",
+  "name": "Node 25A",
+  "mac_address": "A4:CF:12:25:0A:01",
+  "location": null,
+  "organization_id": "org-team3",
+  "greenhouse_id": "GH-01",
+  "area_id": "AREA-2",
+  "firmware": null,
+  "is_active": true,
+  "last_seen": null,
+  "created_at": "2026-09-29T04:19:58.658Z",
+  "updated_at": "2026-09-29T04:19:58.658Z",
+  "connectivity": "OFFLINE",
+  "status": "REGISTERED",
+  "api_key": "sec_io…",
+  "api_key_notice": "Store this key now: it is shown only once and cannot be recovered."
+}
+
+----------------------------------------------------------------------
+
+POST /api/sensors
+Authorization: Bearer eyJhbG…
+
+{
+  "id": "SM-25A",
+  "device_id": "dev-node-25a",
+  "area_id": "AREA-2",
+  "name": "Soil probe 25A",
+  "type": "soil_moisture",
+  "unit": "%",
+  "physical_min": 0,
+  "physical_max": 100
+}
+
+→ HTTP 201 Created (23 ms)
+{
+  "id": "SM-25A",
+  "device_id": "dev-node-25a",
+  "area_id": "AREA-2",
+  "name": "Soil probe 25A",
+  "type": "soil_moisture",
+  "unit": "%",
+  "physical_min": 0,
+  "physical_max": 100,
+  "is_active": true,
+  "created_at": "2026-09-29T04:19:58.683Z",
+  "updated_at": "2026-09-29T04:19:58.683Z",
+  "device_name": "Node 25A",
+  "device_active": true,
+  "area_name": "Cultivation Area 2",
+  "organization_id": "org-team3"
+}
+
+----------------------------------------------------------------------
+
+POST /api/actuators
+Authorization: Bearer eyJhbG…
+
+{
+  "id": "ACT-25A",
+  "device_id": "dev-node-25a",
+  "area_id": "AREA-2",
+  "name": "Pump 25A",
+  "type": "irrigation_pump"
+}
+
+→ HTTP 201 Created (14 ms)
+{
+  "id": "ACT-25A",
+  "device_id": "dev-node-25a",
+  "area_id": "AREA-2",
+  "name": "Pump 25A",
+  "type": "irrigation_pump",
+  "state": "OFFLINE",
+  "last_update": null,
+  "is_active": true,
+  "created_at": "2026-09-29T04:19:58.699Z",
+  "updated_at": "2026-09-29T04:19:58.699Z",
+  "area_name": "Cultivation Area 2",
+  "area_mode": "MANUAL",
+  "device_name": "Node 25A",
+  "device_last_seen": null,
+  "device_active": true,
+  "organization_id": "org-team3",
+  "reported_state": "OFF",
+  "is_offline": true,
+  "last_change": null
+}
+
+----------------------------------------------------------------------
+
+PUT /api/devices/dev-node-25a
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "Node 25A (bench 2)"
+}
+
+→ HTTP 200 OK (15 ms)
+{
+  "device_id": "dev-node-25a",
+  "id": "dev-node-25a",
+  "name": "Node 25A (bench 2)",
+  "mac_address": "A4:CF:12:25:0A:01",
+  "location": null,
+  "organization_id": "org-team3",
+  "greenhouse_id": "GH-01",
+  "area_id": "AREA-2",
+  "firmware": null,
+  "is_active": true,
+  "last_seen": null,
+  "created_at": "2026-09-29T04:19:58.658Z",
+  "updated_at": "2026-09-29T04:19:58.714Z",
+  "connectivity": "OFFLINE"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/sensors/SM-25A
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "Soil probe 25A — north"
+}
+
+→ HTTP 200 OK (18 ms)
+{
+  "id": "SM-25A",
+  "device_id": "dev-node-25a",
+  "area_id": "AREA-2",
+  "name": "Soil probe 25A — north",
+  "type": "soil_moisture",
+  "unit": "%",
+  "physical_min": 0,
+  "physical_max": 100,
+  "is_active": true,
+  "created_at": "2026-09-29T04:19:58.683Z",
+  "updated_at": "2026-09-29T04:19:58.732Z",
+  "device_name": "Node 25A (bench 2)",
+  "device_active": true,
+  "area_name": "Cultivation Area 2",
+  "organization_id": "org-team3"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/sensors/SM-25A
+Authorization: Bearer eyJhbG…
+
+{
+  "is_active": false
+}
+
+→ HTTP 200 OK (16 ms)
+{
+  "id": "SM-25A",
+  "device_id": "dev-node-25a",
+  "area_id": "AREA-2",
+  "name": "Soil probe 25A — north",
+  "type": "soil_moisture",
+  "unit": "%",
+  "physical_min": 0,
+  "physical_max": 100,
+  "is_active": false,
+  "created_at": "2026-09-29T04:19:58.683Z",
+  "updated_at": "2026-09-29T04:19:58.750Z",
+  "device_name": "Node 25A (bench 2)",
+  "device_active": true,
+  "area_name": "Cultivation Area 2",
+  "organization_id": "org-team3"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/actuators/ACT-25A
+Authorization: Bearer eyJhbG…
+
+{
+  "is_active": false
+}
+
+→ HTTP 200 OK (21 ms)
+{
+  "id": "ACT-25A",
+  "device_id": "dev-node-25a",
+  "area_id": "AREA-2",
+  "name": "Pump 25A",
+  "type": "irrigation_pump",
+  "state": "OFFLINE",
+  "last_update": null,
+  "is_active": false,
+  "created_at": "2026-09-29T04:19:58.699Z",
+  "updated_at": "2026-09-29T04:19:58.769Z",
+  "area_name": "Cultivation Area 2",
+  "area_mode": "MANUAL",
+  "device_name": "Node 25A (bench 2)",
+  "device_last_seen": null,
+  "device_active": true,
+  "organization_id": "org-team3",
+  "reported_state": "OFF",
+  "is_offline": true,
+  "last_change": null
+}
+
+----------------------------------------------------------------------
+
+PUT /api/devices/dev-node-25a
+Authorization: Bearer eyJhbG…
+
+{
+  "is_active": false
+}
+
+→ HTTP 200 OK (18 ms)
+{
+  "device_id": "dev-node-25a",
+  "id": "dev-node-25a",
+  "name": "Node 25A (bench 2)",
+  "mac_address": "A4:CF:12:25:0A:01",
+  "location": null,
+  "organization_id": "org-team3",
+  "greenhouse_id": "GH-01",
+  "area_id": "AREA-2",
+  "firmware": null,
+  "is_active": false,
+  "last_seen": null,
+  "created_at": "2026-09-29T04:19:58.658Z",
+  "updated_at": "2026-09-29T04:19:58.789Z",
+  "connectivity": "DISABLED"
+}

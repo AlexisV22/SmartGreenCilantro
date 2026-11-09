@@ -1,0 +1,4 @@
+kind,id,name,is_active
+device,dev-node-25a,Node 25A (bench 2),false
+sensor,SM-25A,Soil probe 25A — north,false
+actuator,ACT-25A,Pump 25A,false

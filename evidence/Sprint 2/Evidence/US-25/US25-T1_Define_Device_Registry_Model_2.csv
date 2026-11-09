@@ -1,0 +1,3 @@
+table_name,column_name,is_nullable
+sensors,device_id,NO
+actuators,device_id,NO

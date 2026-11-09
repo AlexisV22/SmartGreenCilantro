@@ -1,0 +1,66 @@
+Producer attempts
+Captured 2026-09-29T04:20:00.480Z against http://localhost:3000
+
+POST /api/devices
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "x"
+}
+
+→ HTTP 403 Forbidden (8 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: devices.write"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PUT /api/sensors/SM-01
+Authorization: Bearer eyJhbG…
+
+{
+  "name": "x"
+}
+
+→ HTTP 403 Forbidden (7 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: sensors.write"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PUT /api/actuators/ACT-PUMP-01
+Authorization: Bearer eyJhbG…
+
+{
+  "is_active": false
+}
+
+→ HTTP 403 Forbidden (8 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: actuators.write"
+    }
+  ]
+}

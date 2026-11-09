@@ -1,0 +1,44 @@
+Transmission before and after deactivation
+Captured 2026-09-29T04:25:24.305Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-25c",
+  "sensor_id": "SM-25C",
+  "value": 64.2,
+  "unit": "%",
+  "recorded_at": "2026-09-29T04:25:23.154Z"
+}
+
+→ HTTP 201 Created (40 ms)
+{
+  "id": "msr-aaf0c49533cd",
+  "sensor_id": "SM-25C",
+  "status": "processed",
+  "inserted_at": "2026-09-29T04:25:23.176Z",
+  "alert": null,
+  "anomalies": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-25c",
+  "sensor_id": "SM-25C",
+  "value": 64.3,
+  "unit": "%",
+  "recorded_at": "2026-09-29T04:25:24.284Z"
+}
+
+→ HTTP 401 Unauthorized (12 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "The device API key is invalid or the device is deactivated.",
+  "details": []
+}

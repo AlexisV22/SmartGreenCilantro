@@ -1,0 +1,37 @@
+Duplicate ID and delete attempt
+Captured 2026-09-29T04:20:00.478Z against http://localhost:3000
+
+POST /api/sensors
+Authorization: Bearer eyJhbG…
+
+{
+  "id": "SM-25A",
+  "device_id": "dev-node-01",
+  "area_id": "AREA-1",
+  "name": "Duplicate",
+  "type": "soil_moisture",
+  "unit": "%",
+  "physical_min": 0,
+  "physical_max": 100
+}
+
+→ HTTP 409 Conflict (9 ms)
+{
+  "status": 409,
+  "code": "ERR_CONFLICT",
+  "message": "A sensor with id \"SM-25A\" is already registered.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+DELETE /api/devices/dev-node-25a
+Authorization: Bearer eyJhbG…
+
+→ HTTP 404 Not Found (4 ms)
+{
+  "status": 404,
+  "code": "ERR_RESOURCE_NOT_FOUND",
+  "message": "No API route matches DELETE /api/devices/dev-node-25a.",
+  "details": []
+}
