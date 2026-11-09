@@ -1,0 +1,6 @@
+key,value,description
+anomaly.flatline_minutes,30,Minutes with an identical value that raise a FLATLINE anomaly
+anomaly.flatline_minutes.water_level,300,FLATLINE window of the water tank: an idle tank keeps its level for hours (US19-T9)
+anomaly.jump.soil_moisture,15,Maximum % change in soil moisture between consecutive readings
+anomaly.jump.temperature,5,Maximum C change in temperature between consecutive readings
+anomaly.zscore_threshold,3.5,Z-score above which a reading is a statistical outlier (24 h window; tuned in US19-T9)

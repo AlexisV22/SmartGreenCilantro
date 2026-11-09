@@ -1,0 +1,11 @@
+key,value,description
+anomaly.flatline_minutes,30,Minutes with an identical value that raise a FLATLINE anomaly
+anomaly.jump.air_humidity,20,Maximum % change in relative humidity between consecutive readings
+anomaly.jump.co2,400,Maximum ppm change between consecutive readings
+anomaly.jump.light,30000,Maximum lux change between consecutive readings
+anomaly.jump.ph,1,Maximum pH change between consecutive readings
+anomaly.jump.soil_moisture,15,Maximum % change in soil moisture between consecutive readings
+anomaly.jump.temperature,5,Maximum C change in temperature between consecutive readings
+anomaly.jump.water_level,25,Maximum % change in tank level between consecutive readings
+anomaly.missing_data_minutes,5,Minutes without readings that raise a MISSING_DATA anomaly (NFR-08)
+anomaly.zscore_threshold,3,Z-score above which a reading is a statistical outlier (24 h window)

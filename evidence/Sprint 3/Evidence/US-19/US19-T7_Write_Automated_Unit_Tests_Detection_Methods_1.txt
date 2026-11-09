@@ -1,0 +1,34 @@
+PASS server/tests/unit/anomaly-detection.test.js
+  US19-T7 OUT_OF_RANGE (physical range of the sensor)
+    √ positive: 140 % soil moisture is impossible and flags the reading (3 ms)
+    √ positive: below the physical minimum (-3 %)
+    √ negative: values at the physical limits 0 % and 100 % are valid (1 ms)
+  US19-T7 SUDDEN_JUMP (change between consecutive readings)
+    √ positive: temperature 22 -> 30 C (+8, limit 5)
+    √ negative: temperature 22 -> 26 C (+4) and exactly +5 are not jumps (1 ms)
+    √ negative: the first reading of a sensor has nothing to compare with
+    √ the limit per type comes from system_parameters (anomaly.jump.<type>)
+  US19-T7 ZSCORE (outlier against the last 24 h)
+    √ positive: 27 C after a stable day around 21.5 C (|z| > 3) (1 ms)
+    √ negative: 22 C on the same stable day is normal
+    √ negative: fewer than 20 samples never produce a z-score
+  US19-T7 MISSING_DATA (no reading for 5 minutes)
+    √ positive: last soil reading 7 minutes ago (1 ms)
+    √ negative: last reading 2 minutes ago
+    √ the same silence is recorded once, not on every job tick
+  US19-T7 FLATLINE (identical value for 30 minutes)
+    √ positive: the tank reports exactly 80 % for 30 minutes (1 ms)
+    √ negative: small natural variation (80.0, 79.8, 79.9, 80.1)
+    √ negative: only two identical readings are not enough evidence
+  US19-T9 tuned flatline rules
+    √ light at night: 0 lux for 30 minutes is darkness, not a frozen sensor
+    √ light in daylight: a frozen value is still a FLATLINE
+    √ a per-type window (anomaly.flatline_minutes.water_level) replaces the global one
+    √ a quiet tank that keeps its level for 30 minutes is not flagged with the 12 h window
+
+Test Suites: 1 passed, 1 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        0.563 s
+Ran all test suites matching /server\\tests\\unit\\anomaly-detection.test.js/i.
+Test results written to: tools\evidence\out\jest_US19-T7.json

@@ -1,0 +1,12 @@
+Unauthenticated request
+Captured 2026-10-23T01:50:07.205Z against http://localhost:3000
+
+GET /api/anomalies
+
+→ HTTP 401 Unauthorized (3 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}

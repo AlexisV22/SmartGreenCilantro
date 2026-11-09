@@ -1,0 +1,24 @@
+detected_at,sensor_id,method,value,score,measurement_id,explanation
+2026-09-29T04:51:00.913Z,WL-01,FLATLINE,80,7,,Water tank level has reported exactly 80 % in its last 7 readings over 3 minutes. A frozen
+2026-09-29T04:48:00.912Z,SM-25B,MISSING_DATA,,28.01,,No reading has been received from Soil probe 25B for 28 minutes (the limit is 5). The sens
+2026-09-29T04:48:00.921Z,SM-25C,MISSING_DATA,,22.63,,No reading has been received from Soil probe 25C for 23 minutes (the limit is 5). The sens
+2026-09-29T04:51:00.868Z,TMP-01,MISSING_DATA,,10.88,,No reading has been received from Air temperature for 11 minutes (the limit is 5). The sen
+2026-09-29T04:51:00.878Z,HUM-01,MISSING_DATA,,10.88,,No reading has been received from Relative humidity for 11 minutes (the limit is 5). The s
+2026-09-29T04:51:00.885Z,LUX-01,MISSING_DATA,,10.88,,No reading has been received from Light intensity for 11 minutes (the limit is 5). The sen
+2026-09-29T04:51:00.892Z,CO2-01,MISSING_DATA,,10.88,,No reading has been received from CO2 concentration for 11 minutes (the limit is 5). The s
+2026-09-29T04:51:00.898Z,PH-01,MISSING_DATA,,10.88,,No reading has been received from Soil pH for 11 minutes (the limit is 5). The sensor or i
+2026-09-29T04:52:00.573Z,SM-02,MISSING_DATA,,5.15,,No reading has been received from Soil moisture 2 for 5 minutes (the limit is 5). The sens
+2026-09-29T04:52:00.590Z,SM-01,MISSING_DATA,,5.15,,No reading has been received from Soil moisture 1 for 5 minutes (the limit is 5). The sens
+2026-09-29T04:54:00.748Z,SM-25B,MISSING_DATA,,34,,No reading has been received from Soil probe 25B for 34 minutes (the limit is 5). The sens
+2026-09-29T04:54:00.759Z,SM-25C,MISSING_DATA,,28.63,,No reading has been received from Soil probe 25C for 29 minutes (the limit is 5). The sens
+2026-09-29T04:57:02.911Z,SM-02,OUT_OF_RANGE,150,50,msr-142abb98e394,The reading 150 % is outside the physical range of the sensor (0 to 100 %). The hardware m
+2026-09-29T04:57:02.928Z,SM-02,SUDDEN_JUMP,150,84.5,msr-142abb98e394,"The reading changed by 84.50 % since the previous one (65.5 %), more than the 15 % expecte"
+2026-09-29T04:57:03.005Z,TMP-01,SUDDEN_JUMP,29,7,msr-083774be1b7f,"The reading changed by 7.00 C since the previous one (22 C), more than the 5 C expected be"
+2026-09-29T04:57:03.034Z,TMP-01,SUDDEN_JUMP,22.5,6.5,msr-039f50aaaa05,"The reading changed by 6.50 C since the previous one (29 C), more than the 5 C expected be"
+2026-09-29T04:57:03.059Z,SM-02,SUDDEN_JUMP,65.5,84.5,msr-98f7d66e2946,"The reading changed by 84.50 % since the previous one (150 %), more than the 15 % expected"
+2026-09-29T04:52:44.826Z,SM-02,ZSCORE,53.5,3.56,msr-fff46b6da72b,The reading 53.5 % is 3.6 standard deviations away from the average of the last 24 hours (
+2026-09-29T04:52:49.964Z,SM-02,ZSCORE,54.3,3.29,msr-b2bf5b5ae961,The reading 54.3 % is 3.3 standard deviations away from the average of the last 24 hours (
+2026-09-29T04:52:55.099Z,SM-02,ZSCORE,53.9,3.34,msr-8d742ac0bee6,The reading 53.9 % is 3.3 standard deviations away from the average of the last 24 hours (
+2026-09-29T04:53:00.224Z,SM-02,ZSCORE,53.7,3.33,msr-60b342e5bd02,The reading 53.7 % is 3.3 standard deviations away from the average of the last 24 hours (
+2026-09-29T04:57:02.946Z,SM-02,ZSCORE,150,17.85,msr-142abb98e394,The reading 150 % is 17.9 standard deviations away from the average of the last 24 hours (
+2026-09-29T04:57:03.115Z,CO2-01,ZSCORE,1250,3.95,msr-6f9a57eae262,The reading 1250 ppm is 4.0 standard deviations away from the average of the last 24 hours

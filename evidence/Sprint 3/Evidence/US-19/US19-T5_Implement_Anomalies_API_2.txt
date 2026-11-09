@@ -1,0 +1,48 @@
+Measurements with the anomaly flag
+Captured 2026-10-23T01:50:07.204Z against http://localhost:3000
+
+GET /api/sensors/SM-02/measurements?include_anomalies=true&from=2026-10-23T01:50:06.006Z
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (9 ms)
+{
+  "sensor_id": "SM-02",
+  "type": "soil_moisture",
+  "unit": "%",
+  "area_id": "AREA-1",
+  "count": 4,
+  "data": [
+    {
+      "value": 65.5,
+      "unit": "%",
+      "recorded_at": "2026-10-23T01:50:07.109Z",
+      "received_at": "2026-10-23T01:50:07.129Z",
+      "is_anomaly": true,
+      "device_status": "OK"
+    },
+    {
+      "value": 150,
+      "unit": "%",
+      "recorded_at": "2026-10-23T01:50:07.048Z",
+      "received_at": "2026-10-23T01:50:07.054Z",
+      "is_anomaly": true,
+      "device_status": "OK"
+    },
+    {
+      "value": 65.5,
+      "unit": "%",
+      "recorded_at": "2026-10-23T01:50:07.006Z",
+      "received_at": "2026-10-23T01:50:07.019Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    },
+    {
+      "value": 65.29,
+      "unit": "%",
+      "recorded_at": "2026-10-23T01:50:06.935Z",
+      "received_at": "2026-10-23T01:50:06.970Z",
+      "is_anomaly": false,
+      "device_status": "OK"
+    }
+  ]
+}

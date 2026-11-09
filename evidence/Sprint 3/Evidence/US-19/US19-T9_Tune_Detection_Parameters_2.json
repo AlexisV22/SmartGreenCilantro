@@ -1,0 +1,357 @@
+{
+  "executed_at": "2026-10-30T22:23:55.488Z",
+  "data": {
+    "model": "server/scripts/seed-history.js (no faults)",
+    "day_from": "2026-10-29T22:10:00.000Z",
+    "day_to": "2026-10-30T22:10:17.510Z",
+    "readings_per_day": 2312
+  },
+  "target": "false-positive rate below 5 % on normal data, every injected anomaly still detected",
+  "candidates": [
+    {
+      "name": "A — initial values (US19-T1)",
+      "params": {
+        "anomaly.zscore_threshold": 3,
+        "anomaly.jump.temperature": 5,
+        "anomaly.jump.soil_moisture": 15,
+        "anomaly.flatline_minutes": 30
+      },
+      "ingestion": {
+        "accepted": 2312,
+        "total": 36,
+        "rate_pct": 1.557,
+        "by_method": [
+          {
+            "method": "ZSCORE",
+            "n": 36
+          }
+        ],
+        "by_sensor": [
+          {
+            "k": "CO2-01 ZSCORE",
+            "n": 5
+          },
+          {
+            "k": "HUM-01 ZSCORE",
+            "n": 6
+          },
+          {
+            "k": "LUX-01 ZSCORE",
+            "n": 2
+          },
+          {
+            "k": "PH-01 ZSCORE",
+            "n": 2
+          },
+          {
+            "k": "SM-01 ZSCORE",
+            "n": 3
+          },
+          {
+            "k": "SM-02 ZSCORE",
+            "n": 2
+          },
+          {
+            "k": "TMP-01 ZSCORE",
+            "n": 2
+          },
+          {
+            "k": "WL-01 ZSCORE",
+            "n": 14
+          }
+        ]
+      },
+      "periodic": {
+        "sensor_checks": 376,
+        "total": 62,
+        "rate_pct": 16.489,
+        "findings": {
+          "WL-01 FLATLINE": 40,
+          "LUX-01 FLATLINE": 21,
+          "PH-01 FLATLINE": 1
+        }
+      },
+      "detected": {
+        "spike": true,
+        "out_of_range": true,
+        "outlier": true,
+        "outlier_z": 3.98,
+        "flatline": true,
+        "disconnection": true
+      },
+      "all_detected": true,
+      "meets_target": false,
+      "seconds": 39
+    },
+    {
+      "name": "B — z-score 3.5",
+      "params": {
+        "anomaly.zscore_threshold": 3.5,
+        "anomaly.jump.temperature": 5,
+        "anomaly.jump.soil_moisture": 15,
+        "anomaly.flatline_minutes": 30
+      },
+      "ingestion": {
+        "accepted": 2312,
+        "total": 12,
+        "rate_pct": 0.519,
+        "by_method": [
+          {
+            "method": "ZSCORE",
+            "n": 12
+          }
+        ],
+        "by_sensor": [
+          {
+            "k": "HUM-01 ZSCORE",
+            "n": 1
+          },
+          {
+            "k": "SM-02 ZSCORE",
+            "n": 1
+          },
+          {
+            "k": "WL-01 ZSCORE",
+            "n": 10
+          }
+        ]
+      },
+      "periodic": {
+        "sensor_checks": 376,
+        "total": 62,
+        "rate_pct": 16.489,
+        "findings": {
+          "WL-01 FLATLINE": 40,
+          "LUX-01 FLATLINE": 21,
+          "PH-01 FLATLINE": 1
+        }
+      },
+      "detected": {
+        "spike": true,
+        "out_of_range": true,
+        "outlier": true,
+        "outlier_z": 3.98,
+        "flatline": true,
+        "disconnection": true
+      },
+      "all_detected": true,
+      "meets_target": false,
+      "seconds": 38
+    },
+    {
+      "name": "C — z-score 4",
+      "params": {
+        "anomaly.zscore_threshold": 4,
+        "anomaly.jump.temperature": 5,
+        "anomaly.jump.soil_moisture": 15,
+        "anomaly.flatline_minutes": 30
+      },
+      "ingestion": {
+        "accepted": 2312,
+        "total": 8,
+        "rate_pct": 0.346,
+        "by_method": [
+          {
+            "method": "ZSCORE",
+            "n": 8
+          }
+        ],
+        "by_sensor": [
+          {
+            "k": "WL-01 ZSCORE",
+            "n": 8
+          }
+        ]
+      },
+      "periodic": {
+        "sensor_checks": 376,
+        "total": 62,
+        "rate_pct": 16.489,
+        "findings": {
+          "WL-01 FLATLINE": 40,
+          "LUX-01 FLATLINE": 21,
+          "PH-01 FLATLINE": 1
+        }
+      },
+      "detected": {
+        "spike": true,
+        "out_of_range": true,
+        "outlier": false,
+        "outlier_z": null,
+        "flatline": true,
+        "disconnection": true
+      },
+      "all_detected": false,
+      "meets_target": false,
+      "seconds": 34
+    },
+    {
+      "name": "D — z-score 3.5, temperature jump 3 °C",
+      "params": {
+        "anomaly.zscore_threshold": 3.5,
+        "anomaly.jump.temperature": 3,
+        "anomaly.jump.soil_moisture": 15,
+        "anomaly.flatline_minutes": 30
+      },
+      "ingestion": {
+        "accepted": 2312,
+        "total": 12,
+        "rate_pct": 0.519,
+        "by_method": [
+          {
+            "method": "ZSCORE",
+            "n": 12
+          }
+        ],
+        "by_sensor": [
+          {
+            "k": "HUM-01 ZSCORE",
+            "n": 1
+          },
+          {
+            "k": "SM-02 ZSCORE",
+            "n": 1
+          },
+          {
+            "k": "WL-01 ZSCORE",
+            "n": 10
+          }
+        ]
+      },
+      "periodic": {
+        "sensor_checks": 376,
+        "total": 62,
+        "rate_pct": 16.489,
+        "findings": {
+          "WL-01 FLATLINE": 40,
+          "LUX-01 FLATLINE": 21,
+          "PH-01 FLATLINE": 1
+        }
+      },
+      "detected": {
+        "spike": true,
+        "out_of_range": true,
+        "outlier": true,
+        "outlier_z": 3.98,
+        "flatline": true,
+        "disconnection": true
+      },
+      "all_detected": true,
+      "meets_target": false,
+      "seconds": 34
+    },
+    {
+      "name": "E — z-score 3.5, flatline 15 min",
+      "params": {
+        "anomaly.zscore_threshold": 3.5,
+        "anomaly.jump.temperature": 5,
+        "anomaly.jump.soil_moisture": 15,
+        "anomaly.flatline_minutes": 15
+      },
+      "ingestion": {
+        "accepted": 2312,
+        "total": 12,
+        "rate_pct": 0.519,
+        "by_method": [
+          {
+            "method": "ZSCORE",
+            "n": 12
+          }
+        ],
+        "by_sensor": [
+          {
+            "k": "HUM-01 ZSCORE",
+            "n": 1
+          },
+          {
+            "k": "SM-02 ZSCORE",
+            "n": 1
+          },
+          {
+            "k": "WL-01 ZSCORE",
+            "n": 10
+          }
+        ]
+      },
+      "periodic": {
+        "sensor_checks": 384,
+        "total": 77,
+        "rate_pct": 20.052,
+        "findings": {
+          "WL-01 FLATLINE": 45,
+          "TMP-01 FLATLINE": 1,
+          "LUX-01 FLATLINE": 22,
+          "PH-01 FLATLINE": 9
+        }
+      },
+      "detected": {
+        "spike": true,
+        "out_of_range": true,
+        "outlier": true,
+        "outlier_z": 3.98,
+        "flatline": true,
+        "disconnection": true
+      },
+      "all_detected": true,
+      "meets_target": false,
+      "seconds": 36
+    },
+    {
+      "name": "F — z-score 3.5, flatline 60 min",
+      "params": {
+        "anomaly.zscore_threshold": 3.5,
+        "anomaly.jump.temperature": 5,
+        "anomaly.jump.soil_moisture": 15,
+        "anomaly.flatline_minutes": 60
+      },
+      "ingestion": {
+        "accepted": 2312,
+        "total": 12,
+        "rate_pct": 0.519,
+        "by_method": [
+          {
+            "method": "ZSCORE",
+            "n": 12
+          }
+        ],
+        "by_sensor": [
+          {
+            "k": "HUM-01 ZSCORE",
+            "n": 1
+          },
+          {
+            "k": "SM-02 ZSCORE",
+            "n": 1
+          },
+          {
+            "k": "WL-01 ZSCORE",
+            "n": 10
+          }
+        ]
+      },
+      "periodic": {
+        "sensor_checks": 368,
+        "total": 52,
+        "rate_pct": 14.13,
+        "findings": {
+          "WL-01 FLATLINE": 32,
+          "LUX-01 FLATLINE": 20
+        }
+      },
+      "detected": {
+        "spike": true,
+        "out_of_range": true,
+        "outlier": true,
+        "outlier_z": 3.98,
+        "flatline": true,
+        "disconnection": true
+      },
+      "all_detected": true,
+      "meets_target": false,
+      "seconds": 37
+    }
+  ],
+  "chosen": null,
+  "chosen_params": null,
+  "week_replay": null
+}

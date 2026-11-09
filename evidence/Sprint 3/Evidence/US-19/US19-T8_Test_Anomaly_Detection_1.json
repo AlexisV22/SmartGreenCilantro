@@ -1,0 +1,142 @@
+{
+  "window": {
+    "from": "2026-09-28T04:45:00.000Z",
+    "to": "2026-09-29T04:47:08.530Z",
+    "hours": 24,
+    "step_minutes": 5
+  },
+  "cycles": 289,
+  "readings_sent": 2312,
+  "accepted": 2312,
+  "rejected": 0,
+  "anomalies_total": 127,
+  "readings_flagged_invalid": 0,
+  "false_positive_rate_pct": 5.493,
+  "invalidated_rate_pct": 0,
+  "by_method": [
+    {
+      "method": "ZSCORE",
+      "n": 127
+    }
+  ],
+  "by_sensor": [
+    {
+      "sensor_id": "CO2-01",
+      "method": "ZSCORE",
+      "n": 28
+    },
+    {
+      "sensor_id": "HUM-01",
+      "method": "ZSCORE",
+      "n": 13
+    },
+    {
+      "sensor_id": "LUX-01",
+      "method": "ZSCORE",
+      "n": 34
+    },
+    {
+      "sensor_id": "SM-01",
+      "method": "ZSCORE",
+      "n": 2
+    },
+    {
+      "sensor_id": "SM-02",
+      "method": "ZSCORE",
+      "n": 2
+    },
+    {
+      "sensor_id": "TMP-01",
+      "method": "ZSCORE",
+      "n": 26
+    },
+    {
+      "sensor_id": "WL-01",
+      "method": "ZSCORE",
+      "n": 22
+    }
+  ],
+  "examples": [
+    {
+      "sensor_id": "WL-01",
+      "method": "ZSCORE",
+      "value": 84.9,
+      "score": 4.9,
+      "explanation": "The reading 84.9 % is 4.9 standard deviations away from the average of the last 24 hours (85.0 %), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:12.020Z"
+    },
+    {
+      "sensor_id": "WL-01",
+      "method": "ZSCORE",
+      "value": 84.9,
+      "score": 3.47,
+      "explanation": "The reading 84.9 % is 3.5 standard deviations away from the average of the last 24 hours (85.0 %), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:12.148Z"
+    },
+    {
+      "sensor_id": "LUX-01",
+      "method": "ZSCORE",
+      "value": 1868,
+      "score": 17.9,
+      "explanation": "The reading 1868 lux is 17.9 standard deviations away from the average of the last 24 hours (11.0 lux), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:19.535Z"
+    },
+    {
+      "sensor_id": "LUX-01",
+      "method": "ZSCORE",
+      "value": 2290,
+      "score": 10.21,
+      "explanation": "The reading 2290 lux is 10.2 standard deviations away from the average of the last 24 hours (31.6 lux), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:19.640Z"
+    },
+    {
+      "sensor_id": "LUX-01",
+      "method": "ZSCORE",
+      "value": 1603,
+      "score": 4.79,
+      "explanation": "The reading 1603 lux is 4.8 standard deviations away from the average of the last 24 hours (56.5 lux), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:19.761Z"
+    },
+    {
+      "sensor_id": "LUX-01",
+      "method": "ZSCORE",
+      "value": 1385,
+      "score": 3.65,
+      "explanation": "The reading 1385 lux is 3.6 standard deviations away from the average of the last 24 hours (73.3 lux), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:19.883Z"
+    },
+    {
+      "sensor_id": "CO2-01",
+      "method": "ZSCORE",
+      "value": 764,
+      "score": 3.75,
+      "explanation": "The reading 764 ppm is 3.8 standard deviations away from the average of the last 24 hours (820.7 ppm), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:19.900Z"
+    },
+    {
+      "sensor_id": "LUX-01",
+      "method": "ZSCORE",
+      "value": 3993,
+      "score": 10.21,
+      "explanation": "The reading 3993 lux is 10.2 standard deviations away from the average of the last 24 hours (87.4 lux), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:20.024Z"
+    },
+    {
+      "sensor_id": "CO2-01",
+      "method": "ZSCORE",
+      "value": 770,
+      "score": 3.1,
+      "explanation": "The reading 770 ppm is 3.1 standard deviations away from the average of the last 24 hours (820.1 ppm), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:20.042Z"
+    },
+    {
+      "sensor_id": "LUX-01",
+      "method": "ZSCORE",
+      "value": 3825,
+      "score": 6.67,
+      "explanation": "The reading 3825 lux is 6.7 standard deviations away from the average of the last 24 hours (128.9 lux), so it is statistically unusual.",
+      "detected_at": "2026-09-29T04:57:20.163Z"
+    }
+  ],
+  "replay_seconds": 35
+}

@@ -1,0 +1,97 @@
+Injected readings
+Captured 2026-09-29T04:57:03.200Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "SM-02",
+  "value": 150,
+  "unit": "%",
+  "recorded_at": "2026-09-29T04:57:02.894Z"
+}
+
+→ HTTP 201 Created (58 ms)
+{
+  "id": "msr-142abb98e394",
+  "sensor_id": "SM-02",
+  "status": "processed",
+  "inserted_at": "2026-09-29T04:57:02.907Z",
+  "alert": null,
+  "anomalies": [
+    {
+      "id": "anm-48989a8d4e75",
+      "method": "OUT_OF_RANGE"
+    },
+    {
+      "id": "anm-f765c16742b7",
+      "method": "SUDDEN_JUMP"
+    },
+    {
+      "id": "anm-ce7955f8b781",
+      "method": "ZSCORE"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "TMP-01",
+  "value": 29,
+  "unit": "C",
+  "recorded_at": "2026-09-29T04:57:02.987Z"
+}
+
+→ HTTP 201 Created (28 ms)
+{
+  "id": "msr-083774be1b7f",
+  "sensor_id": "TMP-01",
+  "status": "processed",
+  "inserted_at": "2026-09-29T04:57:02.999Z",
+  "alert": null,
+  "anomalies": [
+    {
+      "id": "anm-4e77d47e493a",
+      "method": "SUDDEN_JUMP"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "CO2-01",
+  "value": 1250,
+  "unit": "ppm",
+  "recorded_at": "2026-09-29T04:57:03.095Z"
+}
+
+→ HTTP 201 Created (36 ms)
+{
+  "id": "msr-6f9a57eae262",
+  "sensor_id": "CO2-01",
+  "status": "processed",
+  "inserted_at": "2026-09-29T04:57:03.108Z",
+  "alert": {
+    "id": "alr-d16b170f802b",
+    "type": "HIGH",
+    "severity": "HIGH",
+    "created": true
+  },
+  "anomalies": [
+    {
+      "id": "anm-f30cdb89cfa7",
+      "method": "ZSCORE"
+    }
+  ]
+}

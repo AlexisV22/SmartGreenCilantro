@@ -1,0 +1,232 @@
+Filtered queries
+Captured 2026-10-23T01:50:07.203Z against http://localhost:3000
+
+GET /api/anomalies?from=2026-10-23T01:50:06.006Z
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (21 ms)
+[
+  {
+    "id": "anm-92ac450bcf8f",
+    "sensor_id": "SM-02",
+    "measurement_id": "msr-3e63293abaa7",
+    "method": "SUDDEN_JUMP",
+    "value": 65.5,
+    "score": 84.5,
+    "explanation": "The reading changed by 84.50 % since the previous one (150 %), more than the 15 % expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.132Z",
+    "sensor_name": "Soil moisture 2",
+    "sensor_type": "soil_moisture",
+    "unit": "%",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-f593756bbaff",
+    "sensor_id": "TMP-01",
+    "measurement_id": "msr-ef42dbce688e",
+    "method": "SUDDEN_JUMP",
+    "value": 22.5,
+    "score": 6.5,
+    "explanation": "The reading changed by 6.50 C since the previous one (29 C), more than the 5 C expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.121Z",
+    "sensor_name": "Air temperature",
+    "sensor_type": "temperature",
+    "unit": "C",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-77e906d0c496",
+    "sensor_id": "TMP-01",
+    "measurement_id": "msr-235ece5a0108",
+    "method": "SUDDEN_JUMP",
+    "value": 29,
+    "score": 7,
+    "explanation": "The reading changed by 7.00 C since the previous one (22 C), more than the 5 C expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.101Z",
+    "sensor_name": "Air temperature",
+    "sensor_type": "temperature",
+    "unit": "C",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-28a9b07afbd5",
+    "sensor_id": "SM-02",
+    "measurement_id": "msr-ee99e8bc90d8",
+    "method": "SUDDEN_JUMP",
+    "value": 150,
+    "score": 84.5,
+    "explanation": "The reading changed by 84.50 % since the previous one (65.5 %), more than the 15 % expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.064Z",
+    "sensor_name": "Soil moisture 2",
+    "sensor_type": "soil_moisture",
+    "unit": "%",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-c3244d66099d",
+    "sensor_id": "SM-02",
+    "measurement_id": "msr-ee99e8bc90d8",
+    "method": "OUT_OF_RANGE",
+    "value": 150,
+    "score": 50,
+    "explanation": "The reading 150 % is outside the physical range of the sensor (0 to 100 %). The hardware may be disconnected or faulty.",
+    "detected_at": "2026-10-23T01:50:07.057Z",
+    "sensor_name": "Soil moisture 2",
+    "sensor_type": "soil_moisture",
+    "unit": "%",
+    "area_id": "AREA-1"
+  }
+]
+
+----------------------------------------------------------------------
+
+GET /api/anomalies?sensor_id=SM-02&from=2026-10-23T01:50:06.006Z
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (6 ms)
+[
+  {
+    "id": "anm-92ac450bcf8f",
+    "sensor_id": "SM-02",
+    "measurement_id": "msr-3e63293abaa7",
+    "method": "SUDDEN_JUMP",
+    "value": 65.5,
+    "score": 84.5,
+    "explanation": "The reading changed by 84.50 % since the previous one (150 %), more than the 15 % expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.132Z",
+    "sensor_name": "Soil moisture 2",
+    "sensor_type": "soil_moisture",
+    "unit": "%",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-28a9b07afbd5",
+    "sensor_id": "SM-02",
+    "measurement_id": "msr-ee99e8bc90d8",
+    "method": "SUDDEN_JUMP",
+    "value": 150,
+    "score": 84.5,
+    "explanation": "The reading changed by 84.50 % since the previous one (65.5 %), more than the 15 % expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.064Z",
+    "sensor_name": "Soil moisture 2",
+    "sensor_type": "soil_moisture",
+    "unit": "%",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-c3244d66099d",
+    "sensor_id": "SM-02",
+    "measurement_id": "msr-ee99e8bc90d8",
+    "method": "OUT_OF_RANGE",
+    "value": 150,
+    "score": 50,
+    "explanation": "The reading 150 % is outside the physical range of the sensor (0 to 100 %). The hardware may be disconnected or faulty.",
+    "detected_at": "2026-10-23T01:50:07.057Z",
+    "sensor_name": "Soil moisture 2",
+    "sensor_type": "soil_moisture",
+    "unit": "%",
+    "area_id": "AREA-1"
+  }
+]
+
+----------------------------------------------------------------------
+
+GET /api/anomalies?method=SUDDEN_JUMP&from=2026-10-23T01:50:06.006Z
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (6 ms)
+[
+  {
+    "id": "anm-92ac450bcf8f",
+    "sensor_id": "SM-02",
+    "measurement_id": "msr-3e63293abaa7",
+    "method": "SUDDEN_JUMP",
+    "value": 65.5,
+    "score": 84.5,
+    "explanation": "The reading changed by 84.50 % since the previous one (150 %), more than the 15 % expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.132Z",
+    "sensor_name": "Soil moisture 2",
+    "sensor_type": "soil_moisture",
+    "unit": "%",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-f593756bbaff",
+    "sensor_id": "TMP-01",
+    "measurement_id": "msr-ef42dbce688e",
+    "method": "SUDDEN_JUMP",
+    "value": 22.5,
+    "score": 6.5,
+    "explanation": "The reading changed by 6.50 C since the previous one (29 C), more than the 5 C expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.121Z",
+    "sensor_name": "Air temperature",
+    "sensor_type": "temperature",
+    "unit": "C",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-77e906d0c496",
+    "sensor_id": "TMP-01",
+    "measurement_id": "msr-235ece5a0108",
+    "method": "SUDDEN_JUMP",
+    "value": 29,
+    "score": 7,
+    "explanation": "The reading changed by 7.00 C since the previous one (22 C), more than the 5 C expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.101Z",
+    "sensor_name": "Air temperature",
+    "sensor_type": "temperature",
+    "unit": "C",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-28a9b07afbd5",
+    "sensor_id": "SM-02",
+    "measurement_id": "msr-ee99e8bc90d8",
+    "method": "SUDDEN_JUMP",
+    "value": 150,
+    "score": 84.5,
+    "explanation": "The reading changed by 84.50 % since the previous one (65.5 %), more than the 15 % expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.064Z",
+    "sensor_name": "Soil moisture 2",
+    "sensor_type": "soil_moisture",
+    "unit": "%",
+    "area_id": "AREA-1"
+  }
+]
+
+----------------------------------------------------------------------
+
+GET /api/anomalies?sensor_id=TMP-01&method=SUDDEN_JUMP&from=2026-10-23T01:50:06.006Z&to=2026-10-23T01:50:08.139Z
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (5 ms)
+[
+  {
+    "id": "anm-f593756bbaff",
+    "sensor_id": "TMP-01",
+    "measurement_id": "msr-ef42dbce688e",
+    "method": "SUDDEN_JUMP",
+    "value": 22.5,
+    "score": 6.5,
+    "explanation": "The reading changed by 6.50 C since the previous one (29 C), more than the 5 C expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.121Z",
+    "sensor_name": "Air temperature",
+    "sensor_type": "temperature",
+    "unit": "C",
+    "area_id": "AREA-1"
+  },
+  {
+    "id": "anm-77e906d0c496",
+    "sensor_id": "TMP-01",
+    "measurement_id": "msr-235ece5a0108",
+    "method": "SUDDEN_JUMP",
+    "value": 29,
+    "score": 7,
+    "explanation": "The reading changed by 7.00 C since the previous one (22 C), more than the 5 C expected between consecutive readings.",
+    "detected_at": "2026-10-23T01:50:07.101Z",
+    "sensor_name": "Air temperature",
+    "sensor_type": "temperature",
+    "unit": "C",
+    "area_id": "AREA-1"
+  }
+]

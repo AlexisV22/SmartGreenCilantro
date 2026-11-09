@@ -1,0 +1,8 @@
+id,sensor_id,value,is_anomaly,method
+msr-142abb98e394,SM-02,150,true,OUT_OF_RANGE
+msr-142abb98e394,SM-02,150,true,SUDDEN_JUMP
+msr-142abb98e394,SM-02,150,true,ZSCORE
+msr-083774be1b7f,TMP-01,29,true,SUDDEN_JUMP
+msr-039f50aaaa05,TMP-01,22.5,true,SUDDEN_JUMP
+msr-98f7d66e2946,SM-02,65.5,true,SUDDEN_JUMP
+msr-6f9a57eae262,CO2-01,1250,false,ZSCORE
