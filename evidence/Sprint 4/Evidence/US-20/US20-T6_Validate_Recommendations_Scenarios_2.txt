@@ -1,0 +1,11 @@
+S01 Dry and hot                  expected IRRIGATE     actual IRRIGATE     AGREE (score 67.85)
+S02 Wet soil                     expected WAIT         actual WAIT         AGREE (score 8.18)
+S03 Recent irrigation            expected WAIT         actual WAIT         AGREE (score 0)
+S04 Low water tank               expected CHECK_WATER  actual CHECK_WATER  AGREE (score 44.25)
+S05 Soil sensor fault            expected CHECK_SENSOR actual CHECK_SENSOR AGREE (score 44.25)
+S06 Sensors disagree             expected CHECK_SENSOR actual CHECK_SENSOR AGREE (score 22.25)
+S07 Night, normal soil           expected WAIT         actual WAIT         AGREE (score 12.05)
+S08 Hot and humid, soil fine     expected VENTILATE    actual VENTILATE    AGREE (score 20.14)
+S09 Slightly dry, mild weather   expected IRRIGATE     actual IRRIGATE     AGREE (score 38.5)
+S10 Optimal conditions           expected WAIT         actual WAIT         AGREE (score 6.25)
+agreement 10/10 = 100 %

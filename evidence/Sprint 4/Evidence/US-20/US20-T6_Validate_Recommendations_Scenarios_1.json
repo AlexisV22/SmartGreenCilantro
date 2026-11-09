@@ -1,0 +1,890 @@
+{
+  "scenarios": 10,
+  "agree": 10,
+  "agreement_pct": 100,
+  "results": [
+    {
+      "id": "S01",
+      "scenario": "Dry and hot",
+      "inputs": {
+        "soil": 52,
+        "soil2": 51.4,
+        "temperature": 30,
+        "humidity": 45,
+        "tank": 80,
+        "light": 30000,
+        "hours_since_irrigation": 9,
+        "sensor_fault": false
+      },
+      "expected": "IRRIGATE",
+      "why": "soil below the 60 % minimum, hot and dry air",
+      "actual": "IRRIGATE",
+      "agree": true,
+      "score": 67.85,
+      "confidence": "Low",
+      "duration_min": 6.6,
+      "recommendation": "Irrigation is recommended for Area 1 for approximately 6.6 minutes.",
+      "reason": "Irrigation should be considered for Area 1 because soil moisture (51.7 %) is below the optimal minimum of 60 % (target 65 %), soil moisture is falling at 10.303 %/h and the current temperature is high (30 °C, above the optimal maximum of 25 °C). Verify water availability before activating the irrigation system.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 51.7,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 30
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 45
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 80
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 9
+        }
+      ],
+      "factors": [
+        {
+          "key": "moisture_deficit",
+          "unit": "%",
+          "label": "Soil moisture below the target",
+          "value": 51.7,
+          "target": 65,
+          "deficit": 13.3,
+          "contribution": 26.6
+        },
+        {
+          "key": "moisture_falling",
+          "unit": "%/h",
+          "label": "Soil moisture is falling",
+          "contribution": 15,
+          "slope_per_hour": -10.303,
+          "hours_to_threshold": null
+        },
+        {
+          "key": "temperature_high",
+          "max": 25,
+          "unit": "C",
+          "label": "Temperature above the optimal range",
+          "value": 30,
+          "excess": 5,
+          "contribution": 12.5
+        },
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 9,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 11.25
+        },
+        {
+          "key": "humidity_low",
+          "min": 50,
+          "unit": "%",
+          "label": "Relative humidity below the optimal range",
+          "value": 45,
+          "shortfall": 5,
+          "contribution": 2.5
+        }
+      ],
+      "created_at": "2026-09-29T05:04:05.921Z"
+    },
+    {
+      "id": "S02",
+      "scenario": "Wet soil",
+      "inputs": {
+        "soil": 85.5,
+        "soil2": 85,
+        "temperature": 21,
+        "humidity": 65,
+        "tank": 80,
+        "light": 25000,
+        "hours_since_irrigation": 2,
+        "sensor_fault": false
+      },
+      "expected": "WAIT",
+      "why": "soil above the maximum: never irrigate",
+      "actual": "WAIT",
+      "agree": true,
+      "score": 8.18,
+      "confidence": "Low",
+      "duration_min": null,
+      "recommendation": "No action is needed in Area 1 for now.",
+      "reason": "Soil moisture is 85.3 %, above the optimal maximum of 80 %. Do not irrigate: excess water can cause root rot in cilantro.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 85.3,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 21
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 65
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 80
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 2
+        }
+      ],
+      "factors": [
+        {
+          "key": "moisture_falling",
+          "unit": "%/h",
+          "label": "Soil moisture is falling",
+          "contribution": 5.68,
+          "slope_per_hour": -0.7576,
+          "hours_to_threshold": 33.33
+        },
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 2,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 2.5
+        }
+      ],
+      "created_at": "2026-09-29T05:04:06.328Z"
+    },
+    {
+      "id": "S03",
+      "scenario": "Recent irrigation",
+      "inputs": {
+        "soil": 59.4,
+        "soil2": 58.9,
+        "temperature": 23,
+        "humidity": 58,
+        "tank": 78,
+        "light": 26000,
+        "hours_since_irrigation": 0.2,
+        "sensor_fault": false
+      },
+      "expected": "WAIT",
+      "why": "irrigated 12 min ago: the water is still soaking in (cooldown)",
+      "actual": "WAIT",
+      "agree": true,
+      "score": 0,
+      "confidence": "Low",
+      "duration_min": null,
+      "recommendation": "No action is needed in Area 1 for now.",
+      "reason": "No irrigation is needed right now because irrigation already ran 0.2 hours ago and the 30-minute cooldown is still active. Soil moisture is 59.1 % against a target of 65 %.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 59.1,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 23
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 58
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 78
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 0.2
+        }
+      ],
+      "factors": [
+        {
+          "key": "recent_irrigation",
+          "unit": "h",
+          "hours": 0.2,
+          "label": "Irrigation happened recently (cooldown active)",
+          "contribution": -25,
+          "cooldown_min": 30
+        },
+        {
+          "key": "moisture_deficit",
+          "unit": "%",
+          "label": "Soil moisture below the target",
+          "value": 59.1,
+          "target": 65,
+          "deficit": 5.9,
+          "contribution": 11.7
+        },
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 0.2,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 0.25
+        }
+      ],
+      "created_at": "2026-09-29T05:04:06.766Z"
+    },
+    {
+      "id": "S04",
+      "scenario": "Low water tank",
+      "inputs": {
+        "soil": 55,
+        "soil2": 54.5,
+        "temperature": 24,
+        "humidity": 55,
+        "tank": 12,
+        "light": 28000,
+        "hours_since_irrigation": 7,
+        "sensor_fault": false
+      },
+      "expected": "CHECK_WATER",
+      "why": "tank below the 20 % minimum",
+      "actual": "CHECK_WATER",
+      "agree": true,
+      "score": 44.25,
+      "confidence": "Low",
+      "duration_min": null,
+      "recommendation": "Check the water supply of Area 1 before irrigating.",
+      "reason": "The water tank is at 12 %, below the minimum level required to irrigate safely. Refill the tank before starting irrigation.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 54.8,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 24
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 55
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 12
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 7
+        }
+      ],
+      "factors": [
+        {
+          "key": "moisture_deficit",
+          "unit": "%",
+          "label": "Soil moisture below the target",
+          "value": 54.8,
+          "target": 65,
+          "deficit": 10.3,
+          "contribution": 20.5
+        },
+        {
+          "key": "moisture_falling",
+          "unit": "%/h",
+          "label": "Soil moisture is falling",
+          "contribution": 15,
+          "slope_per_hour": -3.8788,
+          "hours_to_threshold": null
+        },
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 7,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 8.75
+        }
+      ],
+      "created_at": "2026-09-29T05:04:07.223Z"
+    },
+    {
+      "id": "S05",
+      "scenario": "Soil sensor fault",
+      "inputs": {
+        "soil": 55,
+        "soil2": 54.5,
+        "temperature": 24,
+        "humidity": 55,
+        "tank": 80,
+        "light": 28000,
+        "hours_since_irrigation": 7,
+        "sensor_fault": true
+      },
+      "expected": "CHECK_SENSOR",
+      "why": "SM-02 reported an impossible value in the last hour",
+      "actual": "CHECK_SENSOR",
+      "agree": true,
+      "score": 44.25,
+      "confidence": "Low",
+      "duration_min": null,
+      "recommendation": "Check the soil-moisture sensors of Area 1 before taking any irrigation decision.",
+      "reason": "The soil-moisture sensors reported 1 abnormal reading(s) in the last hour, so the data is not reliable enough to decide on irrigation (SM-01: 55.0 %, SM-02: 54.5 %).",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 54.8,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 24
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 55
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 80
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 7
+        }
+      ],
+      "factors": [
+        {
+          "key": "moisture_deficit",
+          "unit": "%",
+          "label": "Soil moisture below the target",
+          "value": 54.8,
+          "target": 65,
+          "deficit": 10.3,
+          "contribution": 20.5
+        },
+        {
+          "key": "moisture_falling",
+          "unit": "%/h",
+          "label": "Soil moisture is falling",
+          "contribution": 15,
+          "slope_per_hour": -3.8788,
+          "hours_to_threshold": null
+        },
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 7,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 8.75
+        }
+      ],
+      "created_at": "2026-09-29T05:04:07.680Z"
+    },
+    {
+      "id": "S06",
+      "scenario": "Sensors disagree",
+      "inputs": {
+        "soil": 70,
+        "soil2": 44,
+        "temperature": 22,
+        "humidity": 60,
+        "tank": 80,
+        "light": 25000,
+        "hours_since_irrigation": 5,
+        "sensor_fault": false
+      },
+      "expected": "CHECK_SENSOR",
+      "why": "SM-01 70 % vs SM-02 44 %: more than 15 points apart",
+      "actual": "CHECK_SENSOR",
+      "agree": true,
+      "score": 22.25,
+      "confidence": "Low",
+      "duration_min": null,
+      "recommendation": "Check the soil-moisture sensors of Area 1 before taking any irrigation decision.",
+      "reason": "The soil-moisture sensors disagree by 26 percentage points (SM-01: 70.0 %, SM-02: 44.0 %), which is more than the tolerance configured for this greenhouse. One of the probes may be faulty or badly positioned.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 57,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 22
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 60
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 80
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 5
+        }
+      ],
+      "factors": [
+        {
+          "key": "moisture_deficit",
+          "unit": "%",
+          "label": "Soil moisture below the target",
+          "value": 57,
+          "target": 65,
+          "deficit": 8,
+          "contribution": 16
+        },
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 5,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 6.25
+        }
+      ],
+      "created_at": "2026-09-29T05:04:08.111Z"
+    },
+    {
+      "id": "S07",
+      "scenario": "Night, normal soil",
+      "inputs": {
+        "soil": 66,
+        "soil2": 65.5,
+        "temperature": 16,
+        "humidity": 72,
+        "tank": 80,
+        "light": 0,
+        "hours_since_irrigation": 6,
+        "sensor_fault": false
+      },
+      "expected": "WAIT",
+      "why": "everything in range; darkness at night is normal",
+      "actual": "WAIT",
+      "agree": true,
+      "score": 12.05,
+      "confidence": "Low",
+      "duration_min": null,
+      "recommendation": "No action is needed in Area 1 for now.",
+      "reason": "Conditions are inside the expected range: soil moisture is 65.8 % against a target of 65 %, and the overall irrigation-need score is 12.05 out of 100, below the threshold that would justify irrigating.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 65.8,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 16
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 72
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 80
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 6
+        }
+      ],
+      "factors": [
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 6,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 7.5
+        },
+        {
+          "key": "moisture_falling",
+          "unit": "%/h",
+          "label": "Soil moisture is falling",
+          "contribution": 4.55,
+          "slope_per_hour": -0.6061,
+          "hours_to_threshold": 9.49
+        }
+      ],
+      "created_at": "2026-09-29T05:04:08.500Z"
+    },
+    {
+      "id": "S08",
+      "scenario": "Hot and humid, soil fine",
+      "inputs": {
+        "soil": 69.5,
+        "soil2": 69,
+        "temperature": 29,
+        "humidity": 80,
+        "tank": 80,
+        "light": 32000,
+        "hours_since_irrigation": 4,
+        "sensor_fault": false
+      },
+      "expected": "VENTILATE",
+      "why": "temperature and humidity above their ranges; soil moisture fine",
+      "actual": "VENTILATE",
+      "agree": true,
+      "score": 20.14,
+      "confidence": "Low",
+      "duration_min": null,
+      "recommendation": "Ventilation is recommended for Area 1.",
+      "reason": "Temperature (29 °C) and relative humidity (80 %) are both above their optimal ranges, which favours fungal problems in cilantro. Ventilating reduces both at the same time.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 69.3,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 29
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 80
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 80
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 4
+        }
+      ],
+      "factors": [
+        {
+          "key": "temperature_high",
+          "max": 25,
+          "unit": "C",
+          "label": "Temperature above the optimal range",
+          "value": 29,
+          "excess": 4,
+          "contribution": 10
+        },
+        {
+          "key": "moisture_falling",
+          "unit": "%/h",
+          "label": "Soil moisture is falling",
+          "contribution": 5.14,
+          "slope_per_hour": -0.6848,
+          "hours_to_threshold": 13.51
+        },
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 4,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 5
+        }
+      ],
+      "created_at": "2026-09-29T05:04:08.907Z"
+    },
+    {
+      "id": "S09",
+      "scenario": "Slightly dry, mild weather",
+      "inputs": {
+        "soil": 58.5,
+        "soil2": 58,
+        "temperature": 22,
+        "humidity": 60,
+        "tank": 80,
+        "light": 25000,
+        "hours_since_irrigation": 8,
+        "sensor_fault": false
+      },
+      "expected": "IRRIGATE",
+      "why": "soil just below the minimum",
+      "actual": "IRRIGATE",
+      "agree": true,
+      "score": 38.5,
+      "confidence": "Low",
+      "duration_min": 3.4,
+      "recommendation": "Irrigation is recommended for Area 1 for approximately 3.4 minutes.",
+      "reason": "Irrigation should be considered for Area 1 because soil moisture is falling at 3.2606 %/h, soil moisture (58.3 %) is below the optimal minimum of 60 % (target 65 %) and the last irrigation was 8 hours ago. Verify water availability before activating the irrigation system.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 58.3,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 22
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 60
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 80
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 8
+        }
+      ],
+      "factors": [
+        {
+          "key": "moisture_falling",
+          "unit": "%/h",
+          "label": "Soil moisture is falling",
+          "contribution": 15,
+          "slope_per_hour": -3.2606,
+          "hours_to_threshold": null
+        },
+        {
+          "key": "moisture_deficit",
+          "unit": "%",
+          "label": "Soil moisture below the target",
+          "value": 58.3,
+          "target": 65,
+          "deficit": 6.8,
+          "contribution": 13.5
+        },
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 8,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 10
+        }
+      ],
+      "created_at": "2026-09-29T05:04:09.342Z"
+    },
+    {
+      "id": "S10",
+      "scenario": "Optimal conditions",
+      "inputs": {
+        "soil": 67.8,
+        "soil2": 67.3,
+        "temperature": 22,
+        "humidity": 60,
+        "tank": 85,
+        "light": 26000,
+        "hours_since_irrigation": 3,
+        "sensor_fault": false
+      },
+      "expected": "WAIT",
+      "why": "everything inside the optimal ranges",
+      "actual": "WAIT",
+      "agree": true,
+      "score": 6.25,
+      "confidence": "Low",
+      "duration_min": null,
+      "recommendation": "No action is needed in Area 1 for now.",
+      "reason": "Conditions are inside the expected range: soil moisture is 67.5 % against a target of 65 %, and the overall irrigation-need score is 6.25 out of 100, below the threshold that would justify irrigating.",
+      "relevant_measurements": [
+        {
+          "unit": "%",
+          "label": "Soil moisture",
+          "range": {
+            "max": 80,
+            "min": 60
+          },
+          "value": 67.5,
+          "target": 65
+        },
+        {
+          "unit": "°C",
+          "label": "Air temperature",
+          "range": {
+            "max": 25,
+            "min": 15
+          },
+          "value": 22
+        },
+        {
+          "unit": "%",
+          "label": "Relative humidity",
+          "range": {
+            "max": 70,
+            "min": 50
+          },
+          "value": 60
+        },
+        {
+          "unit": "%",
+          "label": "Water tank level",
+          "value": 85
+        },
+        {
+          "unit": "h",
+          "label": "Time since last irrigation",
+          "value": 3
+        }
+      ],
+      "factors": [
+        {
+          "key": "time_since_irrigation",
+          "unit": "h",
+          "hours": 3,
+          "label": "Time elapsed since the last irrigation",
+          "contribution": 3.75
+        },
+        {
+          "key": "moisture_falling",
+          "unit": "%/h",
+          "label": "Soil moisture is falling",
+          "contribution": 2.5,
+          "slope_per_hour": -0.3333,
+          "hours_to_threshold": 22.65
+        }
+      ],
+      "created_at": "2026-09-29T05:04:09.745Z"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+Producer attempt
+Captured 2026-09-29T05:04:14.783Z against http://localhost:3000
+
+PUT /api/ai/config
+Authorization: Bearer eyJhbG…
+
+{
+  "duration_factor": 1
+}
+
+→ HTTP 403 Forbidden (20 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: ai.write"
+    }
+  ]
+}

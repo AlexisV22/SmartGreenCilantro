@@ -1,0 +1,12 @@
+Without a session
+Captured 2026-09-29T05:04:20.733Z against http://localhost:3000
+
+GET /api/recommendations
+
+→ HTTP 401 Unauthorized (9 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}

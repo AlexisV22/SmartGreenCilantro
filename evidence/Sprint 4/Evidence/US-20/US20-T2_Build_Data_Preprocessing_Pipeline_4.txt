@@ -1,0 +1,8 @@
+PASS server/tests/unit/trends.test.js
+PASS server/tests/unit/recommender.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       31 passed, 31 total
+Snapshots:   0 total
+Time:        2.838 s
+Ran all test suites matching /server\\tests\\unit\\trends.test.js|server\\tests\\unit\\recommender.test.js/i.

@@ -1,0 +1,810 @@
+Pending and past recommendations
+Captured 2026-09-29T05:04:20.728Z against http://localhost:3000
+
+GET /api/recommendations?status=PENDING&area_id=AREA-1
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (22 ms)
+[
+  {
+    "id": "rec-c749611e9e97",
+    "area_id": "AREA-1",
+    "type": "CHECK_SENSOR",
+    "score": 0,
+    "confidence": 0,
+    "recommended_duration_min": null,
+    "inputs": {
+      "tank_level": 80,
+      "thresholds": {
+        "temperature": {
+          "max": 25,
+          "min": 15
+        },
+        "air_humidity": {
+          "max": 70,
+          "min": 50
+        },
+        "soil_moisture": {
+          "max": 80,
+          "min": 60
+        }
+      },
+      "temperature": 26,
+      "air_humidity": 50,
+      "sensor_values": {
+        "SM-01": 55,
+        "SM-02": 54.6
+      },
+      "soil_moisture": 54.8,
+      "target_moisture": 65,
+      "sensor_agreement": 0.987,
+      "data_completeness": 0.992,
+      "sensor_spread_pct": 0.4,
+      "soil_sensor_anomalies": 24,
+      "hours_since_irrigation": 0.049550277777777776,
+      "anomaly_count_last_hour": 30
+    },
+    "factors": [
+      {
+        "key": "recent_irrigation",
+        "unit": "h",
+        "hours": 0.05,
+        "label": "Irrigation happened recently (cooldown active)",
+        "contribution": -25,
+        "cooldown_min": 30
+      },
+      {
+        "key": "moisture_deficit",
+        "unit": "%",
+        "label": "Soil moisture below the target",
+        "value": 54.8,
+        "target": 65,
+        "deficit": 10.2,
+        "contribution": 20.4
+      },
+      {
+        "key": "temperature_high",
+        "max": 25,
+        "unit": "C",
+        "label": "Temperature above the optimal range",
+        "value": 26,
+        "excess": 1,
+        "contribution": 2.5
+      },
+      {
+        "key": "moisture_falling",
+        "unit": "%/h",
+        "label": "Soil moisture is falling",
+        "contribution": 1.21,
+        "slope_per_hour": -0.1609,
+        "hours_to_threshold": null
+      },
+      {
+        "key": "time_since_irrigation",
+        "unit": "h",
+        "hours": 0,
+        "label": "Time elapsed since the last irrigation",
+        "contribution": 0.06
+      }
+    ],
+    "recommendation": "Check the soil-moisture sensors of Area 1 before taking any irrigation decision.",
+    "reason": "The soil-moisture sensors reported 24 abnormal reading(s) in the last hour, so the data is not reliable enough to decide on irrigation (SM-02: 54.6 %, SM-01: 55.0 %).",
+    "relevant_measurements": [
+      {
+        "unit": "%",
+        "label": "Soil moisture",
+        "range": {
+          "max": 80,
+          "min": 60
+        },
+        "value": 54.8,
+        "target": 65
+      },
+      {
+        "unit": "°C",
+        "label": "Air temperature",
+        "range": {
+          "max": 25,
+          "min": 15
+        },
+        "value": 26
+      },
+      {
+        "unit": "%",
+        "label": "Relative humidity",
+        "range": {
+          "max": 70,
+          "min": 50
+        },
+        "value": 50
+      },
+      {
+        "unit": "%",
+        "label": "Water tank level",
+        "value": 80
+      },
+      {
+        "unit": "h",
+        "label": "Time since last irrigation",
+        "value": 0
+      }
+    ],
+    "confidence_text": "Low",
+    "status": "PENDING",
+    "decided_by": null,
+    "decided_at": null,
+    "decision_comment": null,
+    "created_at": "2026-09-29T05:04:16.078Z",
+    "area_name": "Cultivation Area 1",
+    "decided_by_email": null
+  }
+]
+
+----------------------------------------------------------------------
+
+GET /api/recommendations?area_id=AREA-1&limit=5
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (15 ms)
+[
+  {
+    "id": "rec-c749611e9e97",
+    "area_id": "AREA-1",
+    "type": "CHECK_SENSOR",
+    "score": 0,
+    "confidence": 0,
+    "recommended_duration_min": null,
+    "inputs": {
+      "tank_level": 80,
+      "thresholds": {
+        "temperature": {
+          "max": 25,
+          "min": 15
+        },
+        "air_humidity": {
+          "max": 70,
+          "min": 50
+        },
+        "soil_moisture": {
+          "max": 80,
+          "min": 60
+        }
+      },
+      "temperature": 26,
+      "air_humidity": 50,
+      "sensor_values": {
+        "SM-01": 55,
+        "SM-02": 54.6
+      },
+      "soil_moisture": 54.8,
+      "target_moisture": 65,
+      "sensor_agreement": 0.987,
+      "data_completeness": 0.992,
+      "sensor_spread_pct": 0.4,
+      "soil_sensor_anomalies": 24,
+      "hours_since_irrigation": 0.049550277777777776,
+      "anomaly_count_last_hour": 30
+    },
+    "factors": [
+      {
+        "key": "recent_irrigation",
+        "unit": "h",
+        "hours": 0.05,
+        "label": "Irrigation happened recently (cooldown active)",
+        "contribution": -25,
+        "cooldown_min": 30
+      },
+      {
+        "key": "moisture_deficit",
+        "unit": "%",
+        "label": "Soil moisture below the target",
+        "value": 54.8,
+        "target": 65,
+        "deficit": 10.2,
+        "contribution": 20.4
+      },
+      {
+        "key": "temperature_high",
+        "max": 25,
+        "unit": "C",
+        "label": "Temperature above the optimal range",
+        "value": 26,
+        "excess": 1,
+        "contribution": 2.5
+      },
+      {
+        "key": "moisture_falling",
+        "unit": "%/h",
+        "label": "Soil moisture is falling",
+        "contribution": 1.21,
+        "slope_per_hour": -0.1609,
+        "hours_to_threshold": null
+      },
+      {
+        "key": "time_since_irrigation",
+        "unit": "h",
+        "hours": 0,
+        "label": "Time elapsed since the last irrigation",
+        "contribution": 0.06
+      }
+    ],
+    "recommendation": "Check the soil-moisture sensors of Area 1 before taking any irrigation decision.",
+    "reason": "The soil-moisture sensors reported 24 abnormal reading(s) in the last hour, so the data is not reliable enough to decide on irrigation (SM-02: 54.6 %, SM-01: 55.0 %).",
+    "relevant_measurements": [
+      {
+        "unit": "%",
+        "label": "Soil moisture",
+        "range": {
+          "max": 80,
+          "min": 60
+        },
+        "value": 54.8,
+        "target": 65
+      },
+      {
+        "unit": "°C",
+        "label": "Air temperature",
+        "range": {
+          "max": 25,
+          "min": 15
+        },
+        "value": 26
+      },
+      {
+        "unit": "%",
+        "label": "Relative humidity",
+        "range": {
+          "max": 70,
+          "min": 50
+        },
+        "value": 50
+      },
+      {
+        "unit": "%",
+        "label": "Water tank level",
+        "value": 80
+      },
+      {
+        "unit": "h",
+        "label": "Time since last irrigation",
+        "value": 0
+      }
+    ],
+    "confidence_text": "Low",
+    "status": "PENDING",
+    "decided_by": null,
+    "decided_at": null,
+    "decision_comment": null,
+    "created_at": "2026-09-29T05:04:16.078Z",
+    "area_name": "Cultivation Area 1",
+    "decided_by_email": null
+  },
+  {
+    "id": "rec-59a594b497ed",
+    "area_id": "AREA-1",
+    "type": "CHECK_SENSOR",
+    "score": 0,
+    "confidence": 0,
+    "recommended_duration_min": null,
+    "inputs": {
+      "tank_level": 80,
+      "thresholds": {
+        "temperature": {
+          "max": 25,
+          "min": 15
+        },
+        "air_humidity": {
+          "max": 70,
+          "min": 50
+        },
+        "soil_moisture": {
+          "max": 80,
+          "min": 60
+        }
+      },
+      "temperature": 26,
+      "air_humidity": 50,
+      "sensor_values": {
+        "SM-01": 56,
+        "SM-02": 55.7
+      },
+      "soil_moisture": 55.85,
+      "target_moisture": 65,
+      "sensor_agreement": 0.99,
+      "data_completeness": 0.992,
+      "sensor_spread_pct": 0.3,
+      "soil_sensor_anomalies": 24,
+      "hours_since_irrigation": 0.0486375,
+      "anomaly_count_last_hour": 30
+    },
+    "factors": [
+      {
+        "key": "recent_irrigation",
+        "unit": "h",
+        "hours": 0.05,
+        "label": "Irrigation happened recently (cooldown active)",
+        "contribution": -25,
+        "cooldown_min": 30
+      },
+      {
+        "key": "moisture_deficit",
+        "unit": "%",
+        "label": "Soil moisture below the target",
+        "value": 55.9,
+        "target": 65,
+        "deficit": 9.1,
+        "contribution": 18.3
+      },
+      {
+        "key": "temperature_high",
+        "max": 25,
+        "unit": "C",
+        "label": "Temperature above the optimal range",
+        "value": 26,
+        "excess": 1,
+        "contribution": 2.5
+      },
+      {
+        "key": "moisture_falling",
+        "unit": "%/h",
+        "label": "Soil moisture is falling",
+        "contribution": 1.21,
+        "slope_per_hour": -0.1613,
+        "hours_to_threshold": null
+      },
+      {
+        "key": "time_since_irrigation",
+        "unit": "h",
+        "hours": 0,
+        "label": "Time elapsed since the last irrigation",
+        "contribution": 0.06
+      }
+    ],
+    "recommendation": "Check the soil-moisture sensors of Area 1 before taking any irrigation decision.",
+    "reason": "The soil-moisture sensors reported 24 abnormal reading(s) in the last hour, so the data is not reliable enough to decide on irrigation (SM-02: 55.7 %, SM-01: 56.0 %).",
+    "relevant_measurements": [
+      {
+        "unit": "%",
+        "label": "Soil moisture",
+        "range": {
+          "max": 80,
+          "min": 60
+        },
+        "value": 55.9,
+        "target": 65
+      },
+      {
+        "unit": "°C",
+        "label": "Air temperature",
+        "range": {
+          "max": 25,
+          "min": 15
+        },
+        "value": 26
+      },
+      {
+        "unit": "%",
+        "label": "Relative humidity",
+        "range": {
+          "max": 70,
+          "min": 50
+        },
+        "value": 50
+      },
+      {
+        "unit": "%",
+        "label": "Water tank level",
+        "value": 80
+      },
+      {
+        "unit": "h",
+        "label": "Time since last irrigation",
+        "value": 0
+      }
+    ],
+    "confidence_text": "Low",
+    "status": "EXPIRED",
+    "decided_by": null,
+    "decided_at": null,
+    "decision_comment": null,
+    "created_at": "2026-09-29T05:04:12.793Z",
+    "area_name": "Cultivation Area 1",
+    "decided_by_email": null
+  },
+  {
+    "id": "rec-310aa788fb12",
+    "area_id": "AREA-1",
+    "type": "CHECK_SENSOR",
+    "score": 0,
+    "confidence": 0,
+    "recommended_duration_min": null,
+    "inputs": {
+      "tank_level": 80,
+      "thresholds": {
+        "temperature": {
+          "max": 25,
+          "min": 15
+        },
+        "air_humidity": {
+          "max": 70,
+          "min": 50
+        },
+        "soil_moisture": {
+          "max": 80,
+          "min": 60
+        }
+      },
+      "temperature": 26,
+      "air_humidity": 50,
+      "sensor_values": {
+        "SM-01": 56,
+        "SM-02": 55.7
+      },
+      "soil_moisture": 55.85,
+      "target_moisture": 65,
+      "sensor_agreement": 0.99,
+      "data_completeness": 0.992,
+      "sensor_spread_pct": 0.3,
+      "soil_sensor_anomalies": 24,
+      "hours_since_irrigation": 0.048606111111111114,
+      "anomaly_count_last_hour": 30
+    },
+    "factors": [
+      {
+        "key": "recent_irrigation",
+        "unit": "h",
+        "hours": 0.05,
+        "label": "Irrigation happened recently (cooldown active)",
+        "contribution": -25,
+        "cooldown_min": 30
+      },
+      {
+        "key": "moisture_deficit",
+        "unit": "%",
+        "label": "Soil moisture below the target",
+        "value": 55.9,
+        "target": 65,
+        "deficit": 9.1,
+        "contribution": 18.3
+      },
+      {
+        "key": "temperature_high",
+        "max": 25,
+        "unit": "C",
+        "label": "Temperature above the optimal range",
+        "value": 26,
+        "excess": 1,
+        "contribution": 2.5
+      },
+      {
+        "key": "moisture_falling",
+        "unit": "%/h",
+        "label": "Soil moisture is falling",
+        "contribution": 1.21,
+        "slope_per_hour": -0.1613,
+        "hours_to_threshold": null
+      },
+      {
+        "key": "time_since_irrigation",
+        "unit": "h",
+        "hours": 0,
+        "label": "Time elapsed since the last irrigation",
+        "contribution": 0.06
+      }
+    ],
+    "recommendation": "Check the soil-moisture sensors of Area 1 before taking any irrigation decision.",
+    "reason": "The soil-moisture sensors reported 24 abnormal reading(s) in the last hour, so the data is not reliable enough to decide on irrigation (SM-02: 55.7 %, SM-01: 56.0 %).",
+    "relevant_measurements": [
+      {
+        "unit": "%",
+        "label": "Soil moisture",
+        "range": {
+          "max": 80,
+          "min": 60
+        },
+        "value": 55.9,
+        "target": 65
+      },
+      {
+        "unit": "°C",
+        "label": "Air temperature",
+        "range": {
+          "max": 25,
+          "min": 15
+        },
+        "value": 26
+      },
+      {
+        "unit": "%",
+        "label": "Relative humidity",
+        "range": {
+          "max": 70,
+          "min": 50
+        },
+        "value": 50
+      },
+      {
+        "unit": "%",
+        "label": "Water tank level",
+        "value": 80
+      },
+      {
+        "unit": "h",
+        "label": "Time since last irrigation",
+        "value": 0
+      }
+    ],
+    "confidence_text": "Low",
+    "status": "EXPIRED",
+    "decided_by": null,
+    "decided_at": null,
+    "decision_comment": null,
+    "created_at": "2026-09-29T05:04:12.678Z",
+    "area_name": "Cultivation Area 1",
+    "decided_by_email": null
+  },
+  {
+    "id": "rec-c795502a63da",
+    "area_id": "AREA-1",
+    "type": "CHECK_SENSOR",
+    "score": 18.77,
+    "confidence": 0,
+    "recommended_duration_min": null,
+    "inputs": {
+      "tank_level": 80,
+      "thresholds": {
+        "temperature": {
+          "max": 25,
+          "min": 15
+        },
+        "air_humidity": {
+          "max": 70,
+          "min": 50
+        },
+        "soil_moisture": {
+          "max": 80,
+          "min": 60
+        }
+      },
+      "temperature": 26,
+      "air_humidity": 50,
+      "sensor_values": {
+        "SM-01": 38,
+        "SM-02": 37.7
+      },
+      "soil_moisture": 37.85,
+      "target_moisture": 65,
+      "sensor_agreement": 0.99,
+      "data_completeness": 0.992,
+      "sensor_spread_pct": 0.3,
+      "soil_sensor_anomalies": 24,
+      "hours_since_irrigation": 0.04853166666666667,
+      "anomaly_count_last_hour": 30
+    },
+    "factors": [
+      {
+        "key": "moisture_deficit",
+        "unit": "%",
+        "label": "Soil moisture below the target",
+        "value": 37.9,
+        "target": 65,
+        "deficit": 27.1,
+        "contribution": 40
+      },
+      {
+        "key": "recent_irrigation",
+        "unit": "h",
+        "hours": 0.05,
+        "label": "Irrigation happened recently (cooldown active)",
+        "contribution": -25,
+        "cooldown_min": 30
+      },
+      {
+        "key": "temperature_high",
+        "max": 25,
+        "unit": "C",
+        "label": "Temperature above the optimal range",
+        "value": 26,
+        "excess": 1,
+        "contribution": 2.5
+      },
+      {
+        "key": "moisture_falling",
+        "unit": "%/h",
+        "label": "Soil moisture is falling",
+        "contribution": 1.21,
+        "slope_per_hour": -0.1608,
+        "hours_to_threshold": null
+      },
+      {
+        "key": "time_since_irrigation",
+        "unit": "h",
+        "hours": 0,
+        "label": "Time elapsed since the last irrigation",
+        "contribution": 0.06
+      }
+    ],
+    "recommendation": "Check the soil-moisture sensors of Area 1 before taking any irrigation decision.",
+    "reason": "The soil-moisture sensors reported 24 abnormal reading(s) in the last hour, so the data is not reliable enough to decide on irrigation (SM-02: 37.7 %, SM-01: 38.0 %).",
+    "relevant_measurements": [
+      {
+        "unit": "%",
+        "label": "Soil moisture",
+        "range": {
+          "max": 80,
+          "min": 60
+        },
+        "value": 37.9,
+        "target": 65
+      },
+      {
+        "unit": "°C",
+        "label": "Air temperature",
+        "range": {
+          "max": 25,
+          "min": 15
+        },
+        "value": 26
+      },
+      {
+        "unit": "%",
+        "label": "Relative humidity",
+        "range": {
+          "max": 70,
+          "min": 50
+        },
+        "value": 50
+      },
+      {
+        "unit": "%",
+        "label": "Water tank level",
+        "value": 80
+      },
+      {
+        "unit": "h",
+        "label": "Time since last irrigation",
+        "value": 0
+      }
+    ],
+    "confidence_text": "Low",
+    "status": "EXPIRED",
+    "decided_by": null,
+    "decided_at": null,
+    "decision_comment": null,
+    "created_at": "2026-09-29T05:04:12.416Z",
+    "area_name": "Cultivation Area 1",
+    "decided_by_email": null
+  },
+  {
+    "id": "rec-6f7a01b48cb7",
+    "area_id": "AREA-1",
+    "type": "CHECK_SENSOR",
+    "score": 1.13,
+    "confidence": 0,
+    "recommended_duration_min": null,
+    "inputs": {
+      "tank_level": 80,
+      "thresholds": {
+        "temperature": {
+          "max": 25,
+          "min": 15
+        },
+        "air_humidity": {
+          "max": 70,
+          "min": 50
+        },
+        "soil_moisture": {
+          "max": 80,
+          "min": 60
+        }
+      },
+      "temperature": 26,
+      "air_humidity": 50,
+      "sensor_values": {
+        "SM-01": 54,
+        "SM-02": 53.6
+      },
+      "soil_moisture": 53.8,
+      "target_moisture": 65,
+      "sensor_agreement": 0.987,
+      "data_completeness": 0.992,
+      "sensor_spread_pct": 0.4,
+      "soil_sensor_anomalies": 24,
+      "hours_since_irrigation": 0.04532916666666666,
+      "anomaly_count_last_hour": 30
+    },
+    "factors": [
+      {
+        "key": "recent_irrigation",
+        "unit": "h",
+        "hours": 0.05,
+        "label": "Irrigation happened recently (cooldown active)",
+        "contribution": -25,
+        "cooldown_min": 30
+      },
+      {
+        "key": "moisture_deficit",
+        "unit": "%",
+        "label": "Soil moisture below the target",
+        "value": 53.8,
+        "target": 65,
+        "deficit": 11.2,
+        "contribution": 22.4
+      },
+      {
+        "key": "temperature_high",
+        "max": 25,
+        "unit": "C",
+        "label": "Temperature above the optimal range",
+        "value": 26,
+        "excess": 1,
+        "contribution": 2.5
+      },
+      {
+        "key": "moisture_falling",
+        "unit": "%/h",
+        "label": "Soil moisture is falling",
+        "contribution": 1.17,
+        "slope_per_hour": -0.1565,
+        "hours_to_threshold": 16.96
+      },
+      {
+        "key": "time_since_irrigation",
+        "unit": "h",
+        "hours": 0,
+        "label": "Time elapsed since the last irrigation",
+        "contribution": 0.06
+      }
+    ],
+    "recommendation": "Check the soil-moisture sensors of Area 1 before taking any irrigation decision.",
+    "reason": "The soil-moisture sensors reported 24 abnormal reading(s) in the last hour, so the data is not reliable enough to decide on irrigation (SM-02: 53.6 %, SM-01: 54.0 %).",
+    "relevant_measurements": [
+      {
+        "unit": "%",
+        "label": "Soil moisture",
+        "range": {
+          "max": 80,
+          "min": 60
+        },
+        "value": 53.8,
+        "target": 65
+      },
+      {
+        "unit": "°C",
+        "label": "Air temperature",
+        "range": {
+          "max": 25,
+          "min": 15
+        },
+        "value": 26
+      },
+      {
+        "unit": "%",
+        "label": "Relative humidity",
+        "range": {
+          "max": 70,
+          "min": 50
+        },
+        "value": 50
+      },
+      {
+        "unit": "%",
+        "label": "Water tank level",
+        "value": 80
+      },
+      {
+        "unit": "h",
+        "label": "Time since last irrigation",
+        "value": 0
+      }
+    ],
+    "confidence_text": "Low",
+    "status": "EXPIRED",
+    "decided_by": null,
+    "decided_at": null,
+    "decision_comment": null,
+    "created_at": "2026-09-29T05:04:00.887Z",
+    "area_name": "Cultivation Area 1",
+    "decided_by_email": null
+  }
+]
