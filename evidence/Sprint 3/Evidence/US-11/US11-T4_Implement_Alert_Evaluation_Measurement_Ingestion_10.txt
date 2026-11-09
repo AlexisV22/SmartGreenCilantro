@@ -1,0 +1,84 @@
+Repeated out-of-range readings
+Captured 2026-10-02T23:17:28.916Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "SM-01",
+  "value": 58,
+  "unit": "%",
+  "recorded_at": "2026-10-02T23:17:28.435Z"
+}
+
+→ HTTP 201 Created (16 ms)
+{
+  "id": "msr-2a09bc9ebb62",
+  "sensor_id": "SM-01",
+  "status": "processed",
+  "inserted_at": "2026-10-02T23:17:28.443Z",
+  "alert": {
+    "id": "alr-ef8529f7b970",
+    "type": "LOW",
+    "severity": "LOW",
+    "created": true
+  },
+  "anomalies": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "SM-01",
+  "value": 57.4,
+  "unit": "%",
+  "recorded_at": "2026-10-02T23:17:28.451Z"
+}
+
+→ HTTP 201 Created (17 ms)
+{
+  "id": "msr-04bcdda1a29a",
+  "sensor_id": "SM-01",
+  "status": "processed",
+  "inserted_at": "2026-10-02T23:17:28.459Z",
+  "alert": {
+    "id": "alr-ef8529f7b970",
+    "type": "LOW",
+    "severity": "MEDIUM",
+    "created": false
+  },
+  "anomalies": []
+}
+
+----------------------------------------------------------------------
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "SM-01",
+  "value": 57.1,
+  "unit": "%",
+  "recorded_at": "2026-10-02T23:17:28.468Z"
+}
+
+→ HTTP 201 Created (14 ms)
+{
+  "id": "msr-70964dbb1455",
+  "sensor_id": "SM-01",
+  "status": "processed",
+  "inserted_at": "2026-10-02T23:17:28.475Z",
+  "alert": {
+    "id": "alr-ef8529f7b970",
+    "type": "LOW",
+    "severity": "MEDIUM",
+    "created": false
+  },
+  "anomalies": []
+}

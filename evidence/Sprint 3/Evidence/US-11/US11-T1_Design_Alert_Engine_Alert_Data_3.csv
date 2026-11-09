@@ -1,0 +1,16 @@
+column_name,data_type,is_nullable
+id,text,NO
+sensor_id,text,YES
+device_id,text,YES
+area_id,text,YES
+threshold_id,text,YES
+type,text,NO
+value,numeric,YES
+severity,text,NO
+status,text,NO
+message,text,NO
+deviation_pct,numeric,YES
+created_at,timestamp with time zone,NO
+acknowledged_by,text,YES
+acknowledged_at,timestamp with time zone,YES
+resolved_at,timestamp with time zone,YES

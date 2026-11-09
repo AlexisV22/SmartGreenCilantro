@@ -1,0 +1,6 @@
+created_at,level,message
+2026-10-02T23:17:24.253Z,WARN,"MEDIUM LOW alert on SM-01: The soil moisture in AREA-1 is 55.7 %, below the configured minimum of 60 %."
+2026-10-02T23:17:24.267Z,WARN,"MEDIUM LOW alert on SM-02: The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %."
+2026-10-02T23:17:24.282Z,WARN,"MEDIUM HIGH alert on TMP-01: The air temperature in AREA-1 is 26.5 C, above the configured maximum of 25 C."
+2026-10-02T23:17:24.294Z,WARN,"MEDIUM LOW alert on HUM-01: The relative humidity in AREA-1 is 45.2 %, below the configured minimum of 50 %."
+2026-10-02T23:17:28.451Z,WARN,"LOW LOW alert on SM-01: The soil moisture in AREA-1 is 58 %, below the configured minimum of 60 %."

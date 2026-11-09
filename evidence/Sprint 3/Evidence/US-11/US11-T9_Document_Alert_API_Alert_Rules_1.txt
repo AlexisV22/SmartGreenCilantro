@@ -1,0 +1,339 @@
+Calls used to check the documentation
+Captured 2026-10-30T22:49:23.140Z against http://localhost:3000
+
+GET /api/alerts?status=OPEN&sensor_id=SM-01&limit=1
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (6 ms)
+{
+  "total": 1,
+  "limit": 1,
+  "offset": 0,
+  "count": 1,
+  "data": [
+    {
+      "id": "alr-05568b2a997a",
+      "sensor_id": "SM-01",
+      "device_id": null,
+      "area_id": "AREA-1",
+      "threshold_id": "th-a1-soil-moisture",
+      "type": "LOW",
+      "value": 57,
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "message": "The soil moisture in AREA-1 is 57 %, below the configured minimum of 60 %.",
+      "deviation_pct": 15,
+      "created_at": "2026-10-30T22:49:22.705Z",
+      "acknowledged_by": null,
+      "acknowledged_at": null,
+      "resolved_at": null,
+      "sensor_name": "Soil moisture 1",
+      "sensor_type": "soil_moisture",
+      "sensor_unit": "%",
+      "min_value": 60,
+      "max_value": 80,
+      "acknowledged_by_email": null
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PATCH /api/alerts/alr-05568b2a997a/ack
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (6 ms)
+{
+  "id": "alr-05568b2a997a",
+  "sensor_id": "SM-01",
+  "device_id": null,
+  "area_id": "AREA-1",
+  "threshold_id": "th-a1-soil-moisture",
+  "type": "LOW",
+  "value": 57,
+  "severity": "MEDIUM",
+  "status": "ACKNOWLEDGED",
+  "message": "The soil moisture in AREA-1 is 57 %, below the configured minimum of 60 %.",
+  "deviation_pct": 15,
+  "created_at": "2026-10-30T22:49:22.705Z",
+  "acknowledged_by": "usr-producer",
+  "acknowledged_at": "2026-10-30T22:49:22.742Z",
+  "resolved_at": null
+}
+
+----------------------------------------------------------------------
+
+PATCH /api/alerts/alr-05568b2a997a/ack
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (5 ms)
+{
+  "id": "alr-05568b2a997a",
+  "sensor_id": "SM-01",
+  "device_id": null,
+  "area_id": "AREA-1",
+  "threshold_id": "th-a1-soil-moisture",
+  "type": "LOW",
+  "value": 57,
+  "severity": "MEDIUM",
+  "status": "ACKNOWLEDGED",
+  "message": "The soil moisture in AREA-1 is 57 %, below the configured minimum of 60 %.",
+  "deviation_pct": 15,
+  "created_at": "2026-10-30T22:49:22.705Z",
+  "acknowledged_by": "usr-producer",
+  "acknowledged_at": "2026-10-30T22:49:22.742Z",
+  "resolved_at": null
+}
+
+----------------------------------------------------------------------
+
+PATCH /api/alerts/alr-05568b2a997a/ack
+Authorization: Bearer eyJhbG…
+
+→ HTTP 400 Bad Request (7 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "A resolved alert cannot be acknowledged.",
+  "details": [
+    {
+      "field": "status",
+      "issue": "The alert is already RESOLVED."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PATCH /api/alerts/alr-does-not-exist/ack
+Authorization: Bearer eyJhbG…
+
+→ HTTP 404 Not Found (5 ms)
+{
+  "status": 404,
+  "code": "ERR_RESOURCE_NOT_FOUND",
+  "message": "No alert with id \"alr-does-not-exist\".",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/alerts?severity=URGENT
+Authorization: Bearer eyJhbG…
+
+→ HTTP 400 Bad Request (4 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The query parameters are invalid.",
+  "details": [
+    {
+      "field": "severity",
+      "issue": "Invalid enum value. Expected 'LOW' | 'MEDIUM' | 'HIGH', received 'URGENT'"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/alerts?limit=5000
+Authorization: Bearer eyJhbG…
+
+→ HTTP 400 Bad Request (4 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The query parameters are invalid.",
+  "details": [
+    {
+      "field": "limit",
+      "issue": "Number must be less than or equal to 1000"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+GET /api/alerts
+
+→ HTTP 401 Unauthorized (2 ms)
+{
+  "status": 401,
+  "code": "ERR_AUTH_REQUIRED",
+  "message": "A Bearer token is required. Sign in to obtain one.",
+  "details": []
+}
+
+----------------------------------------------------------------------
+
+GET /api/alerts/export.csv?limit=3
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (11 ms)
+Date,Sensor,Variable,Value,Unit,Threshold min,Threshold max,Type,Severity,Status,Message,Acknowledged by,Acknowledged at,Resolved at
+2026-10-30T22:49:22.705Z,SM-01,soil_moisture,57,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57 %, below the configured minimum of 60 %.",producer@smartgreen.ai,2026-10-30T22:49:22.742Z,2026-10-30T22:49:22.763Z
+2026-10-30T22:47:22.408Z,LUX-01,light,6777.2,lux,10000,40000,LOW,MEDIUM,OPEN,"The light intensity in AREA-1 is 6777.2 lux, below the configured minimum of 10000 lux.",,,
+2026-10-09T23:10:00.269Z,,,,,,,DEVICE_OFFLINE,HIGH,RESOLVED,The device Nodo Central Invernadero 1 has not communicated for more than 5 minutes. Check its power supply and network connection.,,,2026-10-30T22:48:00.322Z
+2026-10-09T23:04:21.292Z,SM-01,soil_moisture,41.84,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 41.84 %, below the configured minimum of 60 %.",,,2026-10-23T01:50:05.573Z
+2026-10-02T23:33:34.214Z,LUX-01,light,6700,lux,10000,40000,LOW,MEDIUM,RESOLVED,"The light intensity in AREA-1 is 6700 lux, below the configured minimum of 10000 lux.",,,2026-10-23T01:49:24.614Z
+2026-10-02T23:32:42.682Z,LUX-01,light,7600,lux,10000,40000,LOW,MEDIUM,RESOLVED,"The light intensity in AREA-1 is 7600 lux, below the configured minimum of 10000 lux.",,,2026-10-02T23:33:03.339Z
+2026-10-02T23:31:46.042Z,SM-02,soil_moisture,59.4,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 59.4 %, below the configured minimum of 60 %.",,,2026-10-02T23:32:16.950Z
+2026-10-02T23:31:46.015Z,SM-01,soil_moisture,59.8,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 59.8 %, below the configured minimum of 60 %.",,,2026-10-02T23:32:16.936Z
+2026-10-02T23:26:02.467Z,WL-01,water_level,15,%,20,100,LOW,LOW,RESOLVED,"The water tank level in AREA-1 is 15 %, below the configured minimum of 20 %.",,,2026-10-02T23:26:05.107Z
+2026-10-02T23:24:45.595Z,SM-02,soil_moisture,57.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.8 %, below the configured minimum of 60 %.",,,2026-10-02T23:31:45.587Z
+2026-10-02T23:24:45.560Z,SM-01,soil_moisture,58.1,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58.1 %, below the configured minimum of 60 %.",,,2026-10-02T23:31:45.564Z
+2026-10-02T23:23:07.782Z,SM-02,soil_moisture,58,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58 %, below the configured minimum of 60 %.",,,2026-10-02T23:23:33.534Z
+2026-10-02T23:23:07.769Z,SM-01,soil_moisture,58.4,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58.4 %, below the configured minimum of 60 %.",,,2026-10-02T23:23:33.524Z
+2026-10-02T23:18:13.058Z,HUM-01,air_humidity,45.5,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.5 %, below the configured minimum of 50 %.",,,2026-10-02T23:18:15.130Z
+2026-10-02T23:18:13.049Z,TMP-01,temperature,26.4,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.4 C, above the configured maximum of 25 C.",,,2026-10-02T23:18:15.123Z
+2026-10-02T23:18:13.038Z,SM-02,soil_moisture,54.9,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.9 %, below the configured minimum of 60 %.",,,2026-10-02T23:18:15.116Z
+2026-10-02T23:18:13.027Z,SM-01,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-10-02T23:18:15.107Z
+2026-10-02T23:18:08.911Z,HUM-01,air_humidity,45.3,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.3 %, below the configured minimum of 50 %.",,,2026-10-02T23:18:10.978Z
+2026-10-02T23:18:08.901Z,TMP-01,temperature,26.6,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.6 C, above the configured maximum of 25 C.",,,2026-10-02T23:18:10.970Z
+2026-10-02T23:18:08.892Z,SM-02,soil_moisture,54.9,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.9 %, below the configured minimum of 60 %.",,,2026-10-02T23:18:10.963Z
+2026-10-02T23:18:08.882Z,SM-01,soil_moisture,55.3,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.3 %, below the configured minimum of 60 %.",,,2026-10-02T23:18:10.956Z
+2026-10-02T23:18:04.771Z,HUM-01,air_humidity,45.3,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.3 %, below the configured minimum of 50 %.",,,2026-10-02T23:18:06.839Z
+2026-10-02T23:18:04.761Z,TMP-01,temperature,26.3,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.3 C, above the configured maximum of 25 C.",,,2026-10-02T23:18:06.832Z
+2026-10-02T23:18:04.751Z,SM-02,soil_moisture,55.1,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.1 %, below the configured minimum of 60 %.",,,2026-10-02T23:18:06.824Z
+2026-10-02T23:18:04.738Z,SM-01,soil_moisture,55.7,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.7 %, below the configured minimum of 60 %.",,,2026-10-02T23:18:06.815Z
+2026-10-02T23:18:00.594Z,HUM-01,air_humidity,44.7,%,50,70,LOW,HIGH,RESOLVED,"The relative humidity in AREA-1 is 44.7 %, below the configured minimum of 50 %.",,,2026-10-02T23:18:02.688Z
+2026-10-02T23:18:00.584Z,TMP-01,temperature,26.5,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.5 C, above the configured maximum of 25 C.",,,2026-10-02T23:18:02.677Z
+2026-10-02T23:18:00.575Z,SM-02,soil_moisture,55,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55 %, below the configured minimum of 60 %.",,,2026-10-02T23:18:02.650Z
+2026-10-02T23:18:00.566Z,SM-01,soil_moisture,55.4,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.4 %, below the configured minimum of 60 %.",,,2026-10-02T23:18:02.641Z
+2026-10-02T23:17:56.441Z,HUM-01,air_humidity,45.1,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.1 %, below the configured minimum of 50 %.",,,2026-10-02T23:17:58.514Z
+2026-10-02T23:17:56.431Z,TMP-01,temperature,26.5,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.5 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:58.506Z
+2026-10-02T23:17:56.420Z,SM-02,soil_moisture,55.1,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.1 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:58.498Z
+2026-10-02T23:17:56.409Z,SM-01,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:58.490Z
+2026-10-02T23:17:52.284Z,HUM-01,air_humidity,45.4,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.4 %, below the configured minimum of 50 %.",,,2026-10-02T23:17:54.358Z
+2026-10-02T23:17:52.274Z,TMP-01,temperature,26.5,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.5 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:54.351Z
+2026-10-02T23:17:52.263Z,SM-02,soil_moisture,55.3,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.3 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:54.344Z
+2026-10-02T23:17:52.251Z,SM-01,soil_moisture,55.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.8 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:54.334Z
+2026-10-02T23:17:46.171Z,TMP-01,temperature,27.6,C,15,25,HIGH,HIGH,RESOLVED,"The air temperature in AREA-1 is 27.6 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:51.089Z
+2026-10-02T23:17:46.144Z,TMP-01,temperature,27.5,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 27.5 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:46.157Z
+2026-10-02T23:17:46.113Z,TMP-01,temperature,27.4,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 27.4 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:46.129Z
+2026-10-02T23:17:46.083Z,TMP-01,temperature,26.1,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.1 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:46.099Z
+2026-10-02T23:17:46.054Z,TMP-01,temperature,26,C,15,25,HIGH,LOW,RESOLVED,"The air temperature in AREA-1 is 26 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:46.067Z
+2026-10-02T23:17:46.027Z,TMP-01,temperature,25.9,C,15,25,HIGH,LOW,RESOLVED,"The air temperature in AREA-1 is 25.9 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:46.040Z
+2026-10-02T23:17:46.002Z,SM-01,soil_moisture,54.8,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.8 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:46.185Z
+2026-10-02T23:17:45.974Z,SM-01,soil_moisture,55,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:45.988Z
+2026-10-02T23:17:45.947Z,SM-01,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:45.960Z
+2026-10-02T23:17:45.919Z,SM-01,soil_moisture,57.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.8 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:45.933Z
+2026-10-02T23:17:45.891Z,SM-01,soil_moisture,58,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:45.905Z
+2026-10-02T23:17:45.856Z,SM-01,soil_moisture,58.2,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58.2 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:45.874Z
+2026-10-02T23:17:41.901Z,HUM-01,air_humidity,44,%,50,70,LOW,HIGH,RESOLVED,"The relative humidity in AREA-1 is 44 %, below the configured minimum of 50 %.",,,2026-10-02T23:17:45.756Z
+2026-10-02T23:17:41.871Z,TMP-01,temperature,27,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 27 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:45.749Z
+2026-10-02T23:17:41.829Z,SM-01,soil_moisture,54.2,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.2 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:45.741Z
+2026-10-02T23:17:32.319Z,TMP-01,temperature,26.2,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.2 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:32.401Z
+2026-10-02T23:17:32.271Z,SM-01,soil_moisture,56.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 56.8 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:32.390Z
+2026-10-02T23:17:30.590Z,SM-01,soil_moisture,57.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.2 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:32.114Z
+2026-10-02T23:17:28.448Z,SM-01,soil_moisture,57.1,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.1 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:28.495Z
+2026-10-02T23:17:24.291Z,HUM-01,air_humidity,45.2,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.2 %, below the configured minimum of 50 %.",,,2026-10-02T23:17:28.370Z
+2026-10-02T23:17:24.279Z,TMP-01,temperature,26.5,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.5 C, above the configured maximum of 25 C.",,,2026-10-02T23:17:28.363Z
+2026-10-02T23:17:24.264Z,SM-02,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:28.356Z
+2026-10-02T23:17:24.247Z,SM-01,soil_moisture,55.7,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.7 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:28.348Z
+2026-09-30T23:06:00.888Z,,,,,,,DEVICE_OFFLINE,HIGH,RESOLVED,The device Nodo Central Invernadero 1 has not communicated for more than 5 minutes. Check its power supply and network connection.,producer@smartgreen.ai,2026-10-02T23:17:31.186Z,2026-10-02T23:18:00.664Z
+2026-09-30T23:00:22.552Z,HUM-01,air_humidity,70.49,%,50,70,HIGH,LOW,RESOLVED,"The relative humidity in AREA-1 is 70.49 %, above the configured maximum of 70 %.",producer@smartgreen.ai,2026-09-30T23:00:58.229Z,2026-10-02T23:17:21.041Z
+2026-09-30T23:00:07.324Z,LUX-01,light,0,lux,10000,40000,LOW,HIGH,RESOLVED,"The light intensity in AREA-1 is 0 lux, below the configured minimum of 10000 lux.",producer@smartgreen.ai,2026-09-30T23:00:49.187Z,2026-10-02T23:17:24.301Z
+2026-09-30T22:59:16.540Z,LUX-01,light,8246,lux,10000,40000,LOW,MEDIUM,RESOLVED,"The light intensity in AREA-1 is 8246 lux, below the configured minimum of 10000 lux.",,,2026-09-30T22:59:57.182Z
+2026-09-30T22:58:46.077Z,SM-01,soil_moisture,56.92,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 56.92 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:21.020Z
+2026-09-30T22:58:10.564Z,SM-02,soil_moisture,56.46,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 56.46 %, below the configured minimum of 60 %.",,,2026-10-02T23:17:21.029Z
+2026-09-30T22:58:10.550Z,SM-01,soil_moisture,55.2,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-09-30T22:58:40.993Z
+2026-09-30T22:11:00.097Z,,,,,,,DEVICE_OFFLINE,HIGH,RESOLVED,The device Nodo Central Invernadero 1 has not communicated for more than 5 minutes. Check its power supply and network connection.,,,2026-09-30T22:54:00.871Z
+2026-09-29T05:04:54.753Z,SM-02,soil_moisture,56.55,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 56.55 %, below the configured minimum of 60 %.",producer@smartgreen.ai,2026-09-29T05:05:26.717Z,2026-09-29T05:05:27.538Z
+2026-09-29T05:04:54.731Z,SM-01,soil_moisture,57.05,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.05 %, below the configured minimum of 60 %.",,,2026-09-29T05:05:27.521Z
+2026-09-29T05:04:54.372Z,TMP-01,temperature,25.88,C,15,25,HIGH,LOW,RESOLVED,"The air temperature in AREA-1 is 25.88 C, above the configured maximum of 25 C.",,,2026-09-29T05:05:27.555Z
+2026-09-29T05:04:37.754Z,SM-02,soil_moisture,53.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 53.6 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:43.583Z
+2026-09-29T05:04:37.724Z,SM-01,soil_moisture,54,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:43.561Z
+2026-09-29T05:04:36.346Z,SM-02,soil_moisture,53.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 53.6 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:37.336Z
+2026-09-29T05:04:36.327Z,SM-01,soil_moisture,54,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:37.313Z
+2026-09-29T05:04:35.964Z,TMP-01,temperature,26,C,15,25,HIGH,LOW,RESOLVED,"The air temperature in AREA-1 is 26 C, above the configured maximum of 25 C.",,,2026-09-29T05:04:43.602Z
+2026-09-29T05:04:33.462Z,SM-02,soil_moisture,53.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 53.6 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:35.810Z
+2026-09-29T05:04:33.433Z,SM-01,soil_moisture,54,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:35.791Z
+2026-09-29T05:04:27.576Z,SM-02,soil_moisture,53.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 53.6 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:33.053Z
+2026-09-29T05:04:27.551Z,SM-01,soil_moisture,54,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:33.032Z
+2026-09-29T05:04:27.190Z,TMP-01,temperature,26,C,15,25,HIGH,LOW,RESOLVED,"The air temperature in AREA-1 is 26 C, above the configured maximum of 25 C.",,,2026-09-29T05:04:35.824Z
+2026-09-29T05:04:25.356Z,SM-01,soil_moisture,54,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:27.011Z
+2026-09-29T05:04:25.331Z,SM-02,soil_moisture,53.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 53.6 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:27.029Z
+2026-09-29T05:04:21.465Z,SM-02,soil_moisture,53.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 53.6 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:25.296Z
+2026-09-29T05:04:21.436Z,SM-01,soil_moisture,54,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:25.277Z
+2026-09-29T05:04:15.270Z,SM-02,soil_moisture,54.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.6 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:21.052Z
+2026-09-29T05:04:15.250Z,SM-01,soil_moisture,55,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:21.036Z
+2026-09-29T05:04:14.866Z,TMP-01,temperature,26,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26 C, above the configured maximum of 25 C.",,,2026-09-29T05:04:27.047Z
+2026-09-29T05:04:10.325Z,SM-02,soil_moisture,55.7,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 55.7 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:12.883Z
+2026-09-29T05:04:10.281Z,SM-01,soil_moisture,56,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 56 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:12.865Z
+2026-09-29T05:03:59.259Z,SM-02,soil_moisture,53.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 53.6 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:09.898Z
+2026-09-29T05:03:59.228Z,SM-01,soil_moisture,54,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54 %, below the configured minimum of 60 %.",,,2026-09-29T05:04:09.877Z
+2026-09-29T05:03:58.828Z,TMP-01,temperature,26,C,15,25,HIGH,LOW,RESOLVED,"The air temperature in AREA-1 is 26 C, above the configured maximum of 25 C.",,,2026-09-29T05:04:12.898Z
+2026-09-29T04:58:48.378Z,SM-02,soil_moisture,56.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 56.8 %, below the configured minimum of 60 %.",,,2026-09-29T05:00:03.223Z
+2026-09-29T04:58:48.356Z,SM-01,soil_moisture,57.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.2 %, below the configured minimum of 60 %.",,,2026-09-29T05:00:03.207Z
+2026-09-29T04:57:05.957Z,CO2-01,co2,1260,ppm,400,1000,HIGH,HIGH,RESOLVED,"The CO2 concentration in AREA-1 is 1260 ppm, above the configured maximum of 1000 ppm.",,,2026-09-29T04:57:05.979Z
+2026-09-29T04:57:03.125Z,CO2-01,co2,1250,ppm,400,1000,HIGH,HIGH,RESOLVED,"The CO2 concentration in AREA-1 is 1250 ppm, above the configured maximum of 1000 ppm.",,,2026-09-29T04:57:03.154Z
+2026-09-29T04:56:30.773Z,SM-02,soil_moisture,59.6,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 59.6 %, below the configured minimum of 60 %.",,,2026-09-29T04:56:41.038Z
+2026-09-29T04:56:10.215Z,SM-02,soil_moisture,59.9,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 59.9 %, below the configured minimum of 60 %.",,,2026-09-29T04:56:20.520Z
+2026-09-29T04:55:34.314Z,HUM-01,air_humidity,72.4,%,50,70,HIGH,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 72.4 %, above the configured maximum of 70 %.",,,2026-09-29T04:56:46.397Z
+2026-09-29T04:55:08.633Z,HUM-01,air_humidity,70.1,%,50,70,HIGH,LOW,RESOLVED,"The relative humidity in AREA-1 is 70.1 %, above the configured maximum of 70 %.",,,2026-09-29T04:55:13.808Z
+2026-09-29T04:52:44.837Z,SM-02,soil_moisture,57.6,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 57.6 %, below the configured minimum of 60 %.",,,2026-09-29T04:54:37.839Z
+2026-09-29T04:52:44.811Z,SM-01,soil_moisture,59,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 59 %, below the configured minimum of 60 %.",,,2026-09-29T04:54:37.826Z
+2026-09-29T04:47:00.264Z,,,15,,,,LOW_WATER,HIGH,OPEN,"The water tank is at 15 %, below the minimum of 20 % required to irrigate.",,,
+2026-09-29T04:46:51.564Z,WL-01,water_level,15,%,20,100,LOW,LOW,RESOLVED,"The water tank level in AREA-1 is 15 %, below the configured minimum of 20 %.",,,2026-09-29T04:47:04.100Z
+2026-09-29T04:45:46.460Z,SM-02,soil_moisture,57.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.8 %, below the configured minimum of 60 %.",,,2026-09-29T04:52:44.407Z
+2026-09-29T04:45:46.431Z,SM-01,soil_moisture,58.1,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58.1 %, below the configured minimum of 60 %.",,,2026-09-29T04:52:44.386Z
+2026-09-29T04:43:12.443Z,SM-02,soil_moisture,58,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58 %, below the configured minimum of 60 %.",,,2026-09-29T04:44:24.928Z
+2026-09-29T04:43:12.424Z,SM-01,soil_moisture,58.4,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58.4 %, below the configured minimum of 60 %.",,,2026-09-29T04:44:24.909Z
+2026-09-29T04:38:42.023Z,HUM-01,air_humidity,44.9,%,50,70,LOW,HIGH,RESOLVED,"The relative humidity in AREA-1 is 44.9 %, below the configured minimum of 50 %.",,,2026-09-29T04:38:44.166Z
+2026-09-29T04:38:41.997Z,TMP-01,temperature,26.3,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.3 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:44.151Z
+2026-09-29T04:38:41.973Z,SM-02,soil_moisture,54.8,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.8 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:44.136Z
+2026-09-29T04:38:41.943Z,SM-01,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:44.122Z
+2026-09-29T04:38:37.706Z,HUM-01,air_humidity,45.3,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.3 %, below the configured minimum of 50 %.",,,2026-09-29T04:38:39.846Z
+2026-09-29T04:38:37.687Z,TMP-01,temperature,26.6,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.6 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:39.831Z
+2026-09-29T04:38:37.666Z,SM-02,soil_moisture,55.1,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.1 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:39.815Z
+2026-09-29T04:38:37.642Z,SM-01,soil_moisture,55.6,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.6 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:39.800Z
+2026-09-29T04:38:33.402Z,HUM-01,air_humidity,45.1,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.1 %, below the configured minimum of 50 %.",,,2026-09-29T04:38:35.550Z
+2026-09-29T04:38:33.384Z,TMP-01,temperature,26.5,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.5 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:35.532Z
+2026-09-29T04:38:33.363Z,SM-02,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:35.516Z
+2026-09-29T04:38:33.335Z,SM-01,soil_moisture,55.4,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.4 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:35.497Z
+2026-09-29T04:38:29.107Z,HUM-01,air_humidity,45.4,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.4 %, below the configured minimum of 50 %.",,,2026-09-29T04:38:31.234Z
+2026-09-29T04:38:29.089Z,TMP-01,temperature,26.4,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.4 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:31.220Z
+2026-09-29T04:38:29.069Z,SM-02,soil_moisture,54.9,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.9 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:31.205Z
+2026-09-29T04:38:29.047Z,SM-01,soil_moisture,55.3,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.3 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:31.190Z
+2026-09-29T04:38:24.824Z,HUM-01,air_humidity,44.9,%,50,70,LOW,HIGH,RESOLVED,"The relative humidity in AREA-1 is 44.9 %, below the configured minimum of 50 %.",,,2026-09-29T04:38:26.959Z
+2026-09-29T04:38:24.803Z,TMP-01,temperature,26.5,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.5 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:26.943Z
+2026-09-29T04:38:24.784Z,SM-02,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:26.928Z
+2026-09-29T04:38:24.759Z,SM-01,soil_moisture,55.6,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.6 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:26.912Z
+2026-09-29T04:38:20.512Z,HUM-01,air_humidity,45.5,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.5 %, below the configured minimum of 50 %.",,,2026-09-29T04:38:22.650Z
+2026-09-29T04:38:20.492Z,TMP-01,temperature,26.4,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.4 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:22.635Z
+2026-09-29T04:38:20.472Z,SM-02,soil_moisture,54.8,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.8 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:22.621Z
+2026-09-29T04:38:20.447Z,SM-01,soil_moisture,55.3,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.3 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:22.605Z
+2026-09-29T04:38:12.048Z,TMP-01,temperature,27.6,C,15,25,HIGH,HIGH,RESOLVED,"The air temperature in AREA-1 is 27.6 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:20.075Z
+2026-09-29T04:38:11.999Z,TMP-01,temperature,27.5,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 27.5 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:12.021Z
+2026-09-29T04:38:11.951Z,TMP-01,temperature,27.4,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 27.4 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:11.974Z
+2026-09-29T04:38:11.899Z,TMP-01,temperature,26.1,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.1 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:11.925Z
+2026-09-29T04:38:11.855Z,TMP-01,temperature,26,C,15,25,HIGH,LOW,RESOLVED,"The air temperature in AREA-1 is 26 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:11.876Z
+2026-09-29T04:38:11.813Z,TMP-01,temperature,25.9,C,15,25,HIGH,LOW,RESOLVED,"The air temperature in AREA-1 is 25.9 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:11.832Z
+2026-09-29T04:38:11.766Z,SM-01,soil_moisture,54.8,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.8 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:12.073Z
+2026-09-29T04:38:11.710Z,SM-01,soil_moisture,55,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:11.739Z
+2026-09-29T04:38:11.649Z,SM-01,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:11.679Z
+2026-09-29T04:38:11.589Z,SM-01,soil_moisture,57.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.8 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:11.613Z
+2026-09-29T04:38:11.530Z,SM-01,soil_moisture,58,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:11.561Z
+2026-09-29T04:38:11.472Z,SM-01,soil_moisture,58.2,%,60,80,LOW,LOW,RESOLVED,"The soil moisture in AREA-1 is 58.2 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:11.499Z
+2026-09-29T04:38:06.951Z,HUM-01,air_humidity,44,%,50,70,LOW,HIGH,RESOLVED,"The relative humidity in AREA-1 is 44 %, below the configured minimum of 50 %.",,,2026-09-29T04:38:11.267Z
+2026-09-29T04:38:06.903Z,TMP-01,temperature,27,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 27 C, above the configured maximum of 25 C.",,,2026-09-29T04:38:11.251Z
+2026-09-29T04:38:06.852Z,SM-01,soil_moisture,54.2,%,60,80,LOW,HIGH,RESOLVED,"The soil moisture in AREA-1 is 54.2 %, below the configured minimum of 60 %.",,,2026-09-29T04:38:11.235Z
+2026-09-29T04:37:54.720Z,TMP-01,temperature,26.2,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.2 C, above the configured maximum of 25 C.",,,2026-09-29T04:37:54.826Z
+2026-09-29T04:37:54.665Z,SM-01,soil_moisture,56.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 56.8 %, below the configured minimum of 60 %.",,,2026-09-29T04:37:54.809Z
+2026-09-29T04:37:23.767Z,SM-01,soil_moisture,57.28,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.28 %, below the configured minimum of 60 %.",producer@smartgreen.ai,2026-09-29T04:37:53.531Z,2026-09-29T04:37:54.507Z
+2026-09-29T04:37:20.976Z,SM-01,soil_moisture,57.1,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.1 %, below the configured minimum of 60 %.",,,2026-09-29T04:37:21.082Z
+2026-09-29T04:37:16.633Z,HUM-01,air_humidity,45.1,%,50,70,LOW,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 45.1 %, below the configured minimum of 50 %.",,,2026-09-29T04:37:20.791Z
+2026-09-29T04:37:16.610Z,TMP-01,temperature,26.4,C,15,25,HIGH,MEDIUM,RESOLVED,"The air temperature in AREA-1 is 26.4 C, above the configured maximum of 25 C.",,,2026-09-29T04:37:20.773Z
+2026-09-29T04:37:16.590Z,SM-02,soil_moisture,55.2,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.2 %, below the configured minimum of 60 %.",,,2026-09-29T04:37:20.756Z
+2026-09-29T04:37:16.563Z,SM-01,soil_moisture,55.8,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 55.8 %, below the configured minimum of 60 %.",,,2026-09-29T04:37:20.735Z
+2026-09-29T04:28:48.367Z,SM-01,soil_moisture,57.5,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.5 %, below the configured minimum of 60 %.",producer@smartgreen.ai,2026-09-29T04:28:48.571Z,2026-09-29T04:28:48.979Z
+2026-09-29T04:25:08.296Z,SM-01,soil_moisture,57.5,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.5 %, below the configured minimum of 60 %.",producer@smartgreen.ai,2026-09-29T04:25:08.491Z,2026-09-29T04:25:08.909Z
+2026-09-29T04:20:38.035Z,LUX-01,light,23.17,lux,10000,40000,LOW,HIGH,RESOLVED,"The light intensity in AREA-1 is 23.17 lux, below the configured minimum of 10000 lux.",,,2026-09-29T04:37:11.634Z
+2026-09-29T04:20:12.702Z,SM-02,soil_moisture,100,%,60,80,HIGH,HIGH,RESOLVED,"The soil moisture in AREA-1 is 100 %, above the configured maximum of 80 %.",,,2026-09-29T04:20:37.994Z
+2026-09-29T04:19:01.417Z,SM-01,soil_moisture,57.5,%,60,80,LOW,MEDIUM,RESOLVED,"The soil moisture in AREA-1 is 57.5 %, below the configured minimum of 60 %.",producer@smartgreen.ai,2026-09-29T04:19:01.630Z,2026-09-29T04:19:02.032Z
+2026-09-29T04:18:28.392Z,LUX-01,light,93.65,lux,10000,40000,LOW,HIGH,RESOLVED,"The light intensity in AREA-1 is 93.65 lux, below the configured minimum of 10000 lux.",,,2026-09-29T04:20:34.913Z
+2026-09-29T04:18:24.452Z,LUX-01,light,0,lux,10000,40000,LOW,HIGH,RESOLVED,"The light intensity in AREA-1 is 0 lux, below the configured minimum of 10000 lux.",,,2026-09-29T04:18:27.268Z
+2026-09-29T04:17:55.620Z,LUX-01,light,0,lux,10000,40000,LOW,HIGH,RESOLVED,"The light intensity in AREA-1 is 0 lux, below the configured minimum of 10000 lux.",,,2026-09-29T04:18:16.283Z
+2026-09-29T04:16:42.318Z,LUX-01,light,75.23,lux,10000,40000,LOW,HIGH,RESOLVED,"The light intensity in AREA-1 is 75.23 lux, below the configured minimum of 10000 lux.",,,2026-09-29T04:17:45.479Z
+2026-09-29T04:16:42.285Z,HUM-01,air_humidity,72.97,%,50,70,HIGH,MEDIUM,RESOLVED,"The relative humidity in AREA-1 is 72.97 %, above the configured maximum of 70 %.",,,2026-09-29T04:17:45.465Z

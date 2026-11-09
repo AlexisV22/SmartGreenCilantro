@@ -1,0 +1,23 @@
+Back in range
+Captured 2026-10-02T23:17:28.917Z against http://localhost:3000
+
+POST /api/measurements
+apikey: sec_io…
+
+{
+  "device_id": "dev-node-01",
+  "sensor_id": "SM-01",
+  "value": 66,
+  "unit": "%",
+  "recorded_at": "2026-10-02T23:17:28.485Z"
+}
+
+→ HTTP 201 Created (12 ms)
+{
+  "id": "msr-2c669696cbb6",
+  "sensor_id": "SM-01",
+  "status": "processed",
+  "inserted_at": "2026-10-02T23:17:28.491Z",
+  "alert": null,
+  "anomalies": []
+}

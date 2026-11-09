@@ -1,0 +1,27 @@
+PASS server/tests/integration/thresholds-alerts.test.js
+  US-10 thresholds
+    √ GET /thresholds lists one row per variable of the area (85 ms)
+    √ admin updates a threshold; updated_by and updated_at are stored and audited (396 ms)
+    √ min greater than max -> 400 with details (13 ms)
+    √ min equal to max -> 400 with details (13 ms)
+    √ below the physical range of the sensor -> 400 with details (13 ms)
+    √ above the physical range of the sensor -> 400 with details (12 ms)
+    √ non-numeric values -> 400 (8 ms)
+    √ unknown threshold -> 404 (9 ms)
+  US-11 / US-12 alert engine
+    √ a reading below the minimum creates a LOW alert with LOW severity (10 %) (29 ms)
+    √ repeated out-of-range readings do not duplicate the alert; the severity is upgraded (23 ms)
+    √ a HIGH temperature alert above the maximum (19 ms)
+    √ the value returning to range resolves the alert with resolved_at (17 ms)
+    √ low light is normal at night: the light minimum only applies during daylight (local time) (53 ms)
+    √ a reading outside the physical range raises an anomaly, not a threshold alert (19 ms)
+  US-13 alert history
+    √ acknowledge an open alert records who and when; a later ack keeps the first acknowledger (27 ms)
+    √ filters by status, severity, sensor and date with pagination metadata (24 ms)
+    √ CSV export with the same filters (9 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        3.038 s, estimated 5 s
+Ran all test suites matching /server\\tests\\integration\\thresholds-alerts.test.js/i.

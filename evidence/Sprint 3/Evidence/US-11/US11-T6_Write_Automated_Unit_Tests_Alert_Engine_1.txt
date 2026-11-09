@@ -1,0 +1,36 @@
+PASS server/tests/unit/alert-engine.test.js
+  US11-T6 alert creation
+    √ a value below the minimum creates an OPEN LOW alert (5 ms)
+    √ a value above the maximum creates an OPEN HIGH alert (1 ms)
+    √ a value inside the range creates no alert
+    √ every new alert is written to the system log
+    √ a sensor without a configured threshold is never evaluated (1 ms)
+  US11-T6 boundary values (equal to min and max)
+    √ exactly the minimum (60 %) is inside the range: no alert
+    √ exactly the maximum (80 %) is inside the range: no alert
+    √ exactly the minimum (15 C) is inside the range: no alert
+    √ exactly the maximum (25 C) is inside the range: no alert
+    √ just below the minimum of { id: 'SM-01', area_id: 'AREA-1', type: 'soil_moisture' } raises a 59.99 alert (1 ms)
+    √ just above the maximum of { id: 'SM-01', area_id: 'AREA-1', type: 'soil_moisture' } raises a 80.01 alert
+    √ just below the minimum of { id: 'TMP-01', area_id: 'AREA-1', type: 'temperature' } raises a 14.99 alert (1 ms)
+    √ just above the maximum of { id: 'TMP-01', area_id: 'AREA-1', type: 'temperature' } raises a 25.01 alert
+  US11-T6 de-duplication
+    √ repeated out-of-range readings keep one alert and refresh its value (1 ms)
+    √ an ACKNOWLEDGED alert also blocks a duplicate (1 ms)
+    √ different sensors get their own alert
+  US11-T6 automatic resolution
+    √ returning inside the range resolves the open alert with resolved_at (1 ms)
+    √ returning exactly to the minimum also resolves it
+    √ an in-range reading with nothing open resolves nothing (1 ms)
+    √ after resolution a new excursion creates a new alert
+    √ crossing from below the minimum to above the maximum closes LOW and opens HIGH
+  US11-T6 light at night
+    √ low light at night is normal: no alert (1 ms)
+    √ low light during daylight raises a LOW alert
+
+Test Suites: 1 passed, 1 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        0.573 s
+Ran all test suites matching /server\\tests\\unit\\alert-engine.test.js/i.
+Test results written to: tools\evidence\out\jest_US11-T6.json

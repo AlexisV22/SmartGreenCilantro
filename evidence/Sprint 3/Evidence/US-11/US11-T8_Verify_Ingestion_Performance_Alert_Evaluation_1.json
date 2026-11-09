@@ -1,0 +1,43 @@
+{
+  "executed_at": "2026-10-30T22:49:20.723Z",
+  "burst": {
+    "requests": 120,
+    "interval_s": 0.45,
+    "sensors": [
+      "SM-01"
+    ],
+    "scenario": "alerts",
+    "history_readings": 289
+  },
+  "runs": [
+    {
+      "label": "with alert evaluation",
+      "requests": 120,
+      "measurements_accepted": 120,
+      "duration_s": 56.6,
+      "avg_ms": 17.2,
+      "median_ms": 16,
+      "p95_ms": 22,
+      "max_ms": 66,
+      "min_ms": 13,
+      "new_alerts": 60,
+      "alerts_in_db": 60
+    },
+    {
+      "label": "without alert evaluation",
+      "requests": 120,
+      "measurements_accepted": 120,
+      "duration_s": 55.7,
+      "avg_ms": 11.9,
+      "median_ms": 12,
+      "p95_ms": 14,
+      "max_ms": 17,
+      "min_ms": 10,
+      "new_alerts": 0,
+      "alerts_in_db": 0
+    }
+  ],
+  "overhead_avg_ms": 5.3,
+  "limit_avg_ms": 500,
+  "pass": true
+}
