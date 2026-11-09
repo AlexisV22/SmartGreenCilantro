@@ -1,0 +1,5 @@
+key,value,description
+analysis.trend_tolerance,0.05,Absolute slope below which a trend is classified STABLE
+light.day_end_hour,19,Local hour when daylight ends: low light after this hour is normal (no alert)
+light.day_start_hour,7,Local hour when daylight starts: the light minimum only applies from this hour
+platform.timezone,America/Mexico_City,"IANA time zone of the greenhouse, used for daytime automation windows"

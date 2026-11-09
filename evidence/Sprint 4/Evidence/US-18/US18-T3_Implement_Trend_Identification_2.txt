@@ -1,0 +1,68 @@
+GET /api/analysis/trends?window=7d
+Captured 2026-09-29T05:03:37.019Z against http://localhost:3000
+
+GET /api/analysis/trends?area_id=AREA-1&window=7d
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (275 ms)
+{
+  "area_id": "AREA-1",
+  "window": "7d",
+  "window_hours": 168,
+  "tolerance": 0.05,
+  "trends": [
+    {
+      "sensor_type": "soil_moisture",
+      "current": 64.72999999999999,
+      "slope_per_hour": 0.0064,
+      "direction": "STABLE",
+      "tolerance": 0.05,
+      "hours_to_threshold": 2374.88,
+      "threshold": {
+        "min": 60,
+        "max": 80,
+        "unit": "%"
+      }
+    },
+    {
+      "sensor_type": "temperature",
+      "current": 22.075,
+      "slope_per_hour": 0.0143,
+      "direction": "STABLE",
+      "tolerance": 0.05,
+      "hours_to_threshold": 205.09,
+      "threshold": {
+        "min": 15,
+        "max": 25,
+        "unit": "C"
+      }
+    },
+    {
+      "sensor_type": "air_humidity",
+      "current": 60.019999999999996,
+      "slope_per_hour": -0.0384,
+      "direction": "STABLE",
+      "tolerance": 0.05,
+      "hours_to_threshold": 261.26,
+      "threshold": {
+        "min": 50,
+        "max": 70,
+        "unit": "%"
+      }
+    },
+    {
+      "sensor_type": "water_level",
+      "current": 80.005,
+      "slope_per_hour": -0.0107,
+      "direction": "STABLE",
+      "tolerance": 0.05,
+      "hours_to_threshold": 5603.96,
+      "threshold": {
+        "min": 20,
+        "max": 100,
+        "unit": "%"
+      }
+    }
+  ],
+  "generated_at": "2026-09-29T05:03:30.625Z"
+}

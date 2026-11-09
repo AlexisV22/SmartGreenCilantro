@@ -1,0 +1,2690 @@
+{
+  "area_id": "AREA-1",
+  "from": "2026-08-30T05:03:29.168Z",
+  "to": null,
+  "daily": [
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-08-30T00:00:00.000Z",
+      "min_value": 53.3,
+      "avg_value": 69.59823788546255,
+      "max_value": 80.6,
+      "samples": 227
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-08-30T00:00:00.000Z",
+      "min_value": 443,
+      "avg_value": 665.1894273127754,
+      "max_value": 845,
+      "samples": 227
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-08-30T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12239.88986784141,
+      "max_value": 29925,
+      "samples": 227
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-08-30T00:00:00.000Z",
+      "min_value": 6.41,
+      "avg_value": 6.460748898678414,
+      "max_value": 6.51,
+      "samples": 227
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-08-30T00:00:00.000Z",
+      "min_value": 62.2,
+      "avg_value": 67.54625550660793,
+      "max_value": 73.6,
+      "samples": 227
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-08-30T00:00:00.000Z",
+      "min_value": 60.6,
+      "avg_value": 66.36651982378855,
+      "max_value": 72.6,
+      "samples": 227
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-08-30T00:00:00.000Z",
+      "min_value": 16.6,
+      "avg_value": 20.208370044052863,
+      "max_value": 25.8,
+      "samples": 227
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-08-30T00:00:00.000Z",
+      "min_value": 83.5,
+      "avg_value": 84.46916299559471,
+      "max_value": 85,
+      "samples": 227
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-08-31T00:00:00.000Z",
+      "min_value": 46.8,
+      "avg_value": 63.125,
+      "max_value": 74.1,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-08-31T00:00:00.000Z",
+      "min_value": 437,
+      "avg_value": 696.4930555555555,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-08-31T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12473.975694444443,
+      "max_value": 37726,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-08-31T00:00:00.000Z",
+      "min_value": 6.42,
+      "avg_value": 6.482291666666667,
+      "max_value": 6.55,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-08-31T00:00:00.000Z",
+      "min_value": 62.1,
+      "avg_value": 68.0375,
+      "max_value": 73.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-08-31T00:00:00.000Z",
+      "min_value": 60.9,
+      "avg_value": 66.84965277777778,
+      "max_value": 72.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-08-31T00:00:00.000Z",
+      "min_value": 19.2,
+      "avg_value": 22.75034722222222,
+      "max_value": 28.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-08-31T00:00:00.000Z",
+      "min_value": 81,
+      "avg_value": 82.21527777777777,
+      "max_value": 83.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-01T00:00:00.000Z",
+      "min_value": 45.7,
+      "avg_value": 61.05173611111111,
+      "max_value": 73,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-01T00:00:00.000Z",
+      "min_value": 439,
+      "avg_value": 694.8159722222222,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-01T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12947.121527777777,
+      "max_value": 38733,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-01T00:00:00.000Z",
+      "min_value": 6.49,
+      "avg_value": 6.531701388888889,
+      "max_value": 6.59,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-01T00:00:00.000Z",
+      "min_value": 62.3,
+      "avg_value": 67.7388888888889,
+      "max_value": 73.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-01T00:00:00.000Z",
+      "min_value": 60.7,
+      "avg_value": 66.52152777777778,
+      "max_value": 72.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-01T00:00:00.000Z",
+      "min_value": 19.6,
+      "avg_value": 23.538541666666667,
+      "max_value": 28.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-01T00:00:00.000Z",
+      "min_value": 77.4,
+      "avg_value": 79.33229166666666,
+      "max_value": 80.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-02T00:00:00.000Z",
+      "min_value": 49.7,
+      "avg_value": 71.37395833333333,
+      "max_value": 85.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-02T00:00:00.000Z",
+      "min_value": 445,
+      "avg_value": 698.0243055555555,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-02T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 7975.215277777777,
+      "max_value": 23883,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-02T00:00:00.000Z",
+      "min_value": 6.43,
+      "avg_value": 6.494375,
+      "max_value": 6.56,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-02T00:00:00.000Z",
+      "min_value": 62.2,
+      "avg_value": 67.81527777777778,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-02T00:00:00.000Z",
+      "min_value": 61.1,
+      "avg_value": 66.58472222222223,
+      "max_value": 72.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-02T00:00:00.000Z",
+      "min_value": 14.7,
+      "avg_value": 19.552430555555556,
+      "max_value": 27.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-02T00:00:00.000Z",
+      "min_value": 75.8,
+      "avg_value": 76.57326388888889,
+      "max_value": 77.4,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-03T00:00:00.000Z",
+      "min_value": 49.4,
+      "avg_value": 66.45347222222222,
+      "max_value": 76.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-03T00:00:00.000Z",
+      "min_value": 441,
+      "avg_value": 696.7256944444445,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-03T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 11283.177083333332,
+      "max_value": 34015,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-03T00:00:00.000Z",
+      "min_value": 6.4,
+      "avg_value": 6.459618055555556,
+      "max_value": 6.51,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-03T00:00:00.000Z",
+      "min_value": 62.3,
+      "avg_value": 68.46180555555556,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-03T00:00:00.000Z",
+      "min_value": 60.8,
+      "avg_value": 67.27743055555555,
+      "max_value": 72.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-03T00:00:00.000Z",
+      "min_value": 18,
+      "avg_value": 21.427083333333332,
+      "max_value": 27.3,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-03T00:00:00.000Z",
+      "min_value": 73.2,
+      "avg_value": 74.44444444444444,
+      "max_value": 75.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-04T00:00:00.000Z",
+      "min_value": 47.2,
+      "avg_value": 62.32326388888889,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-04T00:00:00.000Z",
+      "min_value": 438,
+      "avg_value": 696.4791666666666,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-04T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12477.680555555557,
+      "max_value": 37058,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-04T00:00:00.000Z",
+      "min_value": 6.4,
+      "avg_value": 6.452152777777778,
+      "max_value": 6.53,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-04T00:00:00.000Z",
+      "min_value": 61.9,
+      "avg_value": 67.99131944444444,
+      "max_value": 73.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-04T00:00:00.000Z",
+      "min_value": 60.6,
+      "avg_value": 66.80694444444444,
+      "max_value": 72.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-04T00:00:00.000Z",
+      "min_value": 19.2,
+      "avg_value": 22.988194444444446,
+      "max_value": 28.3,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-04T00:00:00.000Z",
+      "min_value": 71.9,
+      "avg_value": 80.5423611111111,
+      "max_value": 95,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-05T00:00:00.000Z",
+      "min_value": 49.9,
+      "avg_value": 64.89027777777778,
+      "max_value": 77.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-05T00:00:00.000Z",
+      "min_value": 439,
+      "avg_value": 696.7534722222222,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-05T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 11036.975694444443,
+      "max_value": 32989,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-05T00:00:00.000Z",
+      "min_value": 6.42,
+      "avg_value": 6.504930555555555,
+      "max_value": 6.57,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-05T00:00:00.000Z",
+      "min_value": 62.1,
+      "avg_value": 67.66006944444445,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-05T00:00:00.000Z",
+      "min_value": 60.6,
+      "avg_value": 66.40868055555555,
+      "max_value": 72.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-05T00:00:00.000Z",
+      "min_value": 17.8,
+      "avg_value": 22.04390243902439,
+      "max_value": 27.6,
+      "samples": 287
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-05T00:00:00.000Z",
+      "min_value": 91.2,
+      "avg_value": 92.27361111111111,
+      "max_value": 93.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-06T00:00:00.000Z",
+      "min_value": 47,
+      "avg_value": 62.795138888888886,
+      "max_value": 74.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-06T00:00:00.000Z",
+      "min_value": 438,
+      "avg_value": 696.4652777777778,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-06T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12311.829861111111,
+      "max_value": 37169,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-06T00:00:00.000Z",
+      "min_value": 6.41,
+      "avg_value": 6.464166666666666,
+      "max_value": 6.53,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-06T00:00:00.000Z",
+      "min_value": 62,
+      "avg_value": 67.61631944444444,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-06T00:00:00.000Z",
+      "min_value": 60.8,
+      "avg_value": 66.39548611111111,
+      "max_value": 72.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-06T00:00:00.000Z",
+      "min_value": 19.1,
+      "avg_value": 22.805555555555557,
+      "max_value": 28.3,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-06T00:00:00.000Z",
+      "min_value": 88.6,
+      "avg_value": 89.69513888888889,
+      "max_value": 91.2,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-07T00:00:00.000Z",
+      "min_value": 49.7,
+      "avg_value": 64.24756944444445,
+      "max_value": 76.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-07T00:00:00.000Z",
+      "min_value": 436,
+      "avg_value": 696.0486111111111,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-07T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 11456.340277777777,
+      "max_value": 34507,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-07T00:00:00.000Z",
+      "min_value": 6.41,
+      "avg_value": 6.460277777777778,
+      "max_value": 6.53,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-07T00:00:00.000Z",
+      "min_value": 62,
+      "avg_value": 67.46319444444444,
+      "max_value": 73.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-07T00:00:00.000Z",
+      "min_value": 60.7,
+      "avg_value": 66.25833333333334,
+      "max_value": 72.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-07T00:00:00.000Z",
+      "min_value": 18.2,
+      "avg_value": 22.31076388888889,
+      "max_value": 27.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-07T00:00:00.000Z",
+      "min_value": 85.1,
+      "avg_value": 86.96458333333334,
+      "max_value": 88.1,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-08T00:00:00.000Z",
+      "min_value": 48.8,
+      "avg_value": 63.51770833333333,
+      "max_value": 75.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-08T00:00:00.000Z",
+      "min_value": 436,
+      "avg_value": 696.3715277777778,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-08T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 11883.291666666668,
+      "max_value": 35726,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-08T00:00:00.000Z",
+      "min_value": 6.39,
+      "avg_value": 6.442465277777778,
+      "max_value": 6.49,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-08T00:00:00.000Z",
+      "min_value": 62,
+      "avg_value": 67.73645833333333,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-08T00:00:00.000Z",
+      "min_value": 60.8,
+      "avg_value": 66.49270833333334,
+      "max_value": 72.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-08T00:00:00.000Z",
+      "min_value": 18.7,
+      "avg_value": 22.572222222222223,
+      "max_value": 27.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-08T00:00:00.000Z",
+      "min_value": 82.5,
+      "avg_value": 84.31180555555555,
+      "max_value": 85.1,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-09T00:00:00.000Z",
+      "min_value": 51.4,
+      "avg_value": 68.77222222222223,
+      "max_value": 81.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-09T00:00:00.000Z",
+      "min_value": 436,
+      "avg_value": 695.6111111111111,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-09T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 9393.1875,
+      "max_value": 28336,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-09T00:00:00.000Z",
+      "min_value": 6.41,
+      "avg_value": 6.474027777777778,
+      "max_value": 6.52,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-09T00:00:00.000Z",
+      "min_value": 62.3,
+      "avg_value": 67.43368055555555,
+      "max_value": 73.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-09T00:00:00.000Z",
+      "min_value": 60.7,
+      "avg_value": 66.26388888888889,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-09T00:00:00.000Z",
+      "min_value": 16.1,
+      "avg_value": 20.576041666666665,
+      "max_value": 26.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-09T00:00:00.000Z",
+      "min_value": 81.1,
+      "avg_value": 86.91388888888889,
+      "max_value": 95,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-10T00:00:00.000Z",
+      "min_value": 51.1,
+      "avg_value": 66.28923611111111,
+      "max_value": 77.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-10T00:00:00.000Z",
+      "min_value": 437,
+      "avg_value": 695.1770833333334,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-10T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 10926.701388888889,
+      "max_value": 33282,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-10T00:00:00.000Z",
+      "min_value": 6.47,
+      "avg_value": 6.530729166666667,
+      "max_value": 6.59,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-10T00:00:00.000Z",
+      "min_value": 62.2,
+      "avg_value": 68.27881944444445,
+      "max_value": 73.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-10T00:00:00.000Z",
+      "min_value": 60.7,
+      "avg_value": 67.05173611111111,
+      "max_value": 72.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-10T00:00:00.000Z",
+      "min_value": 17.7,
+      "avg_value": 21.465972222222224,
+      "max_value": 27,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-10T00:00:00.000Z",
+      "min_value": 92.2,
+      "avg_value": 93.34166666666667,
+      "max_value": 94.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-11T00:00:00.000Z",
+      "min_value": 46.1,
+      "avg_value": 61.67395833333333,
+      "max_value": 73,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-11T00:00:00.000Z",
+      "min_value": 446,
+      "avg_value": 695.5069444444445,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-11T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12893.079861111111,
+      "max_value": 38792,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-11T00:00:00.000Z",
+      "min_value": 6.38,
+      "avg_value": 6.488819444444444,
+      "max_value": 6.58,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-11T00:00:00.000Z",
+      "min_value": 62,
+      "avg_value": 67.70208333333333,
+      "max_value": 73.4,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-11T00:00:00.000Z",
+      "min_value": 61,
+      "avg_value": 66.45173611111112,
+      "max_value": 72.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-11T00:00:00.000Z",
+      "min_value": 19.6,
+      "avg_value": 23.264930555555555,
+      "max_value": 28.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-11T00:00:00.000Z",
+      "min_value": 89.6,
+      "avg_value": 90.78055555555555,
+      "max_value": 92.2,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-12T00:00:00.000Z",
+      "min_value": 48.4,
+      "avg_value": 64.16388888888889,
+      "max_value": 76.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-12T00:00:00.000Z",
+      "min_value": 438,
+      "avg_value": 694.5902777777778,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-12T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 11318.673611111111,
+      "max_value": 34112,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-12T00:00:00.000Z",
+      "min_value": 6.43,
+      "avg_value": 6.481006944444444,
+      "max_value": 6.54,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-12T00:00:00.000Z",
+      "min_value": 61.9,
+      "avg_value": 67.45486111111111,
+      "max_value": 73.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-12T00:00:00.000Z",
+      "min_value": 60.9,
+      "avg_value": 66.26979166666666,
+      "max_value": 73,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-12T00:00:00.000Z",
+      "min_value": 18.1,
+      "avg_value": 22.332638888888887,
+      "max_value": 27.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-12T00:00:00.000Z",
+      "min_value": 86.1,
+      "avg_value": 87.94548611111111,
+      "max_value": 89.1,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-13T00:00:00.000Z",
+      "min_value": 51.5,
+      "avg_value": 66.89722222222223,
+      "max_value": 79.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-13T00:00:00.000Z",
+      "min_value": 436,
+      "avg_value": 696.2638888888889,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-13T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 10413.395833333332,
+      "max_value": 31196,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-13T00:00:00.000Z",
+      "min_value": 6.45,
+      "avg_value": 6.513506944444444,
+      "max_value": 6.57,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-13T00:00:00.000Z",
+      "min_value": 62.3,
+      "avg_value": 67.4173611111111,
+      "max_value": 73.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-13T00:00:00.000Z",
+      "min_value": 60.8,
+      "avg_value": 66.23344947735191,
+      "max_value": 72.4,
+      "samples": 287
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-13T00:00:00.000Z",
+      "min_value": 17.1,
+      "avg_value": 21.259722222222223,
+      "max_value": 26.4,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-13T00:00:00.000Z",
+      "min_value": 84.5,
+      "avg_value": 85.44409722222223,
+      "max_value": 86.1,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-14T00:00:00.000Z",
+      "min_value": 51.9,
+      "avg_value": 66.46909722222222,
+      "max_value": 78.4,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-14T00:00:00.000Z",
+      "min_value": 436,
+      "avg_value": 695.2777777777778,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-14T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 10742.642361111111,
+      "max_value": 32422,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-14T00:00:00.000Z",
+      "min_value": 6.42,
+      "avg_value": 6.50125,
+      "max_value": 6.55,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-14T00:00:00.000Z",
+      "min_value": 62.3,
+      "avg_value": 68.20208333333333,
+      "max_value": 73.4,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-14T00:00:00.000Z",
+      "min_value": 60.8,
+      "avg_value": 67.02708333333334,
+      "max_value": 72.4,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-14T00:00:00.000Z",
+      "min_value": 17.5,
+      "avg_value": 21.430555555555557,
+      "max_value": 26.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-14T00:00:00.000Z",
+      "min_value": 83.1,
+      "avg_value": 87.40416666666667,
+      "max_value": 95,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-15T00:00:00.000Z",
+      "min_value": 49.1,
+      "avg_value": 64.48263888888889,
+      "max_value": 76.3,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-15T00:00:00.000Z",
+      "min_value": 437,
+      "avg_value": 696.59375,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-15T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 11595.204861111111,
+      "max_value": 35197,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-15T00:00:00.000Z",
+      "min_value": 6.39,
+      "avg_value": 6.445277777777778,
+      "max_value": 6.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-15T00:00:00.000Z",
+      "min_value": 62.3,
+      "avg_value": 68.334375,
+      "max_value": 73.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-15T00:00:00.000Z",
+      "min_value": 60.9,
+      "avg_value": 67.0875,
+      "max_value": 72.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-15T00:00:00.000Z",
+      "min_value": 18.3,
+      "avg_value": 22.192013888888887,
+      "max_value": 27.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-15T00:00:00.000Z",
+      "min_value": 91.2,
+      "avg_value": 92.44097222222223,
+      "max_value": 93.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-16T00:00:00.000Z",
+      "min_value": 51.6,
+      "avg_value": 68.78958333333334,
+      "max_value": 82,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-16T00:00:00.000Z",
+      "min_value": 443,
+      "avg_value": 695.6354166666666,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-16T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 9427.083333333334,
+      "max_value": 28562,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-16T00:00:00.000Z",
+      "min_value": 6.39,
+      "avg_value": 6.456111111111111,
+      "max_value": 6.52,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-16T00:00:00.000Z",
+      "min_value": 62.2,
+      "avg_value": 68.43090277777777,
+      "max_value": 73.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-16T00:00:00.000Z",
+      "min_value": 61.3,
+      "avg_value": 67.25416666666666,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-16T00:00:00.000Z",
+      "min_value": 16.2,
+      "avg_value": 20.5625,
+      "max_value": 26.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-16T00:00:00.000Z",
+      "min_value": 88.6,
+      "avg_value": 89.90763888888888,
+      "max_value": 91.2,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-17T00:00:00.000Z",
+      "min_value": 54.4,
+      "avg_value": 69.35381944444444,
+      "max_value": 81.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-17T00:00:00.000Z",
+      "min_value": 438,
+      "avg_value": 695.2430555555555,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-17T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 9565.847222222223,
+      "max_value": 28646,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-17T00:00:00.000Z",
+      "min_value": 6.44,
+      "avg_value": 6.488472222222223,
+      "max_value": 6.57,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-17T00:00:00.000Z",
+      "min_value": 62.2,
+      "avg_value": 67.365625,
+      "max_value": 73.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-17T00:00:00.000Z",
+      "min_value": 60.6,
+      "avg_value": 66.08958333333334,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-17T00:00:00.000Z",
+      "min_value": 16.3,
+      "avg_value": 20.294097222222224,
+      "max_value": 25.4,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-17T00:00:00.000Z",
+      "min_value": 87.1,
+      "avg_value": 87.83958333333334,
+      "max_value": 88.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-18T00:00:00.000Z",
+      "min_value": 46.9,
+      "avg_value": 63.4979094076655,
+      "max_value": 74.3,
+      "samples": 287
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-18T00:00:00.000Z",
+      "min_value": 437,
+      "avg_value": 694,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-18T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12358.621527777777,
+      "max_value": 37104,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-18T00:00:00.000Z",
+      "min_value": 6.45,
+      "avg_value": 6.505972222222222,
+      "max_value": 6.57,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-18T00:00:00.000Z",
+      "min_value": 62.4,
+      "avg_value": 67.87569444444445,
+      "max_value": 73.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-18T00:00:00.000Z",
+      "min_value": 60.5,
+      "avg_value": 66.65555555555555,
+      "max_value": 72.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-18T00:00:00.000Z",
+      "min_value": 19.1,
+      "avg_value": 22.591319444444444,
+      "max_value": 28.3,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-18T00:00:00.000Z",
+      "min_value": 83.5,
+      "avg_value": 85.44965277777777,
+      "max_value": 87.1,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-19T00:00:00.000Z",
+      "min_value": 48.6,
+      "avg_value": 62.6125,
+      "max_value": 75,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-19T00:00:00.000Z",
+      "min_value": 439,
+      "avg_value": 697.3194444444445,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-19T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12206.5625,
+      "max_value": 36664,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-19T00:00:00.000Z",
+      "min_value": 6.45,
+      "avg_value": 6.498263888888889,
+      "max_value": 6.56,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-19T00:00:00.000Z",
+      "min_value": 62.3,
+      "avg_value": 67.946875,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-19T00:00:00.000Z",
+      "min_value": 60.9,
+      "avg_value": 66.74826388888889,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-19T00:00:00.000Z",
+      "min_value": 18.9,
+      "avg_value": 22.941666666666666,
+      "max_value": 28,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-19T00:00:00.000Z",
+      "min_value": 82.1,
+      "avg_value": 87.31631944444445,
+      "max_value": 95,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-20T00:00:00.000Z",
+      "min_value": 50.5,
+      "avg_value": 67.03472222222223,
+      "max_value": 79.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-20T00:00:00.000Z",
+      "min_value": 440,
+      "avg_value": 695.8402777777778,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-20T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 10186.597222222223,
+      "max_value": 30430,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-20T00:00:00.000Z",
+      "min_value": 6.35,
+      "avg_value": 6.434201388888889,
+      "max_value": 6.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-20T00:00:00.000Z",
+      "min_value": 62,
+      "avg_value": 67.94027777777778,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-20T00:00:00.000Z",
+      "min_value": 61,
+      "avg_value": 66.7125,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-20T00:00:00.000Z",
+      "min_value": 16.9,
+      "avg_value": 21.263194444444444,
+      "max_value": 27.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-20T00:00:00.000Z",
+      "min_value": 91.2,
+      "avg_value": 92.84583333333333,
+      "max_value": 93.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-21T00:00:00.000Z",
+      "min_value": 51.5,
+      "avg_value": 66.25104166666667,
+      "max_value": 78,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-21T00:00:00.000Z",
+      "min_value": 443,
+      "avg_value": 694.5763888888889,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-21T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 10872.496527777777,
+      "max_value": 32946,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-21T00:00:00.000Z",
+      "min_value": 6.45,
+      "avg_value": 6.481944444444444,
+      "max_value": 6.52,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-21T00:00:00.000Z",
+      "min_value": 62.1,
+      "avg_value": 67.21006944444444,
+      "max_value": 73.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-21T00:00:00.000Z",
+      "min_value": 60.6,
+      "avg_value": 66.05972222222222,
+      "max_value": 72.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-21T00:00:00.000Z",
+      "min_value": 17.6,
+      "avg_value": 21.471527777777776,
+      "max_value": 26.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-21T00:00:00.000Z",
+      "min_value": 89.6,
+      "avg_value": 90.58506944444444,
+      "max_value": 91.2,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-22T00:00:00.000Z",
+      "min_value": 54,
+      "avg_value": 70.52326388888889,
+      "max_value": 83.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-22T00:00:00.000Z",
+      "min_value": 445,
+      "avg_value": 695.9479166666666,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-22T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 8759.673611111111,
+      "max_value": 26741,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-22T00:00:00.000Z",
+      "min_value": 6.43,
+      "avg_value": 6.4982291666666665,
+      "max_value": 6.55,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-22T00:00:00.000Z",
+      "min_value": 62.2,
+      "avg_value": 68.05243055555556,
+      "max_value": 73.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-22T00:00:00.000Z",
+      "min_value": 60.8,
+      "avg_value": 66.84861111111111,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-22T00:00:00.000Z",
+      "min_value": 15.6,
+      "avg_value": 19.928472222222222,
+      "max_value": 26,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-22T00:00:00.000Z",
+      "min_value": 87.1,
+      "avg_value": 88.15208333333334,
+      "max_value": 89.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-23T00:00:00.000Z",
+      "min_value": 53.8,
+      "avg_value": 68.98333333333333,
+      "max_value": 80.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-23T00:00:00.000Z",
+      "min_value": 439,
+      "avg_value": 696.6979166666666,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-23T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 9870.454861111111,
+      "max_value": 29906,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-23T00:00:00.000Z",
+      "min_value": 6.43,
+      "avg_value": 6.500972222222222,
+      "max_value": 6.57,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-23T00:00:00.000Z",
+      "min_value": 62.1,
+      "avg_value": 67.85451388888889,
+      "max_value": 73.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-23T00:00:00.000Z",
+      "min_value": 60.5,
+      "avg_value": 66.71215277777777,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-23T00:00:00.000Z",
+      "min_value": 16.6,
+      "avg_value": 20.424305555555556,
+      "max_value": 25.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-23T00:00:00.000Z",
+      "min_value": 84.5,
+      "avg_value": 86.075,
+      "max_value": 87.1,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-24T00:00:00.000Z",
+      "min_value": 49.9,
+      "avg_value": 65.678125,
+      "max_value": 77.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-24T00:00:00.000Z",
+      "min_value": 443,
+      "avg_value": 696.6701388888889,
+      "max_value": 845,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-24T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 11174.645833333332,
+      "max_value": 33752,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-24T00:00:00.000Z",
+      "min_value": 6.43,
+      "avg_value": 6.516944444444444,
+      "max_value": 6.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-24T00:00:00.000Z",
+      "min_value": 62.1,
+      "avg_value": 67.28606271777004,
+      "max_value": 73.8,
+      "samples": 287
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-24T00:00:00.000Z",
+      "min_value": 60.8,
+      "avg_value": 66.1048611111111,
+      "max_value": 72.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-24T00:00:00.000Z",
+      "min_value": 17.9,
+      "avg_value": 21.72361111111111,
+      "max_value": 27.2,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-24T00:00:00.000Z",
+      "min_value": 84.1,
+      "avg_value": 87.7701388888889,
+      "max_value": 95,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-25T00:00:00.000Z",
+      "min_value": 51.5,
+      "avg_value": 67.74236111111111,
+      "max_value": 80.4,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-25T00:00:00.000Z",
+      "min_value": 437,
+      "avg_value": 695.3784722222222,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-25T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 10044.444444444443,
+      "max_value": 30206,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-25T00:00:00.000Z",
+      "min_value": 6.47,
+      "avg_value": 6.527083333333334,
+      "max_value": 6.57,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-25T00:00:00.000Z",
+      "min_value": 62.7,
+      "avg_value": 67.76180555555555,
+      "max_value": 73.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-25T00:00:00.000Z",
+      "min_value": 61.1,
+      "avg_value": 66.525,
+      "max_value": 72.3,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-25T00:00:00.000Z",
+      "min_value": 16.8,
+      "avg_value": 20.978819444444444,
+      "max_value": 26.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-25T00:00:00.000Z",
+      "min_value": 91.2,
+      "avg_value": 92.22465277777778,
+      "max_value": 92.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-26T00:00:00.000Z",
+      "min_value": 55.4,
+      "avg_value": 69.99930555555555,
+      "max_value": 82.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-26T00:00:00.000Z",
+      "min_value": 441,
+      "avg_value": 697.0902777777778,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-26T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 9132.840277777777,
+      "max_value": 27281,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-26T00:00:00.000Z",
+      "min_value": 6.44,
+      "avg_value": 6.499340277777778,
+      "max_value": 6.56,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-26T00:00:00.000Z",
+      "min_value": 62.4,
+      "avg_value": 68.54270833333334,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-26T00:00:00.000Z",
+      "min_value": 61.1,
+      "avg_value": 67.3236111111111,
+      "max_value": 72.9,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-26T00:00:00.000Z",
+      "min_value": 15.9,
+      "avg_value": 20.070486111111112,
+      "max_value": 25.2,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-26T00:00:00.000Z",
+      "min_value": 88.6,
+      "avg_value": 89.91180555555556,
+      "max_value": 91.2,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-27T00:00:00.000Z",
+      "min_value": 47.2,
+      "avg_value": 63.56666666666667,
+      "max_value": 73.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-27T00:00:00.000Z",
+      "min_value": 440,
+      "avg_value": 695.1458333333334,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-27T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 12436.5625,
+      "max_value": 37234,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-27T00:00:00.000Z",
+      "min_value": 6.49,
+      "avg_value": 6.530138888888889,
+      "max_value": 6.57,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-27T00:00:00.000Z",
+      "min_value": 62.3,
+      "avg_value": 67.90868055555555,
+      "max_value": 73.5,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-27T00:00:00.000Z",
+      "min_value": 60.6,
+      "avg_value": 66.69513888888889,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-27T00:00:00.000Z",
+      "min_value": 19.1,
+      "avg_value": 22.535069444444446,
+      "max_value": 28.3,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-27T00:00:00.000Z",
+      "min_value": 86.1,
+      "avg_value": 87.66770833333334,
+      "max_value": 88.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-28T00:00:00.000Z",
+      "min_value": 48.6,
+      "avg_value": 68.37881944444445,
+      "max_value": 81.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-28T00:00:00.000Z",
+      "min_value": 436,
+      "avg_value": 696.2951388888889,
+      "max_value": 844,
+      "samples": 288
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-28T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 9379.125,
+      "max_value": 27892,
+      "samples": 288
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-28T00:00:00.000Z",
+      "min_value": 6.41,
+      "avg_value": 6.502916666666667,
+      "max_value": 6.58,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-28T00:00:00.000Z",
+      "min_value": 62.1,
+      "avg_value": 68.38784722222222,
+      "max_value": 73.7,
+      "samples": 288
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-28T00:00:00.000Z",
+      "min_value": 60.5,
+      "avg_value": 67.18923611111111,
+      "max_value": 72.8,
+      "samples": 288
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-28T00:00:00.000Z",
+      "min_value": 16.2,
+      "avg_value": 20.65972222222222,
+      "max_value": 27.6,
+      "samples": 288
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-28T00:00:00.000Z",
+      "min_value": 83.5,
+      "avg_value": 84.9625,
+      "max_value": 86.1,
+      "samples": 288
+    },
+    {
+      "sensor_type": "air_humidity",
+      "sensor_id": "HUM-01",
+      "unit": "%",
+      "day": "2026-09-29T00:00:00.000Z",
+      "min_value": 44,
+      "avg_value": 63.113846153846154,
+      "max_value": 73.4,
+      "samples": 182
+    },
+    {
+      "sensor_type": "co2",
+      "sensor_id": "CO2-01",
+      "unit": "ppm",
+      "day": "2026-09-29T00:00:00.000Z",
+      "min_value": 598.17,
+      "avg_value": 792.6209444444445,
+      "max_value": 1260,
+      "samples": 180
+    },
+    {
+      "sensor_type": "light",
+      "sensor_id": "LUX-01",
+      "unit": "lux",
+      "day": "2026-09-29T00:00:00.000Z",
+      "min_value": 0,
+      "avg_value": 1284.0208125,
+      "max_value": 20000,
+      "samples": 160
+    },
+    {
+      "sensor_type": "ph",
+      "sensor_id": "PH-01",
+      "unit": "pH",
+      "day": "2026-09-29T00:00:00.000Z",
+      "min_value": 6.45,
+      "avg_value": 6.5025625,
+      "max_value": 6.57,
+      "samples": 160
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-01",
+      "unit": "%",
+      "day": "2026-09-29T00:00:00.000Z",
+      "min_value": 54.2,
+      "avg_value": 64.37340707964601,
+      "max_value": 71.7,
+      "samples": 226
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "sensor_id": "SM-02",
+      "unit": "%",
+      "day": "2026-09-29T00:00:00.000Z",
+      "min_value": 53.5,
+      "avg_value": 64.37497267759562,
+      "max_value": 100,
+      "samples": 183
+    },
+    {
+      "sensor_type": "temperature",
+      "sensor_id": "TMP-01",
+      "unit": "C",
+      "day": "2026-09-29T00:00:00.000Z",
+      "min_value": 18.7,
+      "avg_value": 21.938730964467005,
+      "max_value": 27.6,
+      "samples": 197
+    },
+    {
+      "sensor_type": "water_level",
+      "sensor_id": "WL-01",
+      "unit": "%",
+      "day": "2026-09-29T00:00:00.000Z",
+      "min_value": 15,
+      "avg_value": 82.06525773195877,
+      "max_value": 85.17,
+      "samples": 194
+    }
+  ],
+  "optimal_range": [
+    {
+      "sensor_type": "air_humidity",
+      "total_readings": 8760,
+      "readings_in_range": 4871,
+      "pct_time_in_optimal_range": 55.61
+    },
+    {
+      "sensor_type": "co2",
+      "total_readings": 8759,
+      "readings_in_range": 8757,
+      "pct_time_in_optimal_range": 99.98
+    },
+    {
+      "sensor_type": "light",
+      "total_readings": 4320,
+      "readings_in_range": 3698,
+      "pct_time_in_optimal_range": 85.6
+    },
+    {
+      "sensor_type": "ph",
+      "total_readings": 8739,
+      "readings_in_range": 8739,
+      "pct_time_in_optimal_range": 100
+    },
+    {
+      "sensor_type": "soil_moisture",
+      "total_readings": 17565,
+      "readings_in_range": 17471,
+      "pct_time_in_optimal_range": 99.46
+    },
+    {
+      "sensor_type": "temperature",
+      "total_readings": 8775,
+      "readings_in_range": 6766,
+      "pct_time_in_optimal_range": 77.11
+    },
+    {
+      "sensor_type": "water_level",
+      "total_readings": 8773,
+      "readings_in_range": 8772,
+      "pct_time_in_optimal_range": 99.99
+    }
+  ],
+  "irrigation_minutes_per_day": [
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-29T00:00:00.000Z",
+      "minutes": 1.3
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-28T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-27T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-26T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-25T00:00:00.000Z",
+      "minutes": 8
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-24T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-23T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-22T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-21T00:00:00.000Z",
+      "minutes": 8
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-20T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-19T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-18T00:00:00.000Z",
+      "minutes": 24
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-17T00:00:00.000Z",
+      "minutes": 8
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-16T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-15T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-14T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-13T00:00:00.000Z",
+      "minutes": 8
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-12T00:00:00.000Z",
+      "minutes": 24
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-11T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-10T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-09T00:00:00.000Z",
+      "minutes": 8
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-08T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-07T00:00:00.000Z",
+      "minutes": 24
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-06T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-05T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-04T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-03T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-02T00:00:00.000Z",
+      "minutes": 8
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-09-01T00:00:00.000Z",
+      "minutes": 24
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-08-31T00:00:00.000Z",
+      "minutes": 16
+    },
+    {
+      "area_id": "AREA-1",
+      "day": "2026-08-30T00:00:00.000Z",
+      "minutes": 8
+    }
+  ],
+  "anomalies_excluded": 26,
+  "generated_at": "2026-09-29T05:03:30.293Z"
+}

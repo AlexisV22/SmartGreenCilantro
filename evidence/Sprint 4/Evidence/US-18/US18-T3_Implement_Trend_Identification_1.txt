@@ -1,0 +1,15 @@
+PASS server/tests/unit/trends.test.js
+  US18-T2 trends
+    √ a falling series has a negative slope per hour and is FALLING (15 ms)
+    √ a rising series is RISING and projects to the maximum (2 ms)
+    √ changes below the tolerance are STABLE (1 ms)
+    √ not enough points gives no direction instead of a false trend (1 ms)
+  US-20 preprocessing
+    √ resamples to 5-minute buckets and interpolates gaps up to 15 minutes (7 ms)
+    √ gaps longer than 15 minutes stay empty (no invented data) (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       6 passed, 6 total
+Snapshots:   0 total
+Time:        1.904 s
+Ran all test suites matching /server\\tests\\unit\\trends.test.js/i.

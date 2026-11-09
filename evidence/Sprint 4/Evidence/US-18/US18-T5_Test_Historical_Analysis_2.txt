@@ -1,0 +1,8 @@
+System values (GET /api/analysis/summary)
+Captured 2026-09-29T05:03:49.066Z against http://localhost:3000
+
+GET /api/analysis/summary?area_id=AREA-1&from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-28T23%3A59%3A59.999Z
+Authorization: Bearer eyJhbG…
+
+→ HTTP 200 OK (76 ms)
+(daily rows used in the comparison table)
