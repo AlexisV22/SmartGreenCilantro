@@ -1,0 +1,104 @@
+API calls of the test
+Captured 2026-09-29T04:19:18.384Z against http://localhost:3000
+
+POST /api/thresholds
+Authorization: Bearer eyJhbG…
+
+{
+  "area_id": "AREA-2",
+  "sensor_type": "co2",
+  "min_value": 420,
+  "max_value": 950,
+  "unit": "ppm",
+  "crop_stage": "test"
+}
+
+→ HTTP 201 Created (20 ms)
+{
+  "id": "th-938f341da1",
+  "area_id": "AREA-2",
+  "greenhouse_id": null,
+  "crop_stage": "test",
+  "updated_at": "2026-09-29T04:19:14.023Z",
+  "updated_by": "usr-admin",
+  "parameter": "co2",
+  "sensor_type": "co2",
+  "min_value": 420,
+  "max_value": 950,
+  "unit": "ppm",
+  "updated_by_email": "admin@smartgreen.ai",
+  "area_name": "Cultivation Area 2"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-938f341da1
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 400,
+  "max_value": 1000
+}
+
+→ HTTP 200 OK (23 ms)
+{
+  "id": "th-938f341da1",
+  "area_id": "AREA-2",
+  "greenhouse_id": null,
+  "crop_stage": "test",
+  "updated_at": "2026-09-29T04:19:14.047Z",
+  "updated_by": "usr-admin",
+  "parameter": "co2",
+  "sensor_type": "co2",
+  "min_value": 400,
+  "max_value": 1000,
+  "unit": "ppm",
+  "updated_by_email": "admin@smartgreen.ai",
+  "area_name": "Cultivation Area 2"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-a1-soil-moisture
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": "sixty",
+  "max_value": 80
+}
+
+→ HTTP 400 Bad Request (15 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The submitted data does not match the required schema.",
+  "details": [
+    {
+      "field": "min_value",
+      "issue": "Expected number, received string"
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-a1-soil-moisture
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 55,
+  "max_value": 80
+}
+
+→ HTTP 403 Forbidden (14 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: thresholds.write"
+    }
+  ]
+}

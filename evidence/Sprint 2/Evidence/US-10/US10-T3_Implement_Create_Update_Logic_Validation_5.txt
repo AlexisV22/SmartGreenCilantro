@@ -1,0 +1,58 @@
+Create and update
+Captured 2026-09-29T04:19:10.451Z against http://localhost:3000
+
+POST /api/thresholds
+Authorization: Bearer eyJhbG…
+
+{
+  "area_id": "AREA-2",
+  "sensor_type": "ph",
+  "min_value": 6,
+  "max_value": 6.9,
+  "unit": "pH",
+  "crop_stage": "seedling"
+}
+
+→ HTTP 201 Created (24 ms)
+{
+  "id": "th-126bbdbddb",
+  "area_id": "AREA-2",
+  "greenhouse_id": null,
+  "crop_stage": "seedling",
+  "updated_at": "2026-09-29T04:19:09.824Z",
+  "updated_by": "usr-admin",
+  "parameter": "ph",
+  "sensor_type": "ph",
+  "min_value": 6,
+  "max_value": 6.9,
+  "unit": "pH",
+  "updated_by_email": "admin@smartgreen.ai",
+  "area_name": "Cultivation Area 2"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-126bbdbddb
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 6.1,
+  "max_value": 6.8
+}
+
+→ HTTP 200 OK (31 ms)
+{
+  "id": "th-126bbdbddb",
+  "area_id": "AREA-2",
+  "greenhouse_id": null,
+  "crop_stage": "seedling",
+  "updated_at": "2026-09-29T04:19:09.855Z",
+  "updated_by": "usr-admin",
+  "parameter": "ph",
+  "sensor_type": "ph",
+  "min_value": 6.1,
+  "max_value": 6.8,
+  "unit": "pH",
+  "updated_by_email": "admin@smartgreen.ai",
+  "area_name": "Cultivation Area 2"
+}

@@ -1,0 +1,12 @@
+column_name,data_type,is_nullable
+id,text,NO
+area_id,text,YES
+greenhouse_id,text,YES
+sensor_type,text,NO
+min_value,numeric,NO
+max_value,numeric,NO
+unit,text,NO
+crop_stage,text,NO
+updated_by,text,YES
+updated_at,timestamp with time zone,NO
+created_at,timestamp with time zone,NO

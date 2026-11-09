@@ -1,0 +1,8 @@
+sensor_type,min_value,max_value,unit,crop_stage
+air_humidity,50.000,70.000,%,vegetative
+co2,400.000,1000.000,ppm,vegetative
+light,10000.000,40000.000,lux,vegetative
+ph,6.200,6.800,pH,vegetative
+soil_moisture,60.000,80.000,%,vegetative
+temperature,15.000,25.000,C,vegetative
+water_level,20.000,100.000,%,vegetative

@@ -1,0 +1,100 @@
+Rejected changes
+Captured 2026-09-29T04:19:10.452Z against http://localhost:3000
+
+PUT /api/thresholds/th-126bbdbddb
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 6.8,
+  "max_value": 6.1
+}
+
+→ HTTP 400 Bad Request (15 ms)
+{
+  "status": 400,
+  "code": "ERR_VALIDATION_FAILED",
+  "message": "The threshold values are invalid.",
+  "details": [
+    {
+      "field": "min_value",
+      "issue": "The minimum must be strictly lower than the maximum."
+    }
+  ]
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-126bbdbddb
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": -1,
+  "max_value": 6.8
+}
+
+→ HTTP 200 OK (19 ms)
+{
+  "id": "th-126bbdbddb",
+  "area_id": "AREA-2",
+  "greenhouse_id": null,
+  "crop_stage": "seedling",
+  "updated_at": "2026-09-29T04:19:09.893Z",
+  "updated_by": "usr-admin",
+  "parameter": "ph",
+  "sensor_type": "ph",
+  "min_value": -1,
+  "max_value": 6.8,
+  "unit": "pH",
+  "updated_by_email": "admin@smartgreen.ai",
+  "area_name": "Cultivation Area 2"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-126bbdbddb
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 6.1,
+  "max_value": 20
+}
+
+→ HTTP 200 OK (17 ms)
+{
+  "id": "th-126bbdbddb",
+  "area_id": "AREA-2",
+  "greenhouse_id": null,
+  "crop_stage": "seedling",
+  "updated_at": "2026-09-29T04:19:09.911Z",
+  "updated_by": "usr-admin",
+  "parameter": "ph",
+  "sensor_type": "ph",
+  "min_value": 6.1,
+  "max_value": 20,
+  "unit": "pH",
+  "updated_by_email": "admin@smartgreen.ai",
+  "area_name": "Cultivation Area 2"
+}
+
+----------------------------------------------------------------------
+
+PUT /api/thresholds/th-126bbdbddb
+Authorization: Bearer eyJhbG…
+
+{
+  "min_value": 6.1,
+  "max_value": 6.8
+}
+
+→ HTTP 403 Forbidden (7 ms)
+{
+  "status": 403,
+  "code": "ERR_INSUFFICIENT_PERMISSIONS",
+  "message": "Your role (Producer) does not allow this operation.",
+  "details": [
+    {
+      "field": "permission",
+      "issue": "Missing permission: thresholds.write"
+    }
+  ]
+}
